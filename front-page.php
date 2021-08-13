@@ -1,6 +1,5 @@
 <?php
 /**
- * Template Name: Home
  * This Template is for custom home page
  */
 ?>
