@@ -1,8 +1,6 @@
 <?php
-if(!defined('ABSPATH')) exit; 
+if(!defined('ABSPATH')) exit;
 class Theme_Controller{
-    public static $constantUserNotLoggedIn = 'User must be logged In.';
-    public static $constantCartEmpty = 'Your cart is empty. Please go back to products page and add some items into your cart.';
     public function __construct() {
 
     }
@@ -47,7 +45,7 @@ class Theme_Controller{
     /**
      * Filter WP Content
      */
-    public static function contentFilter($strcontent,$bolStripTags,$intLength=300){
+    public static function getFilteredContent($strcontent,$bolStripTags,$intLength=300){
         if($bolStripTags){
             $strcontent = strip_tags($strcontent); 
             $strcontent = substr($strcontent, 0, $intLength);
@@ -59,22 +57,9 @@ class Theme_Controller{
     }
 
     /**
-     * Get Product Sort Value
-     * Get Posts
-     */
-    public static function getSortValue(){
-        $strReturn = '';
-        if(isset($_GET['sort_products_by'])){
-            $strReturn = $_GET['sort_products_by'];
-        }
-        return $strReturn;
-    }
-
-    /**
      * Get WP Posts or Custom Posts Type/
      */
     public static function getAllPosts($paged, $strPostType, $intNumberOfPages){
-        
         // Default Args
         $arrArgs =  array(
             'post_type'     => $strPostType, 
@@ -82,44 +67,7 @@ class Theme_Controller{
             'posts_per_page'=> $intNumberOfPages,
             'paged'         => $paged,
         );
-        // Sorting Start Here//
-        $strSortBy = '';   
-        // Get Sort Value     
-        $strSortBy = self::getSortValue();
-        // Set Empty Return
-        $arrSortArray = array();
-
-        if(!empty($strSortBy)){
-            if($strSortBy == 'points'){
-                $arrSortArray = array(
-                    'meta_key' => '_meta_information_points_price',
-                    'orderby' => 'meta_value_num',
-                    'order' => 'ASC'
-                );
-            }
-            if($strSortBy == 'available'){
-                $arrSortArray = array(
-                    'meta_key' => '_meta_information_points_qty',
-                    'orderby' => 'meta_value_num',
-                    'order' => 'ASC'
-                );
-            }
-            if($strSortBy == 'name'){
-                $arrSortArray = array(
-                    'orderby' => 'title',
-                    'order' => 'ASC'
-                );
-            }
-        }
-        else{
-            $arrSortArray = array(
-                'orderby' => 'date',
-                'order' => 'DESC'
-            );
-        }
-        if(!empty($arrSortArray)){
-            $arrArgs = array_merge($arrSortArray, $arrArgs);
-        }
+   
         $allPostsWPQuery = new WP_Query(
            $arrArgs
         );
@@ -194,7 +142,7 @@ class Theme_Controller{
     * 
     * Function to get Wordpress Menu By Name  
     */   
-    public static function getMainByMenu($strMenuName){
+    public static function getMenuByName($strMenuName){
         $current_menu = wp_get_nav_menu_object($strMenuName);
         $array_menu = wp_get_nav_menu_items($current_menu);
         $menu = array();
