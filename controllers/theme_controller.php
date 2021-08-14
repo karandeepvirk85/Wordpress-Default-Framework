@@ -1,8 +1,7 @@
 <?php
-if(!defined('ABSPATH')) exit;
+if(!defined('ABSPATH')) exit; 
 class Theme_Controller{
     public function __construct() {
-
     }
     
     /**
