@@ -10,48 +10,81 @@ add_action( 'wp_enqueue_scripts', 'themeStyles');
 add_action( 'wp_enqueue_scripts', 'themeScripts');
 add_action('wp_head', 'setAjaxUrl');
 add_action('wp_head','setHomeUrl');
+add_action('admin_head','admin_css');
+add_action( 'after_setup_theme', 'gThemeSupport');
 
+
+function gThemeSupport(){
+	add_theme_support( 'post-thumbnails' );
+	set_post_thumbnail_size( 1568, 9999 );
+	add_theme_support(
+		'html5',
+		array(
+			'comment-form',
+			'comment-list',
+			'gallery',
+			'caption',
+			'style',
+			'script',
+			'navigation-widgets',
+		)
+	);
+	register_nav_menus(
+		array(
+		'primary-menu' => __( 'Primary Menu' ),
+		'secondary-menu' => __( 'Secondary Menu' )
+		)
+	);
+}
+
+/**
+ * Load Theme Controllers
+ */
 function includeThemeControllers(){
 	include_once(get_template_directory().'/controllers/theme_controller.php');
 }
 
+/**
+ * Load Theme Styles
+ */
 function themeStyles() {
-	wp_enqueue_style('font-awesome','https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
-	wp_enqueue_style('bootstrap-style','https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css',false, '1.0', 'all');
+	wp_enqueue_style('font-awesome','https://kit.fontawesome.com/92f8084012.js');
 	wp_enqueue_style('animate','https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
+	wp_enqueue_style('bootstrap-4', get_template_directory_uri().'/bootstrap4/bootstrap-4.0.0/dist/css/bootstrap.min.css');
 	wp_enqueue_style('theme-style', get_template_directory_uri().'/style.css');
 }
 
+/**
+ * Load Theme Scripts
+ */
 function themeScripts() {
-	wp_enqueue_script('jquery-script','https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js');
-    wp_enqueue_script('bootstrap-scripts', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js', false, '1.0', 'all' );
-	wp_enqueue_script('theme-scripts', get_template_directory_uri() . '/scripts/theme-scripts.js', false, '1.0', 'all' );
+	wp_enqueue_script('jquery-script','https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js');
+    wp_enqueue_script('theme-style', get_template_directory_uri().'/bootstrap4/bootstrap-4.0.0/dist/js/bootstrap.min.js');
+	wp_enqueue_script('theme-scripts', get_template_directory_uri() . '/scripts/theme-scripts.js');
 }
 
+/**
+ * Add Custom css to Admin Area
+ */
+function admin_css(){
+	echo '<link rel="stylesheet" href="'.get_template_directory_uri().'/admin-style.css" type="text/css" media="all">'; 
+}
+/**
+ * Set Ajax URL
+ */
 function setAjaxUrl() {
-   echo '<script type="text/javascript"> var ajaxurl = "' . admin_url('admin-ajax.php') . '";</script>';
+   echo '<script type="text/javascript"> 
+		var globalObject = {
+			"admin_url":"'.admin_url('admin-ajax.php').'",
+			"home_url":"'.home_url().'",
+			"home_slider_speed":"'.Theme_Controller::get_theme_option( 'slider_speed' ).'"
+		};
+	</script>';
 }
 
+/**
+ * Set Home Url 
+ */
 function setHomeUrl() {
 	echo '<script type="text/javascript"> var homeurl = "' .home_url(). '";</script>';
 }
-
-function addHomeSection1(){
-	add_settings_section ('home_section_1', 'Home Section 1','getHomeSectionContent1', 'reading');
-	add_settings_field('first_field_section_1','First Section','getSettingsField','reading','home_section_1');
-}
-
-function getHomeSectionContent1(){
-	echo "<p>This is the new Reading section.</p>";
-}
-
-function getSettingsField(){
-	echo "<p>This is Settings Field</p>";
-}
-
-function registerHomeSection1Settings(){
-	register_setting('Reading','first_field_section_1');
-}
-
-add_action('admin_init','addHomeSection1');
-add_action('admin_init','registerHomeSection1Settings');

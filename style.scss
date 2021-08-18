@@ -10,3 +10,33 @@ Licence: Open Soruce Base Theme Under GPL Licence.
 Licence URL: https://www.gnu.org/licenses/gpl-3.0.en.html
 Extra: Do whatever the fuck you want to do. What you feels like doing is always the option. 
 */
+.navbar-adjust {
+    height: auto;
+    max-height: 80px;
+    width: 100%;
+    .navbar-brand {
+        .logo {
+            img {
+                width: 130px;
+            }
+        }
+    }
+}
+.carousel-adjust {
+    .carousel-inner {
+        height: auto;
+        max-height: calc(100vh - 80px);
+        .carousel-caption {
+            top: 20vh;
+            left: 60%;
+            h5 {
+                background: rgba(0, 0, 0, 0.3);
+                padding: 0.7rem;
+                border-radius: 10px;
+            }
+        }
+    }
+}
+.page-container {
+    padding: 60px auto;
+}

@@ -1,3 +1,5 @@
 jQuery(document).ready(function ($) {
-    alert();
+    $(".carousel").carousel({
+        interval: parseInt(globalObject.home_slider_speed),
+    });
 });

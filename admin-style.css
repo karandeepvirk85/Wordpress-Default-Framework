@@ -1,0 +1,56 @@
+.settings-site-logo-input .settings-input {
+  width: 60%;
+  height: 44px;
+  border: 2px solid #b0b0b8;
+  box-sizing: border-box;
+  box-shadow: -4px 3px 11px 0px #d3d3d7;
+}
+.settings-site-logo-input .settings-number {
+  height: 34px;
+}
+
+.settings-site-input-number .settings-input-number {
+  width: 60px;
+  height: 30px;
+}
+.settings-site-input-number .settings-input-number-speed {
+  width: 200px;
+}
+.settings-site-input-number .description {
+  color: #8f8f8f;
+  margin-top: 4px;
+}
+
+.settings-site-slider-input {
+  margin-top: 10px;
+}
+.settings-site-slider-input .settings-input {
+  width: 80%;
+  height: 44px;
+  border: 2px solid #b0b0b8;
+  box-sizing: border-box;
+  box-shadow: -4px 3px 11px 0px #d3d3d7;
+}
+
+.settings-site-logo {
+  margin-top: 20px;
+}
+.settings-site-logo img {
+  width: 100px;
+  height: auto;
+}
+
+.settings-slider-image img {
+  margin-top: 10px;
+  width: auto;
+  height: 100px;
+}
+
+.settings-site-header-input .header-color {
+  background-color: #0059ff;
+  width: 100px;
+  height: 100px;
+  margin-top: 10px;
+}
+
+/*# sourceMappingURL=admin-style.css.map */
