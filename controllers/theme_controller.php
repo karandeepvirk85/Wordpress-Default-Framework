@@ -62,7 +62,7 @@ class Theme_Controller{
     /**
      * Get WP Posts or Custom Posts Type/
      */
-    public static function getAllPosts($paged, $strPostType, $intNumberOfPages){
+    public static function getAllPosts($paged = 1, $strPostType, $intNumberOfPages){
         // Default Args
         $arrArgs =  array(
             'post_type'     => $strPostType, 
@@ -259,8 +259,17 @@ class Theme_Controller{
         return $options;
     }
 
-    public static function create_admin_page() { ?>
-
+    public static function create_admin_page() { 
+   
+        $strFacebook  = self::get_theme_option('facebook'); 
+        $strTwitter   = self::get_theme_option('twitter');
+        $strYoutube   = self::get_theme_option('youtube'); 
+        $strInstagram = self::get_theme_option('instagram');
+        $strEmail     = self::get_theme_option('email');
+        $strContact   = self::get_theme_option('contact');
+        $strAddress   = self::get_theme_option('address');
+    ?>
+            
         <div>
             <h1><?php esc_html_e( 'Theme Options', 'text-domain' ); ?></h1>
             <form method="post" action="options.php">
@@ -426,48 +435,36 @@ class Theme_Controller{
                             </select>
                         </td>
                     </tr>
-                    
-                    
-                    <tr valign="top">
-                        <th scope="row"><?php esc_html_e( 'Facebook', 'text-domain' ); ?></th>
-                        <td>
-                            <?php $strValue = self::get_theme_option( 'facebook' ); ?> 
-                            <div class="settings-site-logo-input">
-                                <input type="text" class="settings-input" name="theme_options[facebook]" value="<?php echo $strValue; ?>">
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr valign="top">
-                        <th scope="row"><?php esc_html_e( 'Twitter', 'text-domain' ); ?></th>
-                        <td>
-                            <?php $strValue = self::get_theme_option( 'twitter' ); ?> 
-                            <div class="settings-site-logo-input">
-                                <input type="text" class="settings-input" name="theme_options[twitter]" value="<?php echo $strValue; ?>">
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr valign="top">
-                        <th scope="row"><?php esc_html_e( 'Youtube', 'text-domain' ); ?></th>
-                        <td>
-                            <?php $strValue = self::get_theme_option( 'youtube' ); ?> 
-                            <div class="settings-site-logo-input">
-                                <input type="text" class="settings-input" name="theme_options[youtube]" value="<?php echo $strValue; ?>">
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr valign="top">
-                        <th scope="row"><?php esc_html_e( 'Instagram', 'text-domain' ); ?></th>
-                        <td>
-                            <?php $strValue = self::get_theme_option( 'instagram' ); ?> 
-                            <div class="settings-site-logo-input">
-                                <input type="text" class="settings-input" name="theme_options[instagram]" value="<?php echo $strValue; ?>">
-                            </div>
-                        </td>
-                    </tr>
                 </table>
+
+                <div class="settings-social-information">
+                    <div class="settings-social-information-to-click">
+                        <h1>Contact Information</h1>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="settings-social-information-to-open hide-div">
+                        <h2> Facebook</h2>
+                        <input type="text" name="theme_options[facebook]" value="<?php echo $strFacebook;?>">
+
+                        <h2> Twitter</h2>
+                        <input type="text" name="theme_options[twitter]" value="<?php echo $strTwitter;?>">        
+
+                        <h2> Youtube</h2>
+                        <input type="text" name="theme_options[youtube]" value="<?php echo $strYoutube;?>">
+
+                        <h2> Instagram</h2>
+                        <input type="text" name="theme_options[instagram]" value="<?php echo $strInstagram;?>">
+
+                        <h2> Email</h2>
+                        <input type="email" name="theme_options[email]" value="<?php echo $strEmail;?>">
+
+                        <h2> Contact</h2>
+                        <input type="text" name="theme_options[contact]" value="<?php echo $strContact;?>">
+
+                        <h3> Address</h3>
+                        <textarea class="settings-input-textarea" name="theme_options[address]"><?php echo $strAddress;?></textarea>
+                    </div>
+                </div>
                 <?php submit_button(); ?>
             </form>
         </div>

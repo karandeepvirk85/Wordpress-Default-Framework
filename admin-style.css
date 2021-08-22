@@ -53,4 +53,30 @@
   margin-top: 10px;
 }
 
+.settings-social-information input[type=text],
+.settings-social-information input[type=email],
+.settings-social-information textarea {
+  width: 100%;
+  height: 50px;
+  border: 1px solid #d1d1d1;
+}
+.settings-social-information .settings-social-information-to-click {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 0.5rem 1rem;
+  box-shadow: 0px 0px 2px 0px #5a5a5a33;
+  cursor: pointer;
+}
+.settings-social-information .settings-social-information-to-click i {
+  font-size: 2rem;
+}
+.settings-social-information .settings-social-information-to-open {
+  padding: 0 10px;
+}
+.settings-social-information .settings-social-information-to-open.hide-div {
+  display: none;
+}
+
 /*# sourceMappingURL=admin-style.css.map */

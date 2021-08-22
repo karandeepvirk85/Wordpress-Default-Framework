@@ -10,31 +10,228 @@ Licence: Open Soruce Base Theme Under GPL Licence.
 Licence URL: https://www.gnu.org/licenses/gpl-3.0.en.html
 Extra: Do whatever the fuck you want to do. What you feels like doing is always the option. 
 */
+body {
+  background-color: #f7f7f7;
+}
+
+h1 {
+  font-size: 3.5rem;
+  font-family: "Staatliches", cursive;
+  margin-bottom: 20px;
+}
+
 .navbar-adjust {
-    height: auto;
-    max-height: 80px;
-    width: 100%;
+  height: auto;
+  font-family: "Roboto", sans-serif;
+  max-height: 80px;
+  width: 100%;
 }
 .navbar-adjust .navbar-brand .logo img {
-    width: 130px;
+  width: 130px;
 }
 
 .carousel-adjust .carousel-inner {
-    height: auto;
-    max-height: calc(100vh - 80px);
+  height: auto;
+  max-height: calc(100vh - 80px);
 }
 .carousel-adjust .carousel-inner .carousel-caption {
-    top: 20vh;
-    left: 60%;
+  top: 20vh;
+  left: 60%;
 }
 .carousel-adjust .carousel-inner .carousel-caption h5 {
-    background: rgba(0, 0, 0, 0.3);
-    padding: 0.7rem;
-    border-radius: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.7rem;
+  border-radius: 10px;
+}
+
+.services-container {
+  margin-top: 40px;
+}
+.services-container .services-row {
+  margin-top: 30px;
+}
+.services-container .services-row .services-col {
+  background: white;
+  box-shadow: 0px 0px 8px 5px #0000001a;
+  padding: 14px 12px 8px 12px;
+}
+.services-container .services-row .services-col h2 {
+  font-family: "Staatliches", cursive;
+  font-size: 2rem;
+  margin-top: 8px;
+}
+.services-container .services-row .services-col i {
+  color: white;
+  font-size: 2rem;
+  padding: 30px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  background: #d52b1e;
+}
+.services-container .services-row .services-col p a.btn {
+  margin-top: 10px;
+  background-color: #d52b1e;
 }
 
 .page-container {
-    padding: 60px auto;
+  margin-top: 30px;
+}
+.page-container .posts-row .posts-column {
+  padding: 10px;
+  cursor: pointer;
+}
+.page-container .posts-row .posts-column .post-container {
+  background-color: #ffffff;
+}
+.page-container .posts-row .posts-column .post-container .post-top-container .post-image {
+  padding: 111px 1rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: inset -2px -2px 20px 0px #000000;
+  background-size: cover;
+}
+.page-container .posts-row .posts-column .post-container:hover {
+  opacity: 0.8;
+  filter: contrast(130%);
+}
+.page-container .posts-row .posts-column .post-container .post-bottom-container {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  padding: 0px 1.1rem 20px 1.1rem;
+}
+.page-container .posts-row .posts-column .post-container .post-bottom-container .post-meta-container {
+  display: flex;
+  justify-content: flex-start;
+  font-family: 700;
+  width: 100%;
+  color: black;
+  align-items: center;
+  margin-top: 8px;
+}
+.page-container .posts-row .posts-column .post-container .post-bottom-container .post-meta-container .post-date {
+  color: #a0a0a0;
+  font-size: 0.8;
+}
+.page-container .posts-row .posts-column .post-container .post-bottom-container .post-meta-container .post-author {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #9e9e9e;
+}
+.page-container .posts-row .posts-column .post-container .post-bottom-container .post-meta-container .divider {
+  padding: 0 1rem;
+  color: #dbdbdb;
+}
+.page-container .posts-row .posts-column .post-container .post-bottom-container .post-title-container a {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-family: "Roboto", sans-serif;
+}
+.page-container .posts-row .posts-column .post-container .post-bottom-container .post-content-container {
+  margin-top: 5px;
+  color: #414141;
+  font-size: 0.9rem;
+  font-weight: 300;
+  text-decoration: none;
+}
+.page-container .posts-row .posts-column .post-container .post-bottom-container .post-content-container:hover {
+  text-decoration: none;
+}
+.page-container .posts-row .posts-column .post-container .post-bottom-container .read-more-container .read-more-link {
+  text-decoration: underline;
+  font-size: 1rem;
+  font-family: "Staatliches", cursive;
+  color: gray;
+}
+.page-container .sidbar-container {
+  padding: 10px;
+}
+.page-container .sidbar-container .categories-container {
+  background: #ffffff;
+  padding: 10px 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+.page-container .sidbar-container .categories-container h2 {
+  margin: 0 0 4px 0px;
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: "Staatliches", cursive;
+}
+.page-container .sidbar-container .categories-container p {
+  margin: 0;
+}
+.page-container .sidbar-container .categories-container p a {
+  font-size: 1rem;
+  color: #9e9e9e;
+}
+.page-container .sidbar-container .recent-post-container {
+  margin-top: 20px;
+  background: #ffffff;
+  padding: 10px 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+.page-container .sidbar-container .recent-post-container h2 {
+  margin: 0 0 4px 0px;
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: "Staatliches", cursive;
+}
+.page-container .sidbar-container .recent-post-container ul {
+  padding: 0 0 0 1rem;
+}
+.page-container .sidbar-container .recent-post-container ul li {
+  font-size: 1rem;
+  line-height: 14px;
+  margin: 16px 0;
+  color: #9e9e9e;
+}
+.page-container .sidbar-container .recent-post-container ul li a {
+  font-size: 1rem;
+  color: gray;
+}
+.page-container .sidbar-container .recent-post-container ul li a p {
+  margin: 0;
+}
+.page-container .sidbar-container .recent-post-container ul li a p.recent-post-date {
+  color: #c0c0c0;
+  margin-top: 4px;
+}
+.page-container .pagination-container {
+  margin-top: 30px;
+  text-align: center;
+}
+.page-container .pagination-container .pagination {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.page-container .pagination-container .pagination .pagination-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.page-container .pagination-container .pagination .pagination-inner .current {
+  color: #ff0000;
+  padding: 8px 16px;
+  font-size: 1.1rem;
+}
+.page-container .pagination-container .pagination .pagination-inner a {
+  color: #000000;
+  border: 1px solid #dadada;
+  padding: 8px 16px;
+  font-size: 1.1rem;
+}
+.page-container .pagination-container .pagination .pagination-inner a.next {
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+.page-container .pagination-container .pagination .pagination-inner a.prev {
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
 }
 
 /*# sourceMappingURL=style.css.map */
