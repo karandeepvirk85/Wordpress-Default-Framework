@@ -1,25 +1,25 @@
 <?php 
 /**
- * Template Name: Blogs
+ * Template Name: Services
  */
 get_header();
 if(class_exists('Theme_Controller')){
     // Get Paged Query
     $paged = Theme_Controller::getPagedQuery();
-    // Get Posts Query
-    $allPostsWPQuery = Theme_Controller::getAllPosts($paged,'post',6);
+    // Get Posts Querys
+    $allPostsWPQuery = Theme_Controller::getAllPosts($paged,'services',4);
     // Set Args for Pagination
     $args = Theme_Controller::getArgsForPagination($paged, $allPostsWPQuery->max_num_pages);
 }
 ?>
 
-<div class="container page-container">
+<div class="container page-container services-container">
     <!--INCLUDE PAGE TITLE-->
     <?php get_template_part('templates/page-title');?>  
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="row posts-row">
-                <?php 
+                <?php
                     if($allPostsWPQuery->have_posts()){
                         $intCount = 0;
                         while ($allPostsWPQuery->have_posts() ) : $allPostsWPQuery->the_post();
@@ -31,10 +31,6 @@ if(class_exists('Theme_Controller')){
                  }?>
             </div>
         </div>
-         <!-------INLUDE SIDE BAR------->
-         <div class="col-md-4 sidbar-container">    
-            <?php  get_template_part('templates/blog-sidebar');?>
-        </div>  
     </div>
     
     <!-------INLUDE PAGE CONTAINER------->

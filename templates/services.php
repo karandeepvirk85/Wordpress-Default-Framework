@@ -8,10 +8,15 @@
     $strSecondary = Theme_Controller::get_theme_option( 'secondary_color' );
     // Set Args for Pagination
     $args = Theme_Controller::getArgsForPagination($paged, $allPostsWPQuery->max_num_pages);
+
+    $strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
 }
 ?>
 <div class="container services-container">
-    <h1>SERVICES</h1>
+    <div class="title-container">
+        <h1>VISA CATEGORIES</h1>
+        <a style="border: 2px solid <?php echo $strThemeSecondaryColor;?>;color: <?php echo $strThemeSecondaryColor;?>" href="<?php echo home_url();?>/services" class="btn-theme btn btn-outline-success btn-lg">View All Categories</a>
+    </div>
     <div class="row services-row">
         <?php 
         if ($allPostsWPQuery->have_posts()){
@@ -26,7 +31,7 @@
                                 echo Theme_Controller::getFilteredContent($post->post_content,true,250);
                             }
                         ?>
-                        <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+                        <p><a class="btn btn-secondary" href="#" role="button">View details</a></p>
                     </div>
                 </div>
             <?php

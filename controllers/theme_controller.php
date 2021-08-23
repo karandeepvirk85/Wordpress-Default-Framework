@@ -268,6 +268,22 @@ class Theme_Controller{
         $strEmail     = self::get_theme_option('email');
         $strContact   = self::get_theme_option('contact');
         $strAddress   = self::get_theme_option('address');
+        
+        // Build Posts Options Array
+        
+        $arrPostOptions = array();
+        $args = array(
+            'post_type' => 'post',
+            'posts_per_page' => -1,
+            'numberposts' => -1
+        );
+        $arrPosts = get_posts($args);
+
+        if(!empty($arrPosts)){
+            foreach($arrPosts as $key => $objPosts){
+                $arrPostOptions[$objPosts->ID] = $objPosts->post_title;
+            }
+        }
     ?>
             
         <div>
@@ -380,26 +396,15 @@ class Theme_Controller{
                         </td>
                     </tr>
                     <?php */?>
+                    <?php for($i = 1; $i<=3; $i++){?>
                     <tr valign="top">
-                        <th scope="row"><?php esc_html_e( 'Home Section 1', 'text-domain' ); ?></th>
+                        <th scope="row"><?php esc_html_e( 'Home Page Post '.$i, 'text-domain' ); ?></th>
                         <td>
-                            <?php $value = self::get_theme_option( 'home_section_1' ); ?>
-                            <select name="theme_options[home_section_1]">
+                            <?php $value = self::get_theme_option( 'home_section_blog_'.$i); ?>
+                            <select name="theme_options[home_section_blog_<?php echo $i;?>]">
+                                <option value="">Select Post</option>
                                 <?php
-
-                                $args = array(
-                                    'post_type' => 'page',
-                                    'posts_per_page' => -1,
-                                    'numberposts' => -1
-                                );
-
-                                $arrpages = get_posts($args);
-
-                                foreach($arrpages as $key => $objPages){
-                                    $arrPageOptions[$objPages->ID] = $objPages->post_title;
-                                }
-
-                                foreach ( $arrPageOptions as $id => $label ) { ?>
+                                foreach ($arrPostOptions as $id => $label) { ?>
                                     <option value="<?php echo esc_attr( $id ); ?>" <?php selected( $value, $id, true ); ?>>
                                         <?php echo strip_tags( $label ); ?>
                                     </option>
@@ -407,34 +412,7 @@ class Theme_Controller{
                             </select>
                         </td>
                     </tr>
-
-                    <tr valign="top">
-                        <th scope="row"><?php esc_html_e( 'Home Section 2', 'text-domain' ); ?></th>
-                        <td>
-                            <?php $value = self::get_theme_option( 'home_section_2' ); ?>
-                            <select name="theme_options[home_section_2]">
-                                <?php
-
-                                $args = array(
-                                    'post_type' => 'page',
-                                    'posts_per_page' => -1,
-                                    'numberposts' => -1
-                                );
-
-                                $arrpages = get_posts($args);
-
-                                foreach($arrpages as $key => $objPages){
-                                    $arrPageOptions[$objPages->ID] = $objPages->post_title;
-                                }
-
-                                foreach ( $arrPageOptions as $id => $label ) { ?>
-                                    <option value="<?php echo esc_attr( $id ); ?>" <?php selected( $value, $id, true ); ?>>
-                                        <?php echo strip_tags( $label ); ?>
-                                    </option>
-                                <?php } ?>
-                            </select>
-                        </td>
-                    </tr>
+                    <?php }?>
                 </table>
 
                 <div class="settings-social-information">

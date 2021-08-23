@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Roboto&family=Staatliches&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&family=Roboto:wght@300&family=Staatliches&display=swap" rel="stylesheet">
 	<?php wp_head(); ?>	
 </head>
 
@@ -16,6 +16,7 @@
 		$strLogoWidth = Theme_Controller::get_theme_option('logo_width');
 		$strSiteLogo = Theme_Controller::get_theme_option('site_logo');
 		$strPrimaryColor = Theme_Controller::get_theme_option('primary_color');
+		$strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
 	?>
 	<nav class="navbar-adjust navbar navbar-expand-lg navbar-light" style="background-color:<?php echo $strPrimaryColor;?>!important;">
 		<a class="navbar-brand" href="#">
@@ -54,7 +55,7 @@
 
 			<form method="get" class="form-inline my-2 my-lg-0">
 				<input name="s" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+				<button style="border: 2px solid <?php echo $strThemeSecondaryColor;?>;color: <?php echo $strThemeSecondaryColor;?>" class="btn-theme btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 			</form>
 		</div>
 	</nav>
