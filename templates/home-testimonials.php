@@ -9,7 +9,7 @@ $strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
 <div class="container testimonials-container">
     <div class="title-container">
         <h1>TESTIMONIALS</h1>
-        <a style="border: 2px solid <?php echo $strThemeSecondaryColor;?>;color: <?php echo $strThemeSecondaryColor;?>" href="<?php echo home_url();?>/services" class="btn-theme btn btn-outline-success btn-lg">View All Testimonials</a>
+        <a style="border: 2px solid <?php echo $strThemeSecondaryColor;?>;color: <?php echo $strThemeSecondaryColor;?>" href="<?php echo home_url();?>/testimonials" class="btn-theme btn btn-outline-success btn-lg">View All Testimonials</a>
     </div>
 
     <div id="carouselTestimonials" class="carousel-adjust carousel slide" data-ride="carousel">

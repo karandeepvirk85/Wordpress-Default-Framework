@@ -22,6 +22,7 @@
 		<a class="navbar-brand" href="#">
 			<div class="logo">
 				<img style="width:<?php echo $strLogoWidth;?>px;" src="<?php echo $strSiteLogo;?>">
+				<p style="color:<?php echo $strThemeSecondaryColor;?>"> Travel & Immigration</p>
 			</div> 
 		</a>
 		

@@ -36,6 +36,16 @@ h1 {
   max-height: 80px;
   width: 100%;
 }
+.navbar-adjust .navbar-brand .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbar-adjust .navbar-brand .logo p {
+  margin: 0 0 0 10px;
+  font-family: "Staatliches", cursive;
+  font-size: 1.5rem;
+}
 .navbar-adjust .navbar-brand .logo img {
   width: 130px;
 }
@@ -54,12 +64,56 @@ h1 {
   border-radius: 10px;
 }
 
-.testimonials-container .title-container {
+.faqs-container .title-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #d7d7d7;
   margin: 20px 0 30px 0;
+}
+.faqs-container .title-container h1 {
+  margin: 0;
+}
+.faqs-container .title-container a {
+  font-family: "Roboto", sans-serif;
+}
+.faqs-container .faqs-inner-container {
+  margin: 10px 0;
+}
+.faqs-container .faqs-inner-container .faqs-question {
+  cursor: pointer;
+  border: 1px solid #e8e8e8;
+  font-family: "Staatliches", cursive;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 0.8rem;
+  box-shadow: 0px 0px 9px 5px #0000001a;
+}
+.faqs-container .faqs-inner-container .faqs-question h4 {
+  color: gray;
+  margin: 0;
+}
+.faqs-container .faqs-inner-container .faqs-question i {
+  font-size: 2rem;
+}
+.faqs-container .faqs-inner-container .faqs-answer {
+  padding: 1rem;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.9rem;
+  transition: 500ms;
+}
+.faqs-container .faqs-inner-container .faqs-answer.hide-answer {
+  display: none;
+}
+
+.testimonials-container .title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #d7d7d7;
+  margin: 30px 0 30px 0;
 }
 .testimonials-container .title-container h1 {
   margin: 0;
@@ -122,6 +176,7 @@ h1 {
   background: white;
   padding: 1rem;
   border: 1px solid #e8e8e8;
+  box-shadow: 0px 0px 9px 5px #0000001a;
 }
 .home-posts a .featurette:hover {
   background-color: #ebebeb;
@@ -160,7 +215,7 @@ h1 {
 .services-container .services-row .services-col {
   font-family: "Noto Sans JP", sans-serif;
   background: white;
-  box-shadow: 0px 0px 8px 5px #0000001a;
+  box-shadow: 0px 0px 9px 5px #0000001a;
   padding: 14px 1rem 8px 1rem;
   font-size: 0.9rem;
 }
