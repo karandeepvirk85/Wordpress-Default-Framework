@@ -2,7 +2,8 @@
 /**
  * This template is for Full Width Home Slider
  */
-$strNumberOfSlides = Theme_Controller::get_theme_option( 'number_of_slides');
+$strNumberOfSlides      = Theme_Controller::get_theme_option( 'number_of_slides');
+$strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
 ?>
 
 <div id="carouselIndicators" class="carousel-adjust carousel slide" data-ride="carousel">
@@ -25,11 +26,30 @@ $strNumberOfSlides = Theme_Controller::get_theme_option( 'number_of_slides');
                 for ($i = 1; $i <= $strNumberOfSlides; $i++){
                     $strImageUrl = Theme_Controller::get_theme_option('slider_image_'.$i);
                     $strCaptionText = trim(Theme_Controller::get_theme_option('slider_caption_'.$i));
-                    ?>
+                    $strButtonTitle = Theme_Controller::get_theme_option('slider_button_title_'.$i);
+                    $strButtonLink = Theme_Controller::get_theme_option('slider_button_link_'.$i);?>
                     <div class="carousel-item <?php echo $i==1 ? "active" : "";?>">
-                        <img class="d-block w-100" src="<?php echo $strImageUrl;?>" alt="Image Slider">
+                        <!--Image-->
+                        <?php if(!empty($strImageUrl)){?>
+                            <img class="d-block w-100" src="<?php echo $strImageUrl;?>" alt="Image Slider">
+                        <?php }?>
+
+                        <!--Caption-->
                         <div class="carousel-caption">
-                            <h5><?php echo $strCaptionText;?></h5>
+                            
+                            <!--Caption Text-->
+                            <?php 
+                                if(!empty($strCaptionText)) {?>
+                                    <h5><?php echo $strCaptionText;?></h5>
+                                <?php }
+                            ?>
+
+                            <!--Caption Button-->
+                            <?php 
+                                if(!empty($strButtonTitle) && !empty($strButtonLink)){?>
+                                    <a style="background-color:<?php echo $strThemeSecondaryColor;?>" class="btn-block btn btn-secondary" href="<?php echo $strButtonLink;?>"><?php echo $strButtonTitle;?></a>
+                                <?php }
+                            ?>
                         </div>
                     </div>
                 <?php }?>

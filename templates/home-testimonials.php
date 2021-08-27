@@ -6,10 +6,9 @@ $arrTestimonials = Theme_Controller::getAllPosts(null,'testimonials', 6);
 $strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
 ?>
 
-<div class="container testimonials-container">
+<div class="container-fluid testimonials-container">
     <div class="title-container">
         <h1>TESTIMONIALS</h1>
-        <a style="border: 2px solid <?php echo $strThemeSecondaryColor;?>;color: <?php echo $strThemeSecondaryColor;?>" href="<?php echo home_url();?>/testimonials" class="btn-theme btn btn-outline-success btn-lg">View All Testimonials</a>
     </div>
 
     <div id="carouselTestimonials" class="carousel-adjust carousel slide" data-ride="carousel">
@@ -42,7 +41,7 @@ $strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
                             <p>
                             <?php
                                 if(class_exists('Theme_Controller')){
-                                    echo Theme_Controller::getFilteredContent($post->post_content,true,300);
+                                    echo Theme_Controller::getFilteredContent($post->post_content,true,500);
                                 }
                             ?>
                             </p>

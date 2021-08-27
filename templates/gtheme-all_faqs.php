@@ -16,9 +16,11 @@ if(class_exists('Theme_Controller')){
 ?>
 
 <div class="container faqs-container">
-<div class="title-container">
+    <div class="title-container">
         <h1>FREQUENTLY ASKED QUESTION</h1>
-        <a style="border: 2px solid <?php echo $strThemeSecondaryColor;?>;color: <?php echo $strThemeSecondaryColor;?>" href="<?php echo home_url();?>/faqs" class="btn-theme btn btn-outline-success btn-lg">View All Faqs</a>
+        <?php if (is_front_page()){?>
+            <a style="border: 2px solid <?php echo $strThemeSecondaryColor;?>;color: <?php echo $strThemeSecondaryColor;?>" href="<?php echo home_url();?>/faqs" class="btn-theme btn btn-outline-success btn-lg">View All Faqs</a>
+        <?php }?>
     </div>
     <!--INCLUDE PAGE TITLE-->
     <div class="row">

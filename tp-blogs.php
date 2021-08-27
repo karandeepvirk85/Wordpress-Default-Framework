@@ -10,6 +10,8 @@ if(class_exists('Theme_Controller')){
     $allPostsWPQuery = Theme_Controller::getAllPosts($paged,'post',6);
     // Set Args for Pagination
     $args = Theme_Controller::getArgsForPagination($paged, $allPostsWPQuery->max_num_pages);
+
+    $args['columns'] = 6;
 }
 ?>
 
@@ -24,7 +26,7 @@ if(class_exists('Theme_Controller')){
                         $intCount = 0;
                         while ($allPostsWPQuery->have_posts() ) : $allPostsWPQuery->the_post();
                             $intCount++;
-                            get_template_part( 'templates/all-posts' );
+                            get_template_part( 'templates/gtheme','all_posts',$args);
                             echo ($intCount % 2 == 0) ? '</div><div class="row posts-row">' : "";
                         endwhile;
                     wp_reset_postdata(); 

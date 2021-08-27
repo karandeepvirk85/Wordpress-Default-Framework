@@ -4,7 +4,7 @@
  */
 ?>
 
-<div class="col-md-6 posts-column" data-link="<?php echo get_permalink($post->ID); ?>">
+<div class="col-md-<?php echo $args['columns']?> posts-column" data-link="<?php echo get_permalink($post->ID); ?>">
     <div class="post-container">
         <div class="post-top-container">
             <div class="post-image" style="background-image:url('<?php if(class_exists('Theme_Controller')){echo Theme_Controller::getPostImage($post->ID,'large');}?>')"></div>

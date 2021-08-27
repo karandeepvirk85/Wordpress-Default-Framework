@@ -260,7 +260,6 @@ class Theme_Controller{
     }
 
     public static function create_admin_page() { 
-   
         $strFacebook  = self::get_theme_option('facebook'); 
         $strTwitter   = self::get_theme_option('twitter');
         $strYoutube   = self::get_theme_option('youtube'); 
@@ -268,7 +267,14 @@ class Theme_Controller{
         $strEmail     = self::get_theme_option('email');
         $strContact   = self::get_theme_option('contact');
         $strAddress   = self::get_theme_option('address');
-        
+        $strNumberOfSlides = self::get_theme_option('number_of_slides'); 
+        $intSliderSpeed = self::get_theme_option( 'slider_speed' ); 
+        $strPrimaryColor = self::get_theme_option('primary_color');  
+        $strSecondaryColor = self::get_theme_option( 'secondary_color' ); 
+        $strLogo = self::get_theme_option( 'site_logo' );
+        $strLogoWidth = self::get_theme_option('logo_width');
+        $strFooterText  = self::get_theme_option('footer_text');
+    
         // Build Posts Options Array
         
         $arrPostOptions = array();
@@ -284,169 +290,218 @@ class Theme_Controller{
                 $arrPostOptions[$objPosts->ID] = $objPosts->post_title;
             }
         }
-    ?>
-            
-        <div>
-            <h1><?php esc_html_e( 'Theme Options', 'text-domain' ); ?></h1>
-            <form method="post" action="options.php">
-                <?php settings_fields( 'theme_options' ); ?>
-                <table class="form-table">
-                    <tr valign="top">
-                        <th scope="row"><?php esc_html_e( 'Logo', 'text-domain' ); ?></th>
-                        <td>
-                            <?php $strLogo = self::get_theme_option( 'site_logo' ); ?> 
-                            <?php $strLogoWidth = self::get_theme_option( 'logo_width' ); ?> 
 
-                            <div class="settings-site-logo-input">
-                                <input type="text" class="settings-input" name="theme_options[site_logo]" value="<?php echo $strLogo; ?>">
-                                <input type="number" placeholder="Width in Pixels" class="settings-number" name="theme_options[logo_width]" value="<?php echo $strLogoWidth; ?>">
-                            </div>
-                            <?php if(!empty($strLogo)){?>
-                               <div class="settings-site-logo">
-                                    <img src="<?php echo esc_attr($strLogo); ?>">
-                                </div>
-                            <?php }?>
-                        </td>
-                    </tr>
+        $arrPageOptions = array();
+        $args = array(
+            'post_type' => 'page',
+            'posts_per_page' => -1,
+            'numberposts' => -1
+        );
 
-                    <tr valign="top">
-                        <th scope="row"><?php esc_html_e( 'Theme Primary Color', 'text-domain' ); ?></th>
-                        <td>
-                            <?php $strHeaderColor = self::get_theme_option('primary_color'); ?> 
-                            <div class="settings-site-header-input">
-                                <input type="color" name="theme_options[primary_color]" value="<?php echo $strHeaderColor; ?>">
-                                <?php if(!empty($strHeaderColor)){?>
-                                    <div class="header-color" style="background-color:<?php echo $strHeaderColor;?>"></div>
-                                <?php }?>
-                            </div>
-                        </td>
-                    </tr>
+        $arrPages = get_posts($args);
 
-                    <tr valign="top">
-                        <th scope="row"><?php esc_html_e( 'Theme Secondary Color', 'text-domain' ); ?></th>
-                        <td>
-                            <?php $strHeaderColor = self::get_theme_option( 'secondary_color' ); ?> 
-                            <div class="settings-site-header-input">
-                                <input type="color" name="theme_options[secondary_color]" value="<?php echo $strHeaderColor; ?>">
-                                <?php if(!empty($strHeaderColor)){?>
-                                    <div class="header-color" style="background-color:<?php echo $strHeaderColor;?>"></div>
-                                <?php }?>
-                            </div>
-                        </td>
-                    </tr>
-                    
-                    <!--Define Number of Slides-->
-                    <tr valign="top">
-                        <th scope="row"><?php esc_html_e( 'Number of Slides', 'text-domain' ); ?></th>
-                        <td>
-                            <?php $strNumberOfSlides = self::get_theme_option( 'number_of_slides' ); ?> 
-                            <div class="settings-site-input-number">
-                                <input type="number" class="settings-input-number" name="theme_options[number_of_slides]" value="<?php echo $strNumberOfSlides; ?>">
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr valign="top">
-                        <th scope="row"><?php esc_html_e( 'Slider Speed', 'text-domain' ); ?></th>
-                        <td>
-                            <?php $intSliderSpeed = self::get_theme_option( 'slider_speed' ); ?> 
-                            <div class="settings-site-input-number">
-                                <input type="number" class="settings-input-number-speed" name="theme_options[slider_speed]" value="<?php echo $intSliderSpeed; ?>">
-                                <div class="description">2000 is approximately 1 second</div>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <!--Add Slides-->
-                    <tr valign="top">
-                        <th scope="row"><?php esc_html_e( 'Slider', 'text-domain' ); ?></th>
-                        <td>
-                            <?php
-                            // Slider Loop
-                            if($strNumberOfSlides > 0){
-                                for ($i=1; $i<=$strNumberOfSlides; $i++){
-                                    $strImageUrl = self::get_theme_option('slider_image_'.$i);
-                                    $strCaptionText = self::get_theme_option('slider_caption_'.$i);
-                                ?>
-                                <h4 class="slider-label">Slider <?php echo $i;?></h4 >
-                                    <!--Input-->
-                                    <div class="settings-site-slider-input">
-                                        <input placeholder="Paste Slider Image Url Here" type="text" class="settings-input" name="theme_options[slider_image_<?php echo $i;?>]" value="<?php echo $strImageUrl;?>">
-                                        <input placeholder="Write Your Captions Here" type="text" class="settings-input" name="theme_options[slider_caption_<?php echo $i;?>]" value="<?php echo $strCaptionText;?>">
-                                    </div>
-
-                                    <!--Show Image-->
-                                    <?php if(!empty($strImageUrl)){?>
-                                        <div class="settings-slider-image">
-                                            <img src="<?php echo $strImageUrl; ?>">
-                                        </div>
-                                    <?php }?>
-                                <?php }?>
-                            <?php }?>
-                        </td>
-                    </tr>
-
-                    <?php /* ?>
-                    <?php // Checkbox example ?>
-                    <tr valign="top">
-                        <th scope="row"><?php esc_html_e( 'Checkbox Example', 'text-domain' ); ?></th>
-                        <td>
-                            <?php $value = self::get_theme_option( 'checkbox_example' ); ?>
-                            <input type="checkbox" name="theme_options[checkbox_example]" <?php checked( $value, 'on' ); ?>> <?php esc_html_e( 'Checkbox example description.', 'text-domain' ); ?>
-                        </td>
-                    </tr>
-                    <?php */?>
-                    <?php for($i = 1; $i<=3; $i++){?>
-                    <tr valign="top">
-                        <th scope="row"><?php esc_html_e( 'Home Page Post '.$i, 'text-domain' ); ?></th>
-                        <td>
-                            <?php $value = self::get_theme_option( 'home_section_blog_'.$i); ?>
-                            <select name="theme_options[home_section_blog_<?php echo $i;?>]">
-                                <option value="">Select Post</option>
-                                <?php
-                                foreach ($arrPostOptions as $id => $label) { ?>
-                                    <option value="<?php echo esc_attr( $id ); ?>" <?php selected( $value, $id, true ); ?>>
-                                        <?php echo strip_tags( $label ); ?>
-                                    </option>
-                                <?php } ?>
-                            </select>
-                        </td>
-                    </tr>
-                    <?php }?>
-                </table>
-
-                <div class="settings-social-information">
-                    <div class="settings-social-information-to-click">
-                        <h1>Contact Information</h1>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="settings-social-information-to-open hide-div">
-                        <h2> Facebook</h2>
-                        <input type="text" name="theme_options[facebook]" value="<?php echo $strFacebook;?>">
-
-                        <h2> Twitter</h2>
-                        <input type="text" name="theme_options[twitter]" value="<?php echo $strTwitter;?>">        
-
-                        <h2> Youtube</h2>
-                        <input type="text" name="theme_options[youtube]" value="<?php echo $strYoutube;?>">
-
-                        <h2> Instagram</h2>
-                        <input type="text" name="theme_options[instagram]" value="<?php echo $strInstagram;?>">
-
-                        <h2> Email</h2>
-                        <input type="email" name="theme_options[email]" value="<?php echo $strEmail;?>">
-
-                        <h2> Contact</h2>
-                        <input type="text" name="theme_options[contact]" value="<?php echo $strContact;?>">
-
-                        <h3> Address</h3>
-                        <textarea class="settings-input-textarea" name="theme_options[address]"><?php echo $strAddress;?></textarea>
-                    </div>
-                </div>
-                <?php submit_button(); ?>
-            </form>
+        if(!empty($arrPages)){
+            foreach($arrPages as $key => $objPages){
+                $arrPageOptions[$objPages->ID] = $objPages->post_title;
+            }
+        }
+?>
+<div class="settings-container">
+    <h1>Theme Settings</h1>
+    <form method="post" action="options.php">    
+        <?php settings_fields( 'theme_options' ); ?>
+        <!--Logo Information-->
+        <div class="settings-information-header">
+            <h1>Site Logo Options</h1>
+            <i class="fas fa-chevron-down"></i>
         </div>
-    <?php }
+
+        <div class="settings-information hide-div">
+            <div class="settings-site-logo-input">
+                <h3>Logo URL</h3>
+                <input type="text" class="settings-input" name="theme_options[site_logo]" value="<?php echo $strLogo; ?>">
+                <h3>Logo Width</h3>
+                <input type="number" placeholder="Width in Pixels" class="settings-number" name="theme_options[logo_width]" value="<?php echo $strLogoWidth; ?>">
+            </div>
+            <?php if(!empty($strLogo)){?>
+                <div class="settings-site-logo">
+                    <img src="<?php echo esc_attr($strLogo); ?>">
+                </div>
+            <?php }?>
+        </div>
+        
+        <!--Theme Color Options-->
+        <div class="settings-information-header">
+            <h1>Theme Color Options</h1>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+
+        <div class="settings-information hide-div">   
+            <div class="settings-site-header-input">
+                <h3>Primary Color</h3>
+                <input type="color" name="theme_options[primary_color]" value="<?php echo $strPrimaryColor; ?>">
+                <?php if(!empty($strPrimaryColor)){?>
+                    <div class="header-color" style="background-color:<?php echo $strPrimaryColor;?>"></div>
+                <?php }?>
+            </div>
+
+            <div class="settings-site-header-input">
+                <h3>Secondary Color</h3>
+                <input type="color" name="theme_options[secondary_color]" value="<?php echo $strSecondaryColor; ?>">
+                <?php if(!empty($strSecondaryColor)){?>
+                    <div class="header-color" style="background-color:<?php echo $strSecondaryColor;?>"></div>
+                <?php }?>
+            </div>
+        </div>
+
+        <!--Slider Information-->
+        <div class="settings-information-header">
+            <h1>Home Page Slider</h1>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+
+        <div class="settings-information hide-div">            
+            
+            <h3>Number of Slides</h3>
+            <input type="number" class="settings-input-number" name="theme_options[number_of_slides]" value="<?php echo $strNumberOfSlides; ?>">
+            
+            <h3>Slider Transition Speed</h3>
+            <input type="number" class="settings-input-number-speed" name="theme_options[slider_speed]" value="<?php echo $intSliderSpeed; ?>">
+            <div class="description">2000 is approximately 1 second</div>
+            
+            <?php
+                if($strNumberOfSlides > 0){
+                    for ($i=1; $i<=$strNumberOfSlides; $i++){
+                        $strImageUrl = self::get_theme_option('slider_image_'.$i);
+                        $strCaptionText = self::get_theme_option('slider_caption_'.$i);
+                        $strButtonTitle = self::get_theme_option('slider_button_title_'.$i);
+                        $strButtonLink = self::get_theme_option('slider_button_link_'.$i);?>
+
+                        
+                        <div class="settings-information-header inner-slider">
+                            <h1>Slide <?php echo $i?> </h1>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+
+                        <div class="settings-information hide-div">
+                            <h3>Image <?php echo $i?> URL</h3>
+                            <input placeholder="Paste Slider Image Url Here" type="text" class="settings-input" name="theme_options[slider_image_<?php echo $i;?>]" value="<?php echo $strImageUrl;?>">
+                            <h3>Image <?php echo $i?> Caption </h3>
+                            <input placeholder="Write Your Captions Here" type="text" class="settings-input" name="theme_options[slider_caption_<?php echo $i;?>]" value="<?php echo $strCaptionText;?>">
+                            <?php if(!empty($strImageUrl)){?>
+                                <div class="settings-slider-image">
+                                    <img src="<?php echo $strImageUrl; ?>">
+                                </div>
+                                <?php }?>
+                            <h3>Image Caption  Button Title <?php echo $i?> </h3>
+                            <input placeholder="Write Your Button Title Here" type="text" class="settings-input" name="theme_options[slider_button_title_<?php echo $i;?>]" value="<?php echo $strButtonTitle;?>">
+                            <h3>Image Caption  Button Link <?php echo $i?> </h3>
+                            <input placeholder="Write Your Button Link Here" type="text" class="settings-input" name="theme_options[slider_button_link_<?php echo $i;?>]" value="<?php echo $strButtonLink;?>"> 
+                        </div>
+                    <?php }?>
+                <?php }
+            ?>
+        </div> 
+            
+        <!--Home Page Blog Information-->
+        <div class="settings-information-header">
+            <h1>Home Blogs Section</h1>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+
+        <div class="settings-information hide-div">
+            <?php for($i = 1; $i<=3; $i++){?>
+            <?php $intBlogId = self::get_theme_option( 'home_section_blog_'.$i); ?>
+                <h3>Blog Post <?php echo $i?></h3>
+                <p>
+                    <select name="theme_options[home_section_blog_<?php echo $i;?>]">
+                        <option value="">Select Post</option>
+                        <?php
+                            foreach ($arrPostOptions as $id => $label) { ?>
+                                <option value="<?php echo esc_attr( $id ); ?>" <?php selected($intBlogId, $id, true); ?>>
+                                    <?php echo strip_tags( $label ); ?>
+                                </option>
+                            <?php } 
+                        ?>
+                    </select>
+                </p>
+                <hr/>
+            <?php }?>
+        </div>
+
+         <!--Home Page Section-->
+         <div class="settings-information-header">
+            <h1>Home Two Pages Settings</h1>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+
+        <div class="settings-information hide-div">
+            <?php for($i = 1; $i<=2; $i++){?>
+            <?php 
+                $intPageId = self::get_theme_option('home_section_page_'.$i); 
+                $strButtonTitle = self::get_theme_option('page_button_title_'.$i);
+                ?>
+                <h3>Page <?php echo $i?></h3>
+                <p>
+                    <select name="theme_options[home_section_page_<?php echo $i;?>]">
+                        <option value="">Select Page</option>
+                        <?php
+                            foreach ($arrPageOptions as $id => $label) { ?>
+                                <option value="<?php echo esc_attr( $id ); ?>" <?php selected($intPageId, $id, true); ?>>
+                                    <?php echo strip_tags( $label ); ?>
+                                </option>
+                            <?php } 
+                        ?>
+                    </select>
+                    <hr/>
+                    <input placeholder="Write your button title here" type="text" name="theme_options[page_button_title_<?php echo $i;?>]" value="<?php echo $strButtonTitle;?>">
+                </p>
+                <hr/>
+            <?php }?>
+        </div>
+
+        <!--Contact Information-->
+        <div class="settings-information-header">
+            <h1>Contact Information</h1>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        
+        <div class="settings-information hide-div">
+            <h3> Facebook</h3>
+            <input type="text" name="theme_options[facebook]" value="<?php echo $strFacebook;?>">
+
+            <h3> Twitter</h3>
+            <input type="text" name="theme_options[twitter]" value="<?php echo $strTwitter;?>">        
+
+            <h3> Youtube</h3>
+            <input type="text" name="theme_options[youtube]" value="<?php echo $strYoutube;?>">
+
+            <h3> Instagram</h3>
+            <input type="text" name="theme_options[instagram]" value="<?php echo $strInstagram;?>">
+
+            <h3> Email</h3>
+            <input type="email" name="theme_options[email]" value="<?php echo $strEmail;?>">
+
+            <h3> Contact</h3>
+            <input type="text" name="theme_options[contact]" value="<?php echo $strContact;?>">
+
+            <h3> Address</h3>
+            <textarea class="settings-input-textarea" name="theme_options[address]"><?php echo $strAddress;?></textarea>
+        </div>
+        
+        <div class="settings-information-header">
+            <h1>Footer Settings</h1>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+
+        <div class="settings-information hide-div">
+            <h3>Footer Text</h3>
+            <textarea name="theme_options[footer_text]"><?php echo $strFooterText;?></textarea>
+        </div>
+        <?php submit_button(); ?>
+    </form>
+</div>
+<?php }
 }
 new Theme_Controller();
 ?>

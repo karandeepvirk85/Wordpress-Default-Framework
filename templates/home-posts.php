@@ -1,20 +1,9 @@
 <?php
  if(class_exists('Theme_Controller')){
-     
-    $paged = Theme_Controller::getPagedQuery();
-
-    $allPostsWPQuery = Theme_Controller::getAllPosts($paged,'post',4);
-
     $strThemeSecondaryColor = Theme_Controller::get_theme_option( 'secondary_color' );
-
-    $args = Theme_Controller::getArgsForPagination($paged, $allPostsWPQuery->max_num_pages);
-
     $objHomePost1 = get_post(Theme_Controller::get_theme_option('home_section_blog_1'));
-    
     $objHomePost2 = get_post(Theme_Controller::get_theme_option('home_section_blog_2'));
-    
     $objHomePost3 = get_post(Theme_Controller::get_theme_option('home_section_blog_3'));
-    
 }
 ?>
 

@@ -12,10 +12,10 @@
 
 <header>
 	<?php 
-		$arrHeaderMenu = Theme_Controller::getMenuByName('Header Menu');
-		$strLogoWidth = Theme_Controller::get_theme_option('logo_width');
-		$strSiteLogo = Theme_Controller::get_theme_option('site_logo');
-		$strPrimaryColor = Theme_Controller::get_theme_option('primary_color');
+		$arrHeaderMenu 		= Theme_Controller::getMenuByName('Header Menu');
+		$strLogoWidth 		= Theme_Controller::get_theme_option('logo_width');
+		$strSiteLogo 			= Theme_Controller::get_theme_option('site_logo');
+		$strPrimaryColor 		= Theme_Controller::get_theme_option('primary_color');
 		$strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
 	?>
 	<nav class="navbar-adjust navbar navbar-expand-lg navbar-light" style="background-color:<?php echo $strPrimaryColor;?>!important;">

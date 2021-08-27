@@ -14,15 +14,15 @@ Extra: Do whatever the fuck you want to do. What you feels like doing is always 
 $font-primary: "Roboto", sans-serif;
 $font-secondary: "Staatliches", cursive;
 $font-reading: "Noto Sans JP", sans-serif;
-$dark-gray: gray;
+$dark-gray: rgb(77, 77, 77);
 $light-gray: #9e9e9e;
 $very-light-gray: #c0c0c0;
 $extreme-light-gray: #ebebeb;
 $default-border: 1px solid #e8e8e8;
 $current-theme-color: #d52b1e;
-$default-box-shadow: 0px 0px 9px 5px #0000001a;
+$default-box-shadow: 0px 0px 3px 1px #0000001a;
 body {
-    background-color: #f7f7f7;
+    background-color: #eaeaea;
 }
 h1 {
     font-size: 3.5rem;
@@ -65,24 +65,30 @@ h1 {
         height: auto;
         max-height: calc(100vh - 80px);
         .carousel-caption {
+            text-align: justify;
             top: 20vh;
             left: 60%;
-            h5 {
-                background: rgba(0, 0, 0, 0.3);
-                padding: 0.7rem;
-                border-radius: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 10px;
+            height: max-content;
+            a {
+                width: 100%;
+                font-family: $font-secondary;
+                font-size: 1.3rem;
             }
         }
     }
 }
 
 .faqs-container {
+    margin-top: 30px;
     .title-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
         border-bottom: 1px solid #d7d7d7;
-        margin: 20px 0 30px 0;
+        margin-bottom: 30px;
         h1 {
             margin: 0;
         }
@@ -122,14 +128,15 @@ h1 {
     }
 }
 .testimonials-container {
+    margin-top: 30px;
+    width: 100%;
+    padding: 0;
     .title-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         border-bottom: 1px solid #d7d7d7;
-        margin: 30px 0 30px 0;
+        margin-bottom: 30px;
         h1 {
             margin: 0;
+            text-align: center;
         }
         a {
             font-family: $font-primary;
@@ -138,11 +145,12 @@ h1 {
 
     .carousel-inner {
         font-family: $font-reading;
+        min-height: 80vh;
         background-color: white;
         .carousel-item {
             padding: 40px 8rem;
             img {
-                height: 150px;
+                height: 300px;
                 width: auto;
             }
             h3 {
@@ -163,16 +171,17 @@ h1 {
     .carousel-control-next {
         background-color: $dark-gray;
         color: $extreme-light-gray;
-        width: 6rem;
+        width: 3rem;
     }
 }
 .home-posts {
+    margin-top: 30px;
     .title-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
         border-bottom: 1px solid #d7d7d7;
-        margin: 20px 0 30px 0;
+        margin-bottom: 30px;
         h1 {
             margin: 0;
         }
@@ -215,13 +224,50 @@ h1 {
         }
     }
 }
+
+.two-pages-container {
+    .title-container {
+        border-bottom: 1px solid #d7d7d7;
+        margin-bottom: 30px;
+        h1 {
+            margin-bottom: 0;
+        }
+        a {
+            font-family: $font-primary;
+        }
+    }
+    width: 100%;
+    h2 {
+        font-family: $font-secondary;
+        font-size: 3rem;
+    }
+    .two-pages-image {
+        padding: 16rem 0;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .two-pages-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 3rem;
+        background-color: white;
+    }
+    .btn-page {
+        background-color: $dark-gray;
+        margin-top: 20px;
+    }
+}
+
 .services-container {
-    margin-top: 40px;
+    margin-top: 30px;
     .title-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
         border-bottom: 1px solid #d7d7d7;
+        margin-bottom: 30px;
         h1 {
             margin-bottom: 0;
         }
@@ -233,6 +279,7 @@ h1 {
         margin-top: 30px;
         .services-col {
             font-family: $font-reading;
+            text-align: center;
             background: white;
             box-shadow: $default-box-shadow;
             padding: 14px 1rem 8px 1rem;
@@ -243,14 +290,26 @@ h1 {
                 margin-top: 8px;
                 color: $dark-gray;
             }
-            i {
-                color: white;
-                font-size: 2rem;
-                padding: 30px;
+            .services-icons {
+                text-align: center;
+                width: 100px;
+                height: 100px;
                 border-radius: 50%;
+                display: flex;
                 justify-content: center;
                 align-items: center;
-                background: $current-theme-color;
+                background-color: #ff6f00;
+                left: calc(50% - 50px);
+                position: relative;
+                margin-bottom: 10px;
+                i {
+                    color: white;
+                    font-size: 2rem;
+                    padding: 30px;
+                    border-radius: 50%;
+                    justify-content: center;
+                    align-items: center;
+                }
             }
             p {
                 a {
@@ -265,6 +324,7 @@ h1 {
 }
 
 .page-container {
+    min-height: 100vh;
     margin-top: 30px;
     .posts-row {
         .posts-column {
@@ -431,6 +491,123 @@ h1 {
                         border-top-left-radius: 30px;
                         border-bottom-left-radius: 30px;
                     }
+                }
+            }
+        }
+    }
+}
+.footer-container {
+    margin-top: 60px;
+    padding: 0;
+    border-bottom: 1px solid $very-light-gray;
+    font-family: $font-reading;
+    font-size: 0.9rem;
+    .inner-footer {
+        margin: 0;
+        .footer-row {
+            max-height: 600px;
+            padding: 1rem 0 0 0;
+            margin: 0;
+            .footer-col {
+                padding: 2rem;
+                background-color: white;
+                &.footer-first-col {
+                    border-top: 1px solid lightgrey;
+                    box-shadow: 1px 0px 8px 2px #bababa59;
+                }
+                .footer-text {
+                    font-family: $font-reading;
+                }
+                p {
+                    margin: 2px 0;
+                }
+                .footer-logo {
+                    margin-bottom: 6px;
+                    text-align: left;
+                    font-family: $font-secondary;
+                    font-size: 1.5rem;
+                    i {
+                        font-size: 4rem;
+                    }
+                }
+                .footer-info {
+                    a {
+                        color: $dark-gray;
+                    }
+                    .footer-address {
+                        text-align: left;
+                    }
+                }
+                &.footer-social {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    div {
+                        padding: 0 4px;
+                    }
+                    p {
+                        padding: 0;
+                        margin: 0;
+                        a {
+                            i {
+                                font-size: 3.4rem;
+                            }
+                        }
+                    }
+                }
+                &.footer-menu {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: flex-start;
+                    background: #eaeaea;
+                    border: 1px solid lightgrey;
+                    border-top: none;
+                    h3 {
+                        font-size: 1.5rem;
+                        font-family: $font-secondary;
+                        color: $light-gray;
+                    }
+                    ul {
+                        list-style: none;
+                        padding: 0;
+                        li {
+                            margin: 6px 0;
+                            a {
+                                font-size: 1.2rem;
+                                color: $dark-gray;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .footer-bottom {
+        background-color: $dark-gray;
+        border-bottom: 2px solid black;
+        height: auto;
+        width: 100%;
+        padding: 6px 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .footer-bottom-row {
+            padding: 0;
+            .copyright {
+                color: $extreme-light-gray;
+            }
+            .policy {
+                a {
+                    color: $extreme-light-gray;
+                    font-family: $font-reading;
+                }
+            }
+            .developer {
+                color: $light-gray;
+                a {
+                    color: $extreme-light-gray;
                 }
             }
         }
