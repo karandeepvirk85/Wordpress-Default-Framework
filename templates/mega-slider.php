@@ -24,14 +24,16 @@ $strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
         <?php
             if($strNumberOfSlides > 0){
                 for ($i = 1; $i <= $strNumberOfSlides; $i++){
-                    $strImageUrl = Theme_Controller::get_theme_option('slider_image_'.$i);
+                    $strImageUrl    = Theme_Controller::get_theme_option('slider_image_'.$i);
                     $strCaptionText = trim(Theme_Controller::get_theme_option('slider_caption_'.$i));
                     $strButtonTitle = Theme_Controller::get_theme_option('slider_button_title_'.$i);
-                    $strButtonLink = Theme_Controller::get_theme_option('slider_button_link_'.$i);?>
+                    $strButtonLink  = Theme_Controller::get_theme_option('slider_button_link_'.$i);
+                    $strImageCredit = Theme_Controller::get_theme_option('slider_image_credit_'.$i);
+                    ?>
                     <div class="carousel-item <?php echo $i==1 ? "active" : "";?>">
                         <!--Image-->
                         <?php if(!empty($strImageUrl)){?>
-                            <img class="d-block w-100" src="<?php echo $strImageUrl;?>" alt="Image Slider">
+                            <img data-src="<?php echo $strImageCredit;?>" class="d-block w-100" src="<?php echo $strImageUrl;?>" alt="Image Slider">
                         <?php }?>
 
                         <!--Caption-->

@@ -25,7 +25,7 @@
                     <?php echo $strFooterText;?>
                 </div>
                 <div class="footer-info">
-                    <p class="footer-address"><?php echo $strAddress;?></p>
+                    <p class="footer-address"><i class="fas fa-map-marker"></i> <?php echo $strAddress;?></p>
                     <p class="footer-contact"><i class="fas fa-phone-square"></i> <strong>Contact: </strong> <a href="tel:<?php echo $strContact;?>"><?php echo $strContact;?></a></p>
                     <p class="footer-email"><i class="fas fa-envelope"></i> <strong>Email: </strong> <a href="mailto:<?php echo $strEmail;?>"><?php echo $strEmail;?></a></p>
                 </div>

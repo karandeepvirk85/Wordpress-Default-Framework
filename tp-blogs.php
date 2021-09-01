@@ -7,10 +7,9 @@ if(class_exists('Theme_Controller')){
     // Get Paged Query
     $paged = Theme_Controller::getPagedQuery();
     // Get Posts Query
-    $allPostsWPQuery = Theme_Controller::getAllPosts($paged,'post',6);
+    $allPostsWPQuery = Theme_Controller::getAllPosts($paged,'post',4);
     // Set Args for Pagination
     $args = Theme_Controller::getArgsForPagination($paged, $allPostsWPQuery->max_num_pages);
-
     $args['columns'] = 6;
 }
 ?>
@@ -24,15 +23,17 @@ if(class_exists('Theme_Controller')){
                 <?php 
                     if($allPostsWPQuery->have_posts()){
                         $intCount = 0;
-                        while ($allPostsWPQuery->have_posts() ) : $allPostsWPQuery->the_post();
+                        while($allPostsWPQuery->have_posts() ) : $allPostsWPQuery->the_post();
                             $intCount++;
                             get_template_part( 'templates/gtheme','all_posts',$args);
                             echo ($intCount % 2 == 0) ? '</div><div class="row posts-row">' : "";
                         endwhile;
-                    wp_reset_postdata(); 
-                 }?>
+                        wp_reset_postdata(); 
+                    }
+                 ?>
             </div>
         </div>
+        
          <!-------INLUDE SIDE BAR------->
          <div class="col-md-4 sidbar-container">    
             <?php  get_template_part('templates/blog-sidebar');?>
@@ -46,4 +47,5 @@ if(class_exists('Theme_Controller')){
         </div>
     </div>
 </div>
+
 <?php get_footer();?>

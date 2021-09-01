@@ -46,12 +46,4 @@ if(class_exists('Theme_Controller')){
                 }?>
         </div>
     </div>
-    
-    <!-------INLUDE PAGE CONTAINER------->
-    <div class="row">    
-        <div class="col-md-12 pagination-container">
-            <?php get_template_part( 'templates/gtheme','custom_pagination',$argsPagination); ?>
-        </div>
-    </div>
 </div>
-<?php get_footer();?>

@@ -28,7 +28,7 @@
                                 echo Theme_Controller::getFilteredContent($post->post_content,true,250);
                             }
                         ?>
-                        <p><a class="btn btn-secondary" href="#" role="button">View Category</a></p>
+                        <p><a class="btn btn-secondary" href="<?php echo get_permalink($post->ID);?>" role="button">View Category</a></p>
                     </div>
                 </div>
             <?php

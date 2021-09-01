@@ -32,7 +32,6 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ml-auto">
-			<li class="nav-item"><a data-id="home" class="nav-link" href="<?php echo home_url()?>">Home</a></li>
 				<?php
 				if(!empty($arrHeaderMenu)){
 					foreach($arrHeaderMenu as $key => $arrLinks){

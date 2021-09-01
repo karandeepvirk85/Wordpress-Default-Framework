@@ -274,6 +274,7 @@ class Theme_Controller{
         $strLogo = self::get_theme_option( 'site_logo' );
         $strLogoWidth = self::get_theme_option('logo_width');
         $strFooterText  = self::get_theme_option('footer_text');
+        $strMapIframeHtml  = self::get_theme_option('google_map');
     
         // Build Posts Options Array
         
@@ -375,7 +376,9 @@ class Theme_Controller{
                         $strImageUrl = self::get_theme_option('slider_image_'.$i);
                         $strCaptionText = self::get_theme_option('slider_caption_'.$i);
                         $strButtonTitle = self::get_theme_option('slider_button_title_'.$i);
-                        $strButtonLink = self::get_theme_option('slider_button_link_'.$i);?>
+                        $strButtonLink = self::get_theme_option('slider_button_link_'.$i);
+                        $strImageCredit = self::get_theme_option('slider_image_credit_'.$i);
+                        ?>
 
                         
                         <div class="settings-information-header inner-slider">
@@ -388,6 +391,9 @@ class Theme_Controller{
                             <input placeholder="Paste Slider Image Url Here" type="text" class="settings-input" name="theme_options[slider_image_<?php echo $i;?>]" value="<?php echo $strImageUrl;?>">
                             <h3>Image <?php echo $i?> Caption </h3>
                             <input placeholder="Write Your Captions Here" type="text" class="settings-input" name="theme_options[slider_caption_<?php echo $i;?>]" value="<?php echo $strCaptionText;?>">
+                            <h3>Image <?php echo $i?> Credit </h3>
+                            <input placeholder="Image Credit If Any" type="text" class="settings-input" name="theme_options[slider_image_credit_<?php echo $i;?>]" value="<?php echo $strImageCredit;?>">
+                            
                             <?php if(!empty($strImageUrl)){?>
                                 <div class="settings-slider-image">
                                     <img src="<?php echo $strImageUrl; ?>">
@@ -488,7 +494,17 @@ class Theme_Controller{
             <h3> Address</h3>
             <textarea class="settings-input-textarea" name="theme_options[address]"><?php echo $strAddress;?></textarea>
         </div>
-        
+
+        <div class="settings-information-header">
+            <h1>Google Map IFrame</h1>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+
+        <div class="settings-information hide-div">
+            <h3>Iframe HTML</h3>
+            <textarea name="theme_options[google_map]"><?php echo $strMapIframeHtml;?></textarea>
+        </div>
+
         <div class="settings-information-header">
             <h1>Footer Settings</h1>
             <i class="fas fa-chevron-down"></i>
