@@ -1,27 +1,26 @@
 <?php 
 /**
- * Template Name: Faqs
+ * Home Page FAQS
  */
-get_header();
 if(class_exists('Theme_Controller')){
     // Get Paged Query
     $paged = Theme_Controller::getPagedQuery();
     // Get Posts Query
-    $allPostsWPQuery = Theme_Controller::getAllPosts($paged,'faqs',$args['number_of_faqs']);
+    $allPostsWPQuery = Theme_Controller::getAllPosts($paged,'faqs',6);
     // Set Args for Pagination
     $argsPagination = Theme_Controller::getArgsForPagination($paged, 1);
-
+    
     $strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
+    
+    $arrTitleContainer = array(
+        'title' => 'FAQS',
+        'url' => 'faqs'
+    );
 }
 ?>
 
 <div class="container faqs-container">
-    <div class="title-container">
-        <h1>FREQUENTLY ASKED QUESTION</h1>
-        <?php if (is_front_page()){?>
-            <a style="border: 2px solid <?php echo $strThemeSecondaryColor;?>;color: <?php echo $strThemeSecondaryColor;?>" href="<?php echo home_url();?>/faqs" class="btn-theme btn btn-outline-success btn-lg">View All Faqs</a>
-        <?php }?>
-    </div>
+    <?php get_template_part('templates/gtheme','home_title_container', $arrTitleContainer);?>
     <!--INCLUDE PAGE TITLE-->
     <div class="row">
         <div class="col-md-12">

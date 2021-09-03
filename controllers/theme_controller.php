@@ -380,7 +380,6 @@ class Theme_Controller{
                         $strImageCredit = self::get_theme_option('slider_image_credit_'.$i);
                         ?>
 
-                        
                         <div class="settings-information-header inner-slider">
                             <h1>Slide <?php echo $i?> </h1>
                             <i class="fas fa-chevron-down"></i>

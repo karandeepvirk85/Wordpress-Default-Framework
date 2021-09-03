@@ -3,19 +3,16 @@
  * Template Name: Services
  */
 get_header();
+
 if(class_exists('Theme_Controller')){
-    // Get Paged Query
     $paged = Theme_Controller::getPagedQuery();
-    // Get Posts Querys
     $allPostsWPQuery = Theme_Controller::getAllPosts($paged,'services',-1);
-    // Set Args for Pagination
     $args = Theme_Controller::getArgsForPagination($paged, $allPostsWPQuery->max_num_pages);
-    
-    $args['columns'] = 4;
+    $args['columns'] = 3;
 }
 ?>
 
-<div class="container page-container services-container">
+<div class="container services-container">
     <!--INCLUDE PAGE TITLE-->
     <?php get_template_part('templates/page-title');?>  
     <div class="row">
@@ -27,7 +24,7 @@ if(class_exists('Theme_Controller')){
                         while ($allPostsWPQuery->have_posts() ) : $allPostsWPQuery->the_post();
                             $intCount++;
                             get_template_part( 'templates/gtheme','all_posts',$args);
-                            echo ($intCount % 3 == 0) ? '</div><div class="row posts-row">' : "";
+                            echo ($intCount % 4 == 0) ? '</div><div class="row posts-row">' : "";
                         endwhile;
                     wp_reset_postdata(); 
                  }?>

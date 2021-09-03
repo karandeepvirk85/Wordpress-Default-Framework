@@ -19,7 +19,7 @@
 		$strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
 	?>
 	<nav class="navbar-adjust navbar navbar-expand-lg navbar-light" style="background-color:<?php echo $strPrimaryColor;?>!important;">
-		<a class="navbar-brand" href="#">
+		<a class="navbar-brand" href="<?php echo home_url();?>">
 			<div class="logo">
 				<img style="width:<?php echo $strLogoWidth;?>px;" src="<?php echo $strSiteLogo;?>">
 				<p style="color:<?php echo $strThemeSecondaryColor;?>"> Travel & Immigration</p>
@@ -55,7 +55,7 @@
 
 			<form method="get" class="form-inline my-2 my-lg-0">
 				<input name="s" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-				<button style="border: 2px solid <?php echo $strThemeSecondaryColor;?>;color: <?php echo $strThemeSecondaryColor;?>" class="btn-theme btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+				<button style="border: 2px solid <?php echo $strThemeSecondaryColor;?>;color: <?php echo $strThemeSecondaryColor;?>" class="btn-theme btn-theme-transparent btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 			</form>
 		</div>
 	</nav>

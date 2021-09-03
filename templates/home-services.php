@@ -5,13 +5,14 @@
     $strSecondary = Theme_Controller::get_theme_option( 'secondary_color' );
     $args = Theme_Controller::getArgsForPagination($paged, $allPostsWPQuery->max_num_pages);
     $strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
+    $arrTitleContainer = array(
+        'title' => 'Visa Categories',
+        'url' => 'services'
+    );
 }
 ?>
 <div class="container services-container">
-    <div class="title-container">
-        <h1>VISA CATEGORIES</h1>
-        <a style="border: 2px solid <?php echo $strThemeSecondaryColor;?>;color: <?php echo $strThemeSecondaryColor;?>" href="<?php echo home_url();?>/services" class="btn-theme btn btn-outline-success btn-lg">View All Visa Categories</a>
-    </div>
+ <?php get_template_part('templates/gtheme','home_title_container', $arrTitleContainer);?>
     <div class="row services-row">
         <?php 
         if ($allPostsWPQuery->have_posts()){
@@ -28,7 +29,8 @@
                                 echo Theme_Controller::getFilteredContent($post->post_content,true,250);
                             }
                         ?>
-                        <p><a class="btn btn-secondary" href="<?php echo get_permalink($post->ID);?>" role="button">View Category</a></p>
+                        <p>
+                            <a class="btn btn-secondary btn-theme" href="<?php echo get_permalink($post->ID);?>" role="button">View Category</a></p>
                     </div>
                 </div>
             <?php

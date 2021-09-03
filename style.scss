@@ -20,15 +20,16 @@ $very-light-gray: #c0c0c0;
 $extreme-light-gray: #ebebeb;
 $default-border: 1px solid #e8e8e8;
 $current-theme-color: #d52b1e;
-$default-box-shadow: 0px 0px 3px 1px #0000001a;
+$default-box-shadow: 0px 0px 4px 0px #bebebe;
 $footer-color: #4d4d4d;
+$default-radius: 12px;
 
-// Body Background Color
+// Body
 body {
-    background-color: #eaeaea;
+    background-color: #ffffff;
 }
 
-// Default H1
+// HI
 h1 {
     font-size: 3rem;
     font-family: $font-secondary;
@@ -38,11 +39,39 @@ h1 {
 // Default Secondary Button
 .btn-theme {
     font-family: $font-primary;
-    font-weight: 700;
+    border-radius: $default-radius;
+    font-family: $font-primary;
+    background-color: $dark-gray;
+    &.btn-theme-transparent {
+        background-color: transparent;
+    }
     &:hover {
         background-color: #000 !important;
         color: #ffffff !important;
         border-color: #000 !important;
+    }
+}
+
+.flex-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    h1 {
+        margin: 0;
+    }
+    a {
+        font-family: $font-primary;
+    }
+}
+
+.center-title-container {
+    margin-bottom: 30px;
+    h1 {
+        margin-bottom: 0;
+    }
+    a {
+        font-family: $font-primary;
     }
 }
 
@@ -72,19 +101,6 @@ h1 {
 // Frequencty Asked Container
 .faqs-container {
     margin-top: 30px;
-    .title-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid #d7d7d7;
-        margin-bottom: 30px;
-        h1 {
-            margin: 0;
-        }
-        a {
-            font-family: $font-primary;
-        }
-    }
     .faqs-inner-container {
         margin: 10px 0;
         .faqs-question {
@@ -92,9 +108,11 @@ h1 {
             h4 {
                 color: $dark-gray;
                 margin: 0;
+                font-size: 1.4rem;
             }
             border: $default-border;
-            font-family: $font-secondary;
+            font-family: $font-primary;
+            font-weight: 700;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -118,6 +136,7 @@ h1 {
     }
 }
 
+// Home Page
 .home-page {
     // Home Page Slider
     .carousel-adjust {
@@ -130,7 +149,7 @@ h1 {
                 left: 60%;
                 background: rgba(0, 0, 0, 0.3);
                 padding: 1rem;
-                border-radius: 10px;
+                border-radius: $default-radius;
                 height: max-content;
                 a {
                     width: 100%;
@@ -144,39 +163,30 @@ h1 {
     // Services Container
     .services-container {
         margin-top: 30px;
-        .title-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #d7d7d7;
-            margin-bottom: 30px;
-            h1 {
-                margin-bottom: 0;
-            }
-            a {
-                font-family: $font-primary;
-            }
-        }
         .services-row {
             margin-top: 30px;
             .services-col {
-                font-family: $font-reading;
+                font-family: "Noto Sans JP", sans-serif;
                 text-align: center;
                 background: white;
                 box-shadow: $default-box-shadow;
                 padding: 14px 1rem 8px 1rem;
                 font-size: 0.9rem;
+                border: 2px solid #0000000d;
+                border-radius: $default-radius;
                 h2 {
-                    font-family: $font-secondary;
-                    font-size: 2rem;
+                    font-family: $font-primary;
+                    font-size: 1.5rem;
+                    font-weight: 700;
                     margin-top: 8px;
                     color: $dark-gray;
                 }
                 .services-icons {
                     text-align: center;
-                    width: 100px;
-                    height: 100px;
-                    border-radius: 50%;
+                    width: 90px;
+                    height: 90px;
+                    box-shadow: $default-box-shadow;
+                    border-radius: 100%;
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -207,25 +217,20 @@ h1 {
 
     // Two Pages Container
     .two-pages-container {
-        .title-container {
-            border-bottom: 1px solid #d7d7d7;
-            margin-bottom: 30px;
-            h1 {
-                margin-bottom: 0;
-            }
-            a {
-                font-family: $font-primary;
-            }
-        }
         width: 100%;
         h2 {
-            font-family: $font-secondary;
+            font-family: $font-primary;
             font-size: 2rem;
+            font-weight: 700;
         }
         .two-pages-image {
             padding: 16rem 0;
             background-position: center;
             background-repeat: no-repeat;
+            background-size: cover;
+            background-color: white;
+            box-shadow: $default-box-shadow;
+            border: 2px solid #0000000d;
         }
         .two-pages-content {
             display: flex;
@@ -233,10 +238,13 @@ h1 {
             justify-content: center;
             align-items: center;
             padding: 3rem;
+            font-family: $font-reading;
             background-color: white;
+            box-shadow: $default-box-shadow;
+            font-size: 0.9rem;
+            border: 2px solid #0000000d;
         }
-        .btn-page {
-            background-color: $dark-gray;
+        .btn-theme {
             margin-top: 20px;
         }
     }
@@ -244,19 +252,6 @@ h1 {
     // Home Posts Container
     .home-posts {
         margin-top: 30px;
-        .title-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #d7d7d7;
-            margin-bottom: 30px;
-            h1 {
-                margin: 0;
-            }
-            a {
-                font-family: $font-primary;
-            }
-        }
         a {
             color: $dark-gray;
             font-family: $font-reading;
@@ -275,7 +270,8 @@ h1 {
                 h2 {
                     &.featurette-heading {
                         color: $dark-gray;
-                        font-family: $font-secondary;
+                        font-family: $font-primary;
+                        font-weight: 700;
                     }
                 }
                 p {
@@ -298,19 +294,6 @@ h1 {
         margin-top: 30px;
         width: 100%;
         padding: 0;
-
-        .title-container {
-            border-bottom: 1px solid #d7d7d7;
-            margin-bottom: 30px;
-            h1 {
-                margin: 0;
-                text-align: center;
-            }
-            a {
-                font-family: $font-primary;
-            }
-        }
-
         .carousel-inner {
             font-family: $font-reading;
             min-height: 500px;
@@ -322,7 +305,8 @@ h1 {
                     width: auto;
                 }
                 h3 {
-                    font-family: $font-secondary;
+                    font-family: $font-primary;
+                    font-weight: 700;
                     color: $dark-gray;
                     margin-top: 10px;
                 }
@@ -345,18 +329,8 @@ h1 {
 
     .google-map-container {
         margin-top: 20px;
-        .title-container {
-            border-bottom: 1px solid #d7d7d7;
-            margin-bottom: 30px;
-            h1 {
-                margin-bottom: 0;
-            }
-            a {
-                font-family: $font-primary;
-            }
-        }
         .google-map-col {
-            padding: 2rem 1rem;
+            padding: 0 1rem;
             background-color: white;
             iframe {
                 width: 100%;
@@ -367,7 +341,7 @@ h1 {
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding: 2rem;
+            padding: 0 2rem;
             background-color: white;
             label {
                 text-align: left;
@@ -396,11 +370,11 @@ h1 {
     }
 }
 
-.page-container {
+// Blog Container
+.blog-container {
     min-height: 100vh;
     margin-top: 30px;
     margin-bottom: 60px;
-
     .posts-row {
         &.single-post {
             .posts-column {
@@ -498,19 +472,143 @@ h1 {
         }
     }
 
-    &.single-post-container {
-        padding: 0;
-        margin: 0;
-        .page-content {
-            margin-top: 20px;
-        }
-        .posts-row {
-            margin: 0;
-            .posts-column {
-                padding: 0;
+    .pagination-container {
+        margin-top: 30px;
+        text-align: center;
+        .pagination {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .pagination-inner {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .current {
+                    color: #d52b1e;
+                    padding: 8px 16px;
+                    font-size: 1.1rem;
+                }
+                a {
+                    color: #000000;
+                    border: 1px solid #dadada;
+                    padding: 8px 16px;
+                    font-size: 1.1rem;
+                    &.next {
+                        border-top-right-radius: 30px;
+                        border-bottom-right-radius: 30px;
+                    }
+                    &.prev {
+                        border-top-left-radius: 30px;
+                        border-bottom-left-radius: 30px;
+                    }
+                }
             }
         }
     }
+}
+
+// Services Container
+.services-container,
+.testimonials-container {
+    margin-top: 30px;
+    .posts-row {
+        &.single-post {
+            .posts-column {
+                .post-container {
+                    background-color: #ffffff;
+                    .post-top-container {
+                        .post-image {
+                            padding: 250px 1rem;
+                        }
+                    }
+                    .post-bottom-container {
+                        .post-title-container {
+                            a {
+                                color: $dark-gray;
+                                font-size: 3rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .posts-column {
+            padding: 10px;
+            cursor: pointer;
+            .post-container {
+                background-color: #ffffff;
+                .post-top-container {
+                    .post-image {
+                        padding: 111px 1rem;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        box-shadow: inset -2px -2px 20px 0px #000000;
+                        background-size: cover;
+                    }
+                }
+                &:hover {
+                    opacity: 0.8;
+                    filter: contrast(130%);
+                }
+                .post-bottom-container {
+                    border: 1px solid rgba(0, 0, 0, 0.1);
+                    box-sizing: border-box;
+                    padding: 0px 1.1rem 20px 1.1rem;
+
+                    .post-meta-container {
+                        display: flex;
+                        justify-content: flex-start;
+                        font-family: 700;
+                        width: 100%;
+                        color: black;
+                        align-items: center;
+                        margin-top: 8px;
+                        .post-date {
+                            color: #a0a0a0;
+                            font-size: 0.8;
+                        }
+                        .post-author {
+                            font-weight: 700;
+                            font-size: 1rem;
+                            color: #9e9e9e;
+                        }
+                        .divider {
+                            padding: 0 1rem;
+                            color: #dbdbdb;
+                        }
+                    }
+                    .post-title-container {
+                        a {
+                            margin-top: 10px;
+                            font-size: 1.2rem;
+                            font-weight: 700;
+                            font-family: $font-primary;
+                        }
+                    }
+                    .post-content-container {
+                        margin-top: 5px;
+                        color: #414141;
+                        font-size: 0.9rem;
+                        font-weight: 300;
+                        text-decoration: none;
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+                    .read-more-container {
+                        .read-more-link {
+                            text-decoration: underline;
+                            font-size: 1rem;
+                            font-family: $font-secondary;
+                            color: gray;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     .sidbar-container {
         padding: 10px;
         .categories-container {
@@ -605,6 +703,8 @@ h1 {
         }
     }
 }
+
+// Footer Container
 .footer-container {
     padding: 0;
     font-family: $font-reading;
@@ -674,7 +774,7 @@ h1 {
                     flex-direction: column;
                     justify-content: center;
                     align-items: flex-start;
-                    background: #eaeaea;
+                    background: #ffffff;
                     border: 1px solid lightgrey;
                     border-top: none;
                     h3 {
@@ -721,6 +821,118 @@ h1 {
                 color: $light-gray;
                 a {
                     color: $light-gray;
+                }
+            }
+        }
+    }
+}
+
+.single-post-container {
+    width: 100%;
+    padding: 0;
+    .single-post-image-container {
+        width: 100%;
+        padding: 0;
+        .single-post-image {
+            &.testimonials {
+                background-size: contain;
+            }
+            padding: 250px 0;
+            background-position: top;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    }
+}
+
+.single-post-content-container {
+    margin: 0 0 60px 0;
+    background-color: white;
+    .single-post-side-bar {
+        padding: 20px 1rem;
+        background-color: $extreme-light-gray;
+        p {
+            margin: 4px 0;
+            a {
+                border-bottom: 1px solid $very-light-gray;
+                color: $dark-gray;
+            }
+        }
+    }
+    .post-top-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1rem 0 1rem;
+        h1 {
+            margin: 0;
+            max-width: 75%;
+            font-size: 2.5rem;
+        }
+    }
+    .single-post-content {
+        font-family: $font-reading;
+        font-size: 0.9rem;
+        text-align: justify;
+        padding: 0px 1rem;
+        h5 {
+            &.testimonial-by {
+                font-family: $font-primary;
+                color: $light-gray;
+                margin-bottom: 30px;
+            }
+        }
+    }
+}
+.sidbar-container {
+    padding: 10px;
+    .categories-container {
+        padding: 0px 1.5rem;
+        box-sizing: border-box;
+        h2 {
+            margin: 0 0 4px 0px;
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: $font-secondary;
+        }
+        p {
+            margin: 0;
+
+            a {
+                font-size: 1rem;
+                color: $light-gray;
+            }
+        }
+    }
+
+    .recent-post-container {
+        margin-top: 20px;
+        padding: 10px 1.5rem;
+        box-sizing: border-box;
+        h2 {
+            margin: 0 0 4px 0px;
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: $font-secondary;
+        }
+        ul {
+            padding: 0 0 0 1rem;
+            li {
+                font-size: 1rem;
+                line-height: 14px;
+                margin: 16px 0;
+                color: $light-gray;
+
+                a {
+                    font-size: 1rem;
+                    color: $dark-gray;
+                    p {
+                        margin: 0;
+                        &.recent-post-date {
+                            color: $very-light-gray;
+                            margin-top: 4px;
+                        }
+                    }
                 }
             }
         }

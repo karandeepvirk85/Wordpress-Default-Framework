@@ -1,4 +1,9 @@
 $light-gray: rgb(173, 173, 173);
+
+$light-white: #dfdfe0;
+
+$default-dark: #1d2327;
+
 .settings-container {
     padding: 1rem 0rem;
     h1 {
@@ -9,31 +14,40 @@ $light-gray: rgb(173, 173, 173);
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: white;
-        padding: 0.5rem 1rem;
-        box-shadow: 0px 0px 2px 0px #5a5a5a33;
+        background-color: $default-dark;
+        padding: 0.4rem 1rem;
+        box-shadow: 0px 0px 0px 1px #000000;
         cursor: pointer;
         margin: 6px 30px;
         &.inner-slider {
             margin: 4px 6px;
-            background: #e1e1e1;
-            h1 {
-                font-size: 1.1rem;
+            background: $light-white;
+            color: h1 {
+                font-size: 1rem;
+                color: $default-dark;
                 margin: 6px 0;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                    Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue",
+                    sans-serif;
             }
         }
         h1 {
-            margin: 10px 0;
-            color: #1d2327;
-            font-size: 1.4rem;
+            margin: 0px 0;
+            color: $light-white;
+            font-weight: 400;
+            font-size: 1.2rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
         }
         i {
             font-size: 2rem;
+            color: $light-white;
         }
     }
     .settings-information {
         padding: 10px 1rem;
         margin: 0 30px;
+        background-color: white;
         .settings-site-logo {
             img {
                 height: 100px;

@@ -21,8 +21,6 @@ $arrRecentPosts = wp_get_recent_posts(
 );
 ?>
 
-<?php get_template_part( 'nextpage-templates/searchform' ); ?>
-
 <div class="categories-container">
     <h2>Categories</h2>
     <?php            

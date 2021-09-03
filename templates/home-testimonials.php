@@ -4,13 +4,14 @@
  */
 $arrTestimonials = Theme_Controller::getAllPosts(null,'testimonials', 6);
 $strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
+$arrTitleContainer = array(
+    'title' => 'Testimonials',
+    'url' => 'what-customers-says-about-us'
+);
 ?>
 
-<div class="container-fluid testimonials-container">
-    <div class="title-container">
-        <h1>TESTIMONIALS</h1>
-    </div>
-
+<div class="container testimonials-container">
+<?php get_template_part('templates/gtheme','home_title_container', $arrTitleContainer);?>
     <div id="carouselTestimonials" class="carousel-adjust carousel slide" data-ride="carousel">
         <!--Carousel Indicators-->
         <ol class="carousel-indicators">
@@ -36,14 +37,19 @@ $strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
                         $intNumber++;
                         $arrTestimonials->the_post();?>
                         <div class="carousel-item <?php echo $intNumber==1 ? "active" : "";?>">
-                            <img src="<?php if(class_exists('Theme_Controller')){echo Theme_Controller::getPostImage($post->ID,'large');}?>">
+                            <img data-src="" src="<?php if(class_exists('Theme_Controller')){echo Theme_Controller::getPostImage($post->ID,'large');}?>">
                             <h3><?php the_title();?></h3>
                             <p>
                             <?php
                                 if(class_exists('Theme_Controller')){
-                                    echo Theme_Controller::getFilteredContent($post->post_content,true,500);
+                                    echo Theme_Controller::getFilteredContent($post->post_content,true,300);
                                 }
                             ?>
+
+                            <?php
+                                if(strlen($post->post_content)>300){?>
+                                   <P><a class="btn btn-secondary btn-theme" href="<?php echo get_permalink($post->ID);?>">Read More <i class="fas fa-chevron-right"></i></a></p>
+                            <?php }?>
                             </p>
                             <p class="testi-author">
                                 By <?php echo get_post_meta($post->ID,'testimonial_by',true);?>

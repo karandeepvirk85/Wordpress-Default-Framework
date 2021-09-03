@@ -4,14 +4,15 @@
     $objHomePost1 = get_post(Theme_Controller::get_theme_option('home_section_blog_1'));
     $objHomePost2 = get_post(Theme_Controller::get_theme_option('home_section_blog_2'));
     $objHomePost3 = get_post(Theme_Controller::get_theme_option('home_section_blog_3'));
+    $arrTitleContainer = array(
+        'title' => 'Latest Posts',
+        'url' => 'blogs'
+    );
 }
 ?>
-
 <div class="container home-posts">    
-    <div class="title-container">
-        <h1>OUR LATEST POSTS</h1>
-        <a style="border: 2px solid <?php echo $strThemeSecondaryColor;?>;color: <?php echo $strThemeSecondaryColor;?>" href="<?php echo home_url();?>/blogs" class="btn-theme btn btn-outline-success btn-lg">View Our All Posts</a>
-    </div>
+    <?php get_template_part('templates/gtheme','home_title_container',$arrTitleContainer);?>
+    
     <a href="<?php echo get_permalink($objHomePost1->ID);?>">
         <div class="row featurette">
             <div class="col-md-7">

@@ -1,5 +1,5 @@
 <div class="container-fluid google-map-container">
-    <div class="title-container">
+    <div class="center-title-container">
         <h1 class="text-center">Contact US</h1>
     </div>
     <div class="row">
