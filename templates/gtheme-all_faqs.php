@@ -14,7 +14,7 @@ if(class_exists('Theme_Controller')){
     
     $arrTitleContainer = array(
         'title' => 'FAQS',
-        'url' => 'faqs'
+        'url' => 'all-faqs'
     );
 }
 ?>

@@ -10,6 +10,7 @@ Licence: Open Soruce Base Theme Under GPL Licence.
 Licence URL: https://www.gnu.org/licenses/gpl-3.0.en.html
 Extra: Do whatever the fuck you want to do. What you feels like doing is always the option. 
 */
+/**Break Points**/
 body {
   background-color: #ffffff;
 }
@@ -66,10 +67,22 @@ h1 {
   box-shadow: 0px 0px 6px 0px #00000070;
   z-index: 1;
 }
-.navbar-adjust .navbar-nav {
+@media (min-width: 250px) {
+  .navbar-adjust .navbar-collapse {
+    background-color: white;
+    padding: 1rem;
+  }
+}
+@media (min-width: 768px) {
+  .navbar-adjust .navbar-collapse {
+    background-color: unset;
+    padding: unset;
+  }
+}
+.navbar-adjust .navbar-collapse .navbar-nav {
   margin-right: 10px;
 }
-.navbar-adjust .navbar-nav li.nav-item a {
+.navbar-adjust .navbar-collapse .navbar-nav li.nav-item a {
   font-family: "Roboto", sans-serif;
   color: #252525;
 }
@@ -141,6 +154,7 @@ h1 {
   width: 100%;
   font-family: "Staatliches", cursive;
   font-size: 1.3rem;
+  margin-top: 18px;
 }
 .home-page .services-container {
   margin-top: 30px;
@@ -357,9 +371,9 @@ h1 {
 }
 .blog-container .posts-row .posts-column .post-container .post-top-container .post-image {
   padding: 111px 1rem;
+  box-shadow: inset -2px -2px 20px 0px #000000;
   background-position: center;
   background-repeat: no-repeat;
-  box-shadow: inset -2px -2px 20px 0px #000000;
   background-size: cover;
 }
 .blog-container .posts-row .posts-column .post-container:hover {
@@ -478,10 +492,10 @@ h1 {
 }
 .services-container .posts-row .posts-column .post-container .post-top-container .post-image,
 .testimonials-container .posts-row .posts-column .post-container .post-top-container .post-image {
+  box-shadow: inset -2px -2px 20px 0px #000000;
   padding: 111px 1rem;
   background-position: center;
   background-repeat: no-repeat;
-  box-shadow: inset -2px -2px 20px 0px #000000;
   background-size: cover;
 }
 .services-container .posts-row .posts-column .post-container:hover,
@@ -784,7 +798,7 @@ h1 {
 }
 .single-post-container .single-post-image-container .single-post-image {
   padding: 250px 0;
-  background-position: top;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -901,7 +915,7 @@ h1 {
 }
 
 .page-container {
-  padding: 60px 0;
+  padding: 60px 0 80px 0;
 }
 .page-container.contact-page .address-info h2 {
   font-size: 1.4rem;

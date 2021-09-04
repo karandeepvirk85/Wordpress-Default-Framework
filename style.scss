@@ -11,18 +11,69 @@ Licence URL: https://www.gnu.org/licenses/gpl-3.0.en.html
 Extra: Do whatever the fuck you want to do. What you feels like doing is always the option. 
 */
 
+/**Break Points**/
+// Small Phone (IPhone Samsung and UP)
+
+$xs: 250px;
+
+// Small devices (landscape phones, 576px and up)
+$sm: 576px;
+
+// Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint
+$md: 768px;
+
+// Large devices (desktops, 992px and up)
+$lg: 992px;
+
+// Extra large devices (large desktops, 1200px and up)
+$xl: 1200px;
+
+// Fonts
 $font-primary: "Roboto", sans-serif;
 $font-secondary: "Staatliches", cursive;
 $font-reading: "Noto Sans JP", sans-serif;
+
+// Colors
 $dark-gray: #252525;
 $light-gray: #9e9e9e;
 $very-light-gray: #c0c0c0;
 $extreme-light-gray: #ebebeb;
-$default-border: 1px solid #e8e8e8;
 $current-theme-color: #d52b1e;
-$default-box-shadow: 0px 0px 4px 0px #bebebe;
 $footer-color: $dark-gray;
+
+// Borders and Radius
+$default-border: 1px solid #e8e8e8;
+$default-box-shadow: 0px 0px 4px 0px #bebebe;
 $default-radius: 12px;
+
+@mixin flex-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    h1 {
+        margin: 0;
+    }
+    a {
+        font-family: $font-primary;
+    }
+}
+
+@mixin center-title-container {
+    margin-bottom: 30px;
+    h1 {
+        margin-bottom: 0;
+    }
+    a {
+        font-family: $font-primary;
+    }
+}
+
+@mixin background-center-cover-no-repeat {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 // Body
 body {
@@ -54,26 +105,11 @@ h1 {
 }
 
 .flex-title-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-    h1 {
-        margin: 0;
-    }
-    a {
-        font-family: $font-primary;
-    }
+    @include flex-title-container;
 }
 
 .center-title-container {
-    margin-bottom: 30px;
-    h1 {
-        margin-bottom: 0;
-    }
-    a {
-        font-family: $font-primary;
-    }
+    @include center-title-container;
 }
 
 // Navigation Bar
@@ -83,13 +119,23 @@ h1 {
     width: 100%;
     box-shadow: 0px 0px 6px 0px #00000070;
     z-index: 1;
-    .navbar-nav {
-        margin-right: 10px;
-        li {
-            &.nav-item {
-                a {
-                    font-family: $font-primary;
-                    color: $dark-gray;
+    .navbar-collapse {
+        @media (min-width: $xs) {
+            background-color: white;
+            padding: 1rem;
+        }
+        @media (min-width: $md) {
+            background-color: unset;
+            padding: unset;
+        }
+        .navbar-nav {
+            margin-right: 10px;
+            li {
+                &.nav-item {
+                    a {
+                        font-family: $font-primary;
+                        color: $dark-gray;
+                    }
                 }
             }
         }
@@ -168,6 +214,7 @@ h1 {
                     width: 100%;
                     font-family: $font-secondary;
                     font-size: 1.3rem;
+                    margin-top: 18px;
                 }
             }
         }
@@ -238,9 +285,7 @@ h1 {
         }
         .two-pages-image {
             padding: 16rem 0;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+            @include background-center-cover-no-repeat;
             background-color: white;
             box-shadow: $default-box-shadow;
             border: 2px solid #0000000d;
@@ -416,10 +461,8 @@ h1 {
                 .post-top-container {
                     .post-image {
                         padding: 111px 1rem;
-                        background-position: center;
-                        background-repeat: no-repeat;
                         box-shadow: inset -2px -2px 20px 0px #000000;
-                        background-size: cover;
+                        @include background-center-cover-no-repeat;
                     }
                 }
                 &:hover {
@@ -552,11 +595,9 @@ h1 {
                 background-color: #ffffff;
                 .post-top-container {
                     .post-image {
-                        padding: 111px 1rem;
-                        background-position: center;
-                        background-repeat: no-repeat;
                         box-shadow: inset -2px -2px 20px 0px #000000;
-                        background-size: cover;
+                        padding: 111px 1rem;
+                        @include background-center-cover-no-repeat;
                     }
                 }
                 &:hover {
@@ -850,9 +891,7 @@ h1 {
                 background-size: contain;
             }
             padding: 250px 0;
-            background-position: top;
-            background-repeat: no-repeat;
-            background-size: cover;
+            @include background-center-cover-no-repeat;
         }
     }
 }
@@ -969,7 +1008,7 @@ h1 {
 }
 
 .page-container {
-    padding: 60px 0;
+    padding: 60px 0 80px 0;
     &.contact-page {
         .address-info {
             h2 {

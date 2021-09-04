@@ -16,7 +16,7 @@ if(class_exists('Theme_Controller')){
 }
 ?>
 
-<div class="container faqs-container">
+<div class="container faqs-container page-container">
     <?php get_template_part('templates/page-title');?>  
     <!--INCLUDE PAGE TITLE-->
     <div class="row">
