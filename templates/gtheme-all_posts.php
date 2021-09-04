@@ -29,7 +29,7 @@
                         echo $post->post_content;
                     }else{
                         if(class_exists('Theme_Controller')){
-                            echo Theme_Controller::getFilteredContent($post->post_content,true,300);
+                            echo Theme_Controller::getFilteredContent($post->post_content,true,250);
                         }
                     }
                 ?>

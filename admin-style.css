@@ -18,11 +18,12 @@
 .settings-container .settings-information-header.inner-slider {
   margin: 4px 6px;
   background: #dfdfe0;
-  color: h1;
-  color-font-size: 1rem;
-  color-color: #1d2327;
-  color-margin: 6px 0;
-  color-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+.settings-container .settings-information-header.inner-slider h1 {
+  font-size: 1rem;
+  color: #1d2327;
+  margin: 6px 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 .settings-container .settings-information-header h1 {
   margin: 0px 0;

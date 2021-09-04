@@ -6,7 +6,7 @@
  */
 get_header();
 ?>
-<div class="container products-container">
+<div class="container single-product">
     <div class="row">
         <div class="col-md-12">
             <?php 

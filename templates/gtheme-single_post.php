@@ -34,6 +34,7 @@ $strTestimonialsBy = get_post_meta($post->ID,'testimonial_by',true);
                 <?php }?>
             </div>
         </div>
+        
         <?php if($strPostType == 'post'){?>
             <div class="col-md-3 sidbar-container">    
                 <?php  get_template_part('templates/blog-sidebar');?>
