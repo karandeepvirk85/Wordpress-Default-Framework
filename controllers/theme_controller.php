@@ -260,21 +260,22 @@ class Theme_Controller{
     }
 
     public static function create_admin_page() { 
-        $strFacebook  = self::get_theme_option('facebook'); 
-        $strTwitter   = self::get_theme_option('twitter');
-        $strYoutube   = self::get_theme_option('youtube'); 
-        $strInstagram = self::get_theme_option('instagram');
-        $strEmail     = self::get_theme_option('email');
-        $strContact   = self::get_theme_option('contact');
-        $strAddress   = self::get_theme_option('address');
-        $strNumberOfSlides = self::get_theme_option('number_of_slides'); 
-        $intSliderSpeed = self::get_theme_option( 'slider_speed' ); 
-        $strPrimaryColor = self::get_theme_option('primary_color');  
-        $strSecondaryColor = self::get_theme_option( 'secondary_color' ); 
-        $strLogo = self::get_theme_option( 'site_logo' );
-        $strLogoWidth = self::get_theme_option('logo_width');
-        $strFooterText  = self::get_theme_option('footer_text');
-        $strMapIframeHtml  = self::get_theme_option('google_map');
+        $strFacebook        = self::get_theme_option('facebook'); 
+        $strTwitter         = self::get_theme_option('twitter');
+        $strYoutube         = self::get_theme_option('youtube'); 
+        $strInstagram       = self::get_theme_option('instagram');
+        $strEmail           = self::get_theme_option('email');
+        $strContact         = self::get_theme_option('contact');
+        $strAddress         = self::get_theme_option('address');
+        $strNumberOfSlides  = self::get_theme_option('number_of_slides'); 
+        $intSliderSpeed     = self::get_theme_option( 'slider_speed' ); 
+        $strPrimaryColor    = self::get_theme_option('primary_color');  
+        $strSecondaryColor  = self::get_theme_option( 'secondary_color' ); 
+        $strLogo            = self::get_theme_option( 'site_logo' );
+        $strLogoWidth       = self::get_theme_option('logo_width');
+        $strFooterText      = self::get_theme_option('footer_text');
+        $strMapIframeHtml   = self::get_theme_option('google_map');
+        $strLogoTitle       = self::get_theme_option('logo_title');
     
         // Build Posts Options Array
         
@@ -321,14 +322,16 @@ class Theme_Controller{
             <div class="settings-site-logo-input">
                 <h3>Logo URL</h3>
                 <input type="text" class="settings-input" name="theme_options[site_logo]" value="<?php echo $strLogo; ?>">
+                <?php if(!empty($strLogo)){?>
+                    <div class="settings-site-logo">
+                        <img src="<?php echo esc_attr($strLogo); ?>">
+                    </div>
+                <?php }?>
                 <h3>Logo Width</h3>
                 <input type="number" placeholder="Width in Pixels" class="settings-number" name="theme_options[logo_width]" value="<?php echo $strLogoWidth; ?>">
+                <h3> Logo Text</h3>
+                <input type="text" class="settings-input" name="theme_options[logo_title]" value="<?php echo $strLogoTitle;?>">
             </div>
-            <?php if(!empty($strLogo)){?>
-                <div class="settings-site-logo">
-                    <img src="<?php echo esc_attr($strLogo); ?>">
-                </div>
-            <?php }?>
         </div>
         
         <!--Theme Color Options-->

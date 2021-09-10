@@ -4,23 +4,7 @@
  * Theme Name: gTheme
  * Template Author: Karandeep Singh Virk
  */
-get_header();
-?>
-<div class="container products-container">
-    <div class="row">
-        <div class="col-md-12">
-            <?php 
-            if(have_posts()) :
-                while (have_posts()) : 
-                    the_post();?>
-                    <h1><?php the_title();?></h1>
-                    <?php the_content();?>
-                    <?php
-                endwhile;
-            endif;
-            ?>
-        </div>
-    </div>
+get_header();?>
+    <?php get_template_part('templates/gtheme','wp_page');?>
 </div>
-
 <?php get_footer();?>

@@ -12,8 +12,9 @@
 
 <header>
 	<?php 
-		$arrHeaderMenu 		= Theme_Controller::getMenuByName('Header Menu');
-		$strLogoWidth 		= Theme_Controller::get_theme_option('logo_width');
+		$arrHeaderMenu 			= Theme_Controller::getMenuByName('Header Menu');
+		$strLogoWidth 			= Theme_Controller::get_theme_option('logo_width');
+		$strLogoTitle 			= Theme_Controller::get_theme_option('logo_title');
 		$strSiteLogo 			= Theme_Controller::get_theme_option('site_logo');
 		$strPrimaryColor 		= Theme_Controller::get_theme_option('primary_color');
 		$strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
@@ -22,12 +23,12 @@
 		<a class="navbar-brand" href="<?php echo home_url();?>">
 			<div class="logo">
 				<img style="width:<?php echo $strLogoWidth;?>px;" src="<?php echo $strSiteLogo;?>">
-				<p style="color:<?php echo $strThemeSecondaryColor;?>"> Travel & Immigration</p>
+				<p style="color:<?php echo $strThemeSecondaryColor;?>"><?php echo $strLogoTitle;?></p>
 			</div> 
 		</a>
 		
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
+			<i class="fas fa-bars"></i>
 		</button>
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">

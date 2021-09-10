@@ -4,7 +4,7 @@
  */
 get_header();
 ?>
-<div class="container-fluid">
+<div class="container-fluid page-container">
     <div class="row">
         <div class="col-md-12 text-center">
             <h1>SORRY THIS PAGE DOES NOT EXIST</h1>

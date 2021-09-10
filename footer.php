@@ -11,6 +11,7 @@
     $strSiteLogo 	        = Theme_Controller::get_theme_option('site_logo');
     $strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
     $strFooterText          = Theme_Controller::get_theme_option('footer_text');
+    $strLogoTitle 		    = Theme_Controller::get_theme_option('logo_title');
 ?>
 <div class="footer-container container-fluid">
     <div class="inner-footer">
@@ -18,7 +19,7 @@
             <div class="col-md-6 footer-col footer-first-col">
                 <div class="footer-logo">
                     <i style="color:<?php echo $strThemeSecondaryColor;?>" class="fab fa-canadian-maple-leaf"></i>
-                    <p class="footer-logo-text" style="color:<?php echo $strThemeSecondaryColor;?>"> Travel & Immigration</p>
+                    <p class="footer-logo-text" style="color:<?php echo $strThemeSecondaryColor;?>"> <?php echo $strLogoTitle;?></p>
                 </div>
 
                 <div class="footer-text">
@@ -41,40 +42,23 @@
                 <?php }?>
                 <ul>
             </div>
-            <div class="col-md-3 footer-col footer-social">
-                <div class="row">
-                    <div class="col-md-6">
-                        <p>
-                            <a target="_blank" href="<?php echo $strFacebook?>">
-                                <i style="color:<?php echo $strThemeSecondaryColor;?>" class="fab fa-facebook-square"></i>
-                            </a>
-                        </p>
-                    </div>
-                    <div class="col-md-6">
-                        <p>
-                            <a target="_blank" href="<?php echo $strTwitter?>">
-                                <i style="color:<?php echo $strThemeSecondaryColor;?>" class="fab fa-twitter-square"></i>
-                            </a>
-                        </p>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <p>
-                            <a target="_blank" href="<?php echo $strYoutube?>">
-                                <i style="color:<?php echo $strThemeSecondaryColor;?>" class="fab fa-youtube-square"></i>
-                            </a>
-                        </p>
-                    </div>
-                    <div class="col-md-6">
-                        <p>
-                            <a target="_blank" href="<?php echo $strInstagram?>">
-                                <i style="color:<?php echo $strThemeSecondaryColor;?>" class="fab fa-instagram-square"></i>
-                            </a>
-                        </p>
-                    </div>
-                </div>
+            <div class="col-md-3 footer-col footer-social">
+                <a target="_blank" href="<?php echo $strFacebook?>">
+                    <i  style="text-align:right;color:<?php echo $strThemeSecondaryColor;?>" class="fab fa-facebook-square"></i>
+                </a>
+        
+                <a target="_blank" href="<?php echo $strTwitter?>">
+                    <i  style="text-align:right;color:<?php echo $strThemeSecondaryColor;?>" class="fab fa-twitter-square"></i>
+                </a>
+        
+                <a target="_blank" href="<?php echo $strYoutube?>">
+                    <i  style="text-align:right;color:<?php echo $strThemeSecondaryColor;?>" class="fab fa-youtube-square"></i>
+                </a>
+            
+                <a target="_blank" href="<?php echo $strInstagram?>">
+                    <i  style="text-align:right;color:<?php echo $strThemeSecondaryColor;?>" class="fab fa-instagram-square"></i>
+                </a>
             </div>
         </div>
         
