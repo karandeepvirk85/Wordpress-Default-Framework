@@ -68,7 +68,7 @@ function includeThemeControllers(){
 function themeStyles() {
 	wp_enqueue_style('animate','https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
 	wp_enqueue_style('bootstrap-4', get_template_directory_uri().'/bootstrap4/bootstrap-4.0.0/dist/css/bootstrap.min.css');
-	wp_enqueue_style('theme-style', get_template_directory_uri().'/style.css?ver=1.2');
+	wp_enqueue_style('theme-style', get_template_directory_uri().'/front-sass/style.css?ver=1.2');
 }
 
 /**
@@ -85,7 +85,7 @@ function themeScripts() {
  * Add Custom css to Admin Area
  */
 function adminCss(){
-	echo '<link rel="stylesheet" href="'.get_template_directory_uri().'/admin-style.css?ver=1.2" type="text/css" media="all">'; 
+	echo '<link rel="stylesheet" href="'.get_template_directory_uri().'/admin-sass/admin-style.css?ver=1.2" type="text/css" media="all">'; 
 }
 /**
  * Set Ajax URL
