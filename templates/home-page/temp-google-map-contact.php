@@ -1,6 +1,11 @@
+<?php 
+/**
+ * This Template is for Google Map Contact Form
+ */
+?>
 <div class="container-fluid google-map-container">
     <div class="center-title-container">
-        <h1 class="text-center">Contact US</h1>
+        <h1 class="text-center">CONTACT US</h1>
     </div>
     <div class="row">
         <div class="col-md-8 google-map-col">

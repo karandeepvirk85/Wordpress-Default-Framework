@@ -150,7 +150,16 @@ h1 {
 .faqs-container .faqs-inner-container .faqs-question h4 {
   color: #252525;
   margin: 0;
-  font-size: 1.4rem;
+}
+@media (min-width: 250px) {
+  .faqs-container .faqs-inner-container .faqs-question h4 {
+    font-size: 1.1rem;
+  }
+}
+@media (min-width: 768px) {
+  .faqs-container .faqs-inner-container .faqs-question h4 {
+    font-size: 1.4rem;
+  }
 }
 .faqs-container .faqs-inner-container .faqs-question i {
   font-size: 2rem;
@@ -224,7 +233,7 @@ h1 {
     grid-gap: 10px;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .home-page .services-container .services-row-grid {
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 20px;

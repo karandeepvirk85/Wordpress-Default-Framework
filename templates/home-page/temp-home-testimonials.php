@@ -1,7 +1,8 @@
 <?php 
 /**
- * This template is for Full Width Home Slider
+ * This template is for Home Page Testimonials
  */
+
 $arrTestimonials = Theme_Controller::getAllPosts(null,'testimonials', 6);
 $strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
 $arrTitleContainer = array(
@@ -11,7 +12,7 @@ $arrTitleContainer = array(
 ?>
 
 <div class="container testimonials-container">
-<?php get_template_part('templates/gtheme','home_title_container', $arrTitleContainer);?>
+<?php get_template_part('templates/home-page/gtheme','home_title_container', $arrTitleContainer);?>
     <div id="carouselTestimonials" class="carousel-adjust carousel slide" data-ride="carousel">
         <!--Carousel Indicators-->
         <ol class="carousel-indicators">

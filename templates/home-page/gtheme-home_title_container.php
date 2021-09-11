@@ -2,6 +2,7 @@
 /**
  * Template For Home Page Title
  */
+
 $strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
 ?>
 

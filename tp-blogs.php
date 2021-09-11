@@ -32,7 +32,7 @@ if(class_exists('Theme_Controller')){
             
             <!-------INLUDE SIDE BAR------->
             <div class="col-md-3 sidbar-container">    
-                <?php  get_template_part('templates/blog-sidebar');?>
+                <?php  get_template_part('templates/temp-blog-sidebar');?>
             </div>  
         </div>
         

@@ -3,12 +3,8 @@
  * Home Page FAQS
  */
 if(class_exists('Theme_Controller')){
-    // Get Paged Query
-    $paged = Theme_Controller::getPagedQuery();
-    // Get Posts Query
+
     $allPostsWPQuery = Theme_Controller::getAllPosts($paged,'faqs',6);
-    // Set Args for Pagination
-    $argsPagination = Theme_Controller::getArgsForPagination($paged, 1);
     
     $strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
     
@@ -20,7 +16,7 @@ if(class_exists('Theme_Controller')){
 ?>
 
 <div class="container faqs-container">
-    <?php get_template_part('templates/gtheme','home_title_container', $arrTitleContainer);?>
+    <?php get_template_part('templates/home-page/gtheme','home_title_container', $arrTitleContainer);?>
     <!--INCLUDE PAGE TITLE-->
     <div class="row">
         <div class="col-md-12">

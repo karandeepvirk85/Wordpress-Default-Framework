@@ -1,6 +1,6 @@
 <?php 
 /**
- * Posts Columns
+ * This template loop posts such as services, blogs, testimonials
  */
 ?>
 <div class="posts-column" data-link="<?php echo get_permalink($post->ID); ?>">

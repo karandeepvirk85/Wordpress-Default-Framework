@@ -1,7 +1,8 @@
 <?php 
 /**
- * This template is for Full Width Home Slider
+ * This template is for Slider
  */
+
 $strNumberOfSlides      = Theme_Controller::get_theme_option( 'number_of_slides');
 $strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
 ?>

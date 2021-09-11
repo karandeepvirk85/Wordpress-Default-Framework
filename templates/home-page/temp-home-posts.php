@@ -1,4 +1,8 @@
 <?php
+/**
+ * This Template is for Home Posts
+ */
+
  if(class_exists('Theme_Controller')){
     $strThemeSecondaryColor = Theme_Controller::get_theme_option( 'secondary_color' );
     $objHomePost1 = get_post(Theme_Controller::get_theme_option('home_section_blog_1'));
@@ -11,7 +15,8 @@
 }
 ?>
 <div class="container home-posts">    
-    <?php get_template_part('templates/gtheme','home_title_container',$arrTitleContainer);?>    
+    <?php get_template_part('templates/home-page/gtheme','home_title_container',$arrTitleContainer);?>    
+    <!--Home Post 1-->
     <a href="<?php echo get_permalink($objHomePost1->ID);?>">
         <div class="row featurette">
             <div class="col-md-7">
@@ -24,6 +29,7 @@
         </div>
     </a>
 
+    <!--Home Post 2-->
     <a href="<?php echo get_permalink($objHomePost2->ID);?>">
         <div class="row featurette">
             <div class="col-md-7 order-md-2">
@@ -37,6 +43,7 @@
         </div>
     </a>
 
+    <!--Home Post 3-->
     <a href="<?php echo get_permalink($objHomePost3->ID);?>">
         <div class="row featurette">
             <div class="col-md-7">

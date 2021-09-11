@@ -1,9 +1,10 @@
 <?php
+/**
+ * This template is for Home Page Services
+ */
+
  if(class_exists('Theme_Controller')){
-    $paged = Theme_Controller::getPagedQuery();
     $allPostsWPQuery = Theme_Controller::getAllPosts($paged,'services',6);
-    $strSecondary = Theme_Controller::get_theme_option( 'secondary_color' );
-    $args = Theme_Controller::getArgsForPagination($paged, $allPostsWPQuery->max_num_pages);
     $strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
     $arrTitleContainer = array(
         'title' => 'Visa Categories',
@@ -12,7 +13,7 @@
 }
 ?>
 <div class="container services-container">
- <?php get_template_part('templates/gtheme','home_title_container', $arrTitleContainer);?>
+ <?php get_template_part('templates/home-page/gtheme','home_title_container', $arrTitleContainer);?>
     <div class="services-row-grid">
         <?php 
         if ($allPostsWPQuery->have_posts()){

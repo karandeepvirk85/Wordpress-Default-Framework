@@ -13,9 +13,6 @@ get_header();
     else if(is_singular('post')){
         $args['post_type'] = 'post';
     }
-    else{
-
-    }
     get_template_part('templates/gtheme','single_post',$args);
 ?>
 <?php get_footer();?>

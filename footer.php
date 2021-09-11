@@ -16,7 +16,7 @@
 <div class="footer-container container-fluid">
     <div class="inner-footer">
         <div class="row footer-row">
-            <div class="col-md-6 footer-col footer-first-col">
+            <div class="col-lg-6 col-md-4 col-xs-12 footer-col footer-first-col">
                 <div class="footer-logo">
                     <i style="color:<?php echo $strThemeSecondaryColor;?>" class="fab fa-canadian-maple-leaf"></i>
                     <p class="footer-logo-text" style="color:<?php echo $strThemeSecondaryColor;?>"> <?php echo $strLogoTitle;?></p>
@@ -31,7 +31,8 @@
                     <p class="footer-email"><i class="fas fa-envelope"></i> <strong>Email: </strong> <a href="mailto:<?php echo $strEmail;?>"><?php echo $strEmail;?></a></p>
                 </div>
             </div>
-            <div class="col-md-3 footer-col footer-menu">
+            
+            <div class="col-lg-3 col-md-4 col-xs-12 footer-col footer-menu">
                 <h3>Important Links</h3>
                 <ul>
                 <?php 
@@ -43,7 +44,7 @@
                 <ul>
             </div>
 
-            <div class="col-md-3 footer-col footer-social">
+            <div class="col-lg-3 col-md-4 col-xs-12 footer-col footer-social">
                 <a target="_blank" href="<?php echo $strFacebook?>">
                     <i  style="text-align:right;color:<?php echo $strThemeSecondaryColor;?>" class="fab fa-facebook-square"></i>
                 </a>

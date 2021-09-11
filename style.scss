@@ -217,7 +217,12 @@ h1 {
             h4 {
                 color: $dark-gray;
                 margin: 0;
-                font-size: 1.4rem;
+                @media (min-width: $xs) {
+                    font-size: 1.1rem;
+                }
+                @media (min-width: $md) {
+                    font-size: 1.4rem;
+                }
             }
             border: $default-border;
             font-family: $font-primary;
@@ -299,7 +304,7 @@ h1 {
                 grid-template-columns: 1fr 1fr;
                 grid-gap: 10px;
             }
-            @media (min-width: $md) {
+            @media (min-width: $lg) {
                 grid-template-columns: 1fr 1fr 1fr;
                 grid-gap: 20px;
             }
