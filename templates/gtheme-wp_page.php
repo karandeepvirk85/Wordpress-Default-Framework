@@ -7,7 +7,7 @@
             $intPostImageId = (int) get_post_thumbnail_id($post->ID);
 
             if($intPostImageId >0){?>
-                <div data-src="<?php echo get_the_title($intPostImageId);?>" class="single-page-image" style="background-image:url('<?php if(class_exists('Theme_Controller')){echo Theme_Controller::getPostImage($post->ID,'large');}?>')"></div>
+                <div data-src="<?php echo get_the_title($intPostImageId);?>" class="img-fluid single-page-image" style="background-image:url('<?php if(class_exists('Theme_Controller')){echo Theme_Controller::getPostImage($post->ID,'large');}?>')"></div>
             <?php } else{?>
                 <p class="spacer"></p>
             <?php }?>

@@ -19,7 +19,7 @@
 		$strPrimaryColor 		= Theme_Controller::get_theme_option('primary_color');
 		$strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
 	?>
-	<nav class="navbar-adjust navbar navbar-expand-lg navbar-light" style="background-color:<?php echo $strPrimaryColor;?>!important;">
+	<nav class="navbar-adjust navbar navbar-expand-lg navbar-light" style="border-bottom: 5px solid <?php echo $strThemeSecondaryColor;?>;background-color:<?php echo $strPrimaryColor;?>!important;">
 		<a class="navbar-brand" href="<?php echo home_url();?>">
 			<div class="logo">
 				<img style="width:<?php echo $strLogoWidth;?>px;" src="<?php echo $strSiteLogo;?>">

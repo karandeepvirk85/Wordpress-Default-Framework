@@ -11,8 +11,7 @@
 }
 ?>
 <div class="container home-posts">    
-    <?php get_template_part('templates/gtheme','home_title_container',$arrTitleContainer);?>
-    
+    <?php get_template_part('templates/gtheme','home_title_container',$arrTitleContainer);?>    
     <a href="<?php echo get_permalink($objHomePost1->ID);?>">
         <div class="row featurette">
             <div class="col-md-7">
@@ -24,8 +23,6 @@
             </div>
         </div>
     </a>
-
-    <hr class="featurette-divider">
 
     <a href="<?php echo get_permalink($objHomePost2->ID);?>">
         <div class="row featurette">
@@ -40,8 +37,6 @@
         </div>
     </a>
 
-    <hr class="featurette-divider">
-    
     <a href="<?php echo get_permalink($objHomePost3->ID);?>">
         <div class="row featurette">
             <div class="col-md-7">

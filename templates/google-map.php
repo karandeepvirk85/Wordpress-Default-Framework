@@ -7,6 +7,7 @@
             <?php echo Theme_Controller::get_theme_option('google_map');?>
         </div>
         <div class="col-md-5 contact-form">
+            <h4>INQUIRY FORM</h4>
             <?php get_template_part('templates/contact-form'); ?>
         </div>
     </div>
