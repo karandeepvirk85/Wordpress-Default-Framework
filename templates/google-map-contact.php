@@ -3,10 +3,10 @@
         <h1 class="text-center">Contact US</h1>
     </div>
     <div class="row">
-        <div class="col-md-7 google-map-col">
+        <div class="col-md-8 google-map-col">
             <?php echo Theme_Controller::get_theme_option('google_map');?>
         </div>
-        <div class="col-md-5 contact-form">
+        <div class="col-md-4 contact-form">
             <h4>INQUIRY FORM</h4>
             <?php get_template_part('templates/contact-form'); ?>
         </div>

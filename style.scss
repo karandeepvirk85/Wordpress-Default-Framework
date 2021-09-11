@@ -51,14 +51,13 @@ $body-background: $lightest-color;
 
 /*****Create Some Default Border Variable*****/
 // Default Border
-$default-border: 1px solid #e8e8e8;
+$default-border: 1px solid $extreme-light-gray;
 // Default Box Shadow
 $default-box-shadow: 0px 0px 4px -1px #0000003b;
 // Default Radius
 $default-radius: 8px;
 
 /*****Create Some Default CSS*****/
-
 // Body
 body {
     background-color: $body-background;
@@ -87,7 +86,14 @@ h1 {
     align-items: center;
     margin-bottom: 30px;
     h1 {
-        margin: 0;
+        @media (min-width: $xs) {
+            margin-bottom: 10px;
+            text-align: center;
+            display: inline-flex;
+        }
+        @media (min-width: $md) {
+            margin-bottom: 0px;
+        }
     }
     a {
         font-family: $font-primary;
@@ -220,7 +226,7 @@ h1 {
             align-items: center;
             background-color: $lightest-color;
             padding: 0.8rem;
-            box-shadow: $default-box-shadow;
+
             i {
                 font-size: 2rem;
             }
@@ -308,7 +314,7 @@ h1 {
                 font-size: 1rem;
                 padding: 14px 1rem 8px 1rem;
                 border-radius: $default-radius;
-                border: 1px solid $extreme-light-gray;
+                border: $default-border;
                 @media (min-width: $xs) {
                     margin-top: 10px;
                 }
@@ -381,7 +387,7 @@ h1 {
             font-family: $font-reading;
             background-color: $lightest-color;
             font-size: 0.9rem;
-            border: 1px solid $extreme-light-gray;
+            border: $default-border;
         }
         .btn-theme {
             margin-top: 20px;
@@ -401,7 +407,7 @@ h1 {
                 margin: 20px auto;
                 background: $lightest-color;
                 padding: 1rem;
-                border: 1px solid $extreme-light-gray;
+                border: $default-border;
                 &:hover {
                     background-color: $extreme-light-gray;
                 }
@@ -445,7 +451,7 @@ h1 {
                     padding: 40px 8rem;
                 }
                 img {
-                    height: 200px;
+                    height: 160px;
                     width: auto;
                 }
                 h3 {
@@ -480,39 +486,38 @@ h1 {
     .google-map-container {
         margin-top: 20px;
         .google-map-col {
-            padding: 0 1rem;
+            padding: 0;
             background-color: $lightest-color;
             iframe {
                 width: 100%;
-                height: 600px;
+                height: 660px;
             }
         }
         .contact-form {
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding: 0 2rem;
-            background-color: $lightest-color;
+            padding: 20px 3rem;
+            background-color: $extreme-light-gray;
             h4 {
                 text-align: center;
             }
             label {
                 text-align: left;
-                color: $light-gray;
+                color: $dark-gray;
                 width: 100%;
                 font-size: 1.2rem;
-                font-family: $font-primary;
-                letter-spacing: 1px;
+                font-family: $font-reading;
             }
             input[type="text"],
             input[type="email"] {
                 width: 100%;
                 height: 50px;
-                border: 1px solid gray;
+                border: 1px solid $light-gray;
             }
             textarea {
                 height: 120px;
-                border: 1px solid gray;
+                border: 1px solid $extreme-light-gray;
                 width: 100%;
             }
         }

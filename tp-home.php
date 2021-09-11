@@ -12,7 +12,7 @@ get_header();
             get_template_part('templates/home-posts');
             get_template_part('templates/home-testimonials');
             get_template_part('templates/gtheme','all_faqs');
-            get_template_part('templates/google-map');
+            get_template_part('templates/google-map-contact');
         ?>
     </div>
 <?php get_footer();?>
