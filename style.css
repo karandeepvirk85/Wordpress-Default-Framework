@@ -51,12 +51,13 @@ h1 {
   .flex-title-container h1 {
     margin-bottom: 10px;
     text-align: center;
-    display: inline-flex;
+    border-bottom: none;
   }
 }
 @media (min-width: 768px) {
   .flex-title-container h1 {
     margin-bottom: 0px;
+    border-bottom: 1px solid #252525;
   }
 }
 .flex-title-container a {
@@ -455,21 +456,31 @@ h1 {
 .blog-container {
   margin-top: 30px;
 }
-.services-container .posts-row.single-post .posts-column .post-container,
-.testimonials-container .posts-row.single-post .posts-column .post-container,
-.blog-container .posts-row.single-post .posts-column .post-container {
-  background-color: #ffffff;
+.services-container .posts-row,
+.testimonials-container .posts-row,
+.blog-container .posts-row {
+  display: grid;
 }
-.services-container .posts-row.single-post .posts-column .post-container .post-top-container .post-image,
-.testimonials-container .posts-row.single-post .posts-column .post-container .post-top-container .post-image,
-.blog-container .posts-row.single-post .posts-column .post-container .post-top-container .post-image {
-  padding: 250px 1rem;
+@media (min-width: 250px) {
+  .services-container .posts-row,
+.testimonials-container .posts-row,
+.blog-container .posts-row {
+    grid-template-columns: 1fr;
+  }
 }
-.services-container .posts-row.single-post .posts-column .post-container .post-bottom-container .post-title-container a,
-.testimonials-container .posts-row.single-post .posts-column .post-container .post-bottom-container .post-title-container a,
-.blog-container .posts-row.single-post .posts-column .post-container .post-bottom-container .post-title-container a {
-  color: #252525;
-  font-size: 3rem;
+@media (min-width: 768px) {
+  .services-container .posts-row,
+.testimonials-container .posts-row,
+.blog-container .posts-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 992px) {
+  .services-container .posts-row,
+.testimonials-container .posts-row,
+.blog-container .posts-row {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 .services-container .posts-row .posts-column,
 .testimonials-container .posts-row .posts-column,
@@ -538,7 +549,7 @@ h1 {
 .testimonials-container .posts-row .posts-column .post-container .post-bottom-container .post-title-container a,
 .blog-container .posts-row .posts-column .post-container .post-bottom-container .post-title-container a {
   margin-top: 10px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 700;
   font-family: "Roboto", sans-serif;
 }
@@ -563,6 +574,22 @@ h1 {
   font-size: 1rem;
   font-family: "Staatliches", cursive;
   color: gray;
+}
+.services-container .posts-row.single-post .posts-column .post-container,
+.testimonials-container .posts-row.single-post .posts-column .post-container,
+.blog-container .posts-row.single-post .posts-column .post-container {
+  background-color: #ffffff;
+}
+.services-container .posts-row.single-post .posts-column .post-container .post-top-container .post-image,
+.testimonials-container .posts-row.single-post .posts-column .post-container .post-top-container .post-image,
+.blog-container .posts-row.single-post .posts-column .post-container .post-top-container .post-image {
+  padding: 250px 1rem;
+}
+.services-container .posts-row.single-post .posts-column .post-container .post-bottom-container .post-title-container a,
+.testimonials-container .posts-row.single-post .posts-column .post-container .post-bottom-container .post-title-container a,
+.blog-container .posts-row.single-post .posts-column .post-container .post-bottom-container .post-title-container a {
+  color: #252525;
+  font-size: 3rem;
 }
 .services-container .sidbar-container,
 .testimonials-container .sidbar-container,
@@ -856,7 +883,7 @@ h1 {
 }
 .single-post-content-container .single-post-side-bar {
   padding: 20px 1rem;
-  background-color: #ebebeb;
+  background-color: #ffffff;
 }
 .single-post-content-container .single-post-side-bar p {
   margin: 4px 0;
@@ -951,7 +978,7 @@ h1 {
   margin: 10px 0;
 }
 .page-container .page-content {
-  padding: 40px 0 40px 0;
+  padding: 40px 1rem 20px 1rem;
 }
 .page-container .single-page-image {
   padding: 220px;

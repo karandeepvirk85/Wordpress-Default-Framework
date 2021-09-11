@@ -3,7 +3,7 @@
  * Posts Columns
  */
 ?>
-<div class="col-md-<?php echo $args['columns']?> posts-column" data-link="<?php echo get_permalink($post->ID); ?>">
+<div class="posts-column" data-link="<?php echo get_permalink($post->ID); ?>">
     <div class="post-container">
         <div class="post-top-container">
             <div class="post-image" style="background-image:url('<?php if(class_exists('Theme_Controller')){echo Theme_Controller::getPostImage($post->ID,'large');}?>')"></div>
@@ -29,7 +29,7 @@
                         echo $post->post_content;
                     }else{
                         if(class_exists('Theme_Controller')){
-                            echo Theme_Controller::getFilteredContent($post->post_content,true,250);
+                            echo Theme_Controller::getFilteredContent($post->post_content,true,200);
                         }
                     }
                 ?>

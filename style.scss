@@ -89,10 +89,11 @@ h1 {
         @media (min-width: $xs) {
             margin-bottom: 10px;
             text-align: center;
-            display: inline-flex;
+            border-bottom: none;
         }
         @media (min-width: $md) {
             margin-bottom: 0px;
+            border-bottom: 1px solid $dark-gray;
         }
     }
     a {
@@ -535,25 +536,15 @@ h1 {
 .blog-container {
     margin-top: 30px;
     .posts-row {
-        &.single-post {
-            .posts-column {
-                .post-container {
-                    background-color: $lightest-color;
-                    .post-top-container {
-                        .post-image {
-                            padding: 250px 1rem;
-                        }
-                    }
-                    .post-bottom-container {
-                        .post-title-container {
-                            a {
-                                color: $dark-gray;
-                                font-size: 3rem;
-                            }
-                        }
-                    }
-                }
-            }
+        display: grid;
+        @media (min-width: $xs) {
+            grid-template-columns: 1fr;
+        }
+        @media (min-width: $md) {
+            grid-template-columns: 1fr 1fr;
+        }
+        @media (min-width: $lg) {
+            grid-template-columns: 1fr 1fr 1fr;
         }
         .posts-column {
             padding: 10px;
@@ -601,7 +592,7 @@ h1 {
                     .post-title-container {
                         a {
                             margin-top: 10px;
-                            font-size: 1.2rem;
+                            font-size: 1rem;
                             font-weight: 700;
                             font-family: $font-primary;
                         }
@@ -622,6 +613,26 @@ h1 {
                             font-size: 1rem;
                             font-family: $font-secondary;
                             color: gray;
+                        }
+                    }
+                }
+            }
+        }
+        &.single-post {
+            .posts-column {
+                .post-container {
+                    background-color: $lightest-color;
+                    .post-top-container {
+                        .post-image {
+                            padding: 250px 1rem;
+                        }
+                    }
+                    .post-bottom-container {
+                        .post-title-container {
+                            a {
+                                color: $dark-gray;
+                                font-size: 3rem;
+                            }
                         }
                     }
                 }
@@ -887,7 +898,7 @@ h1 {
     background-color: $lightest-color;
     .single-post-side-bar {
         padding: 20px 1rem;
-        background-color: $extreme-light-gray;
+        background-color: $lightest-color;
         p {
             margin: 4px 0;
             a {
@@ -988,7 +999,7 @@ h1 {
         }
     }
     .page-content {
-        padding: 40px 0 40px 0;
+        padding: 40px 1rem 20px 1rem;
     }
     .single-page-image {
         padding: 220px;
