@@ -80,6 +80,14 @@ h1 {
     align-items: center;
 }
 
+// Mixin Flex Divison Row
+@mixin flex-row-wise-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 // Mixin Flex Title Container
 @mixin flex-title-container {
     justify-content: space-between;
@@ -105,6 +113,21 @@ h1 {
     }
     @media (min-width: $md) {
         display: flex;
+    }
+}
+
+// Notification Bar
+.notification-bar {
+    @include flex-row-wise-center;
+    color: $lightest-color;
+    font-family: $font-reading;
+    font-size: 0.9rem;
+    a {
+        color: $lightest-color;
+        :hover {
+            color: $extreme-light-gray;
+            text-decoration: underline;
+        }
     }
 }
 

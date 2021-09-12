@@ -26,6 +26,23 @@ h1 {
 }
 
 /*****Create Some Mixin*****/
+.notification-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.9rem;
+}
+.notification-bar a {
+  color: #ffffff;
+}
+.notification-bar a :hover {
+  color: #ebebeb;
+  text-decoration: underline;
+}
+
 .btn-theme {
   font-family: "Roboto", sans-serif;
   border-radius: 8px;
