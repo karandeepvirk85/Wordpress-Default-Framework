@@ -31,12 +31,14 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #ffffff;
+  border: none;
+  border-radius: 0px;
   font-family: "Noto Sans JP", sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  background-color: #ebebeb !important;
 }
 .notification-bar a {
-  color: #ffffff;
+  color: #252525;
 }
 .notification-bar a :hover {
   color: #ebebeb;
@@ -45,7 +47,7 @@ h1 {
 
 .btn-theme {
   font-family: "Roboto", sans-serif;
-  border-radius: 8px;
+  border-radius: 4px;
   font-family: "Roboto", sans-serif;
   background-color: #252525;
   color: #ffffff;
@@ -109,10 +111,10 @@ h1 {
   color: rgba(0, 0, 0, 0.5);
   border-color: rgba(0, 0, 0, 0.1);
   background: transparent;
-  border: 3px solid #d52b1e;
+  border: 3px solid #d12013;
 }
 .navbar-adjust button.navbar-toggler i {
-  color: #d52b1e;
+  color: #d12013;
 }
 @media (min-width: 250px) {
   .navbar-adjust .navbar-collapse {
@@ -205,7 +207,7 @@ h1 {
   text-align: justify;
   background: rgba(0, 0, 0, 0.3);
   padding: 1rem;
-  border-radius: 8px;
+  border-radius: 4px;
   height: max-content;
 }
 @media (min-width: 250px) {
@@ -267,7 +269,7 @@ h1 {
   background: #ffffff;
   font-size: 1rem;
   padding: 14px 1rem 8px 1rem;
-  border-radius: 8px;
+  border-radius: 4px;
   border: 1px solid #ebebeb;
 }
 @media (min-width: 250px) {
@@ -720,7 +722,7 @@ h1 {
 .services-container .pagination-container .pagination .pagination-inner .current,
 .testimonials-container .pagination-container .pagination .pagination-inner .current,
 .blog-container .pagination-container .pagination .pagination-inner .current {
-  color: #d52b1e;
+  color: #d12013;
   padding: 8px 16px;
   font-size: 1.1rem;
 }
@@ -1055,6 +1057,15 @@ h1 {
   padding: 0;
 }
 
+.woocommerce .woocommerce-ordering select {
+  vertical-align: top;
+  height: 45px;
+  background: #ebebeb;
+  color: #252525;
+  padding: 4px;
+  font-size: 1rem;
+}
+
 .products-container {
   padding: 60px 0;
 }
@@ -1066,7 +1077,7 @@ h1 {
   color: #ffffff;
   background: #444444;
   font-size: 1.2rem;
-  border-radius: 10px;
+  border-radius: 1px solid #ebebeb;
 }
 
 .single-product {
@@ -1079,7 +1090,7 @@ h1 {
   text-align: left;
   width: 100%;
   border-collapse: separate;
-  border-radius: 5px;
+  border-radius: 1px solid #ebebeb;
   background: #f6f6f6;
 }
 
@@ -1095,7 +1106,7 @@ h1 {
 .woocommerce a.button.alt,
 .woocommerce button.button.alt,
 .woocommerce input.button.alt {
-  background-color: #d52b1e;
+  background-color: #d12013;
   margin-top: 10px;
   color: #fff;
   -webkit-font-smoothing: antialiased;
@@ -1115,8 +1126,12 @@ h1 {
 .woocommerce button.button,
 .woocommerce input.button {
   color: #ffffff !important;
-  background-color: #252525;
-  padding: 1rem 3rem !important;
+  background-color: #d12013;
+  padding: 16px 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .woocommerce #content table.cart td.actions .input-text,

@@ -43,7 +43,7 @@ $extreme-light-gray: #ebebeb;
 // Extreme Lightest Color
 $lightest-color: #ffffff;
 // Current Default Theme Color
-$current-theme-color: #d52b1e;
+$current-theme-color: #d12013;
 // Curret Footer Color
 $footer-color: #252525;
 // Body Background Color
@@ -55,7 +55,7 @@ $default-border: 1px solid $extreme-light-gray;
 // Default Box Shadow
 $default-box-shadow: 0px 0px 4px -1px #0000003b;
 // Default Radius
-$default-radius: 8px;
+$default-radius: 4px;
 
 /*****Create Some Default CSS*****/
 // Body
@@ -119,11 +119,13 @@ h1 {
 // Notification Bar
 .notification-bar {
     @include flex-row-wise-center;
-    color: $lightest-color;
+    border: none;
+    border-radius: 0px;
     font-family: $font-reading;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    background-color: $extreme-light-gray !important;
     a {
-        color: $lightest-color;
+        color: $dark-gray;
         :hover {
             color: $extreme-light-gray;
             text-decoration: underline;
@@ -1093,6 +1095,14 @@ h1 {
 }
 
 //WOOCOMMERECE----------------------------------------------------------------------------------->
+.woocommerce .woocommerce-ordering select {
+    vertical-align: top;
+    height: 45px;
+    background: $extreme-light-gray;
+    color: $dark-gray;
+    padding: 4px;
+    font-size: 1rem;
+}
 .products-container {
     padding: 60px 0;
     .woocommerce ul.products li.product .button {
@@ -1103,7 +1113,7 @@ h1 {
         color: $lightest-color;
         background: #444444;
         font-size: 1.2rem;
-        border-radius: 10px;
+        border-radius: $default-border;
     }
 }
 .single-product {
@@ -1115,7 +1125,7 @@ h1 {
     text-align: left;
     width: 100%;
     border-collapse: separate;
-    border-radius: 5px;
+    border-radius: $default-border;
     background: #f6f6f6;
 }
 .woocommerce #content table.cart img,
@@ -1148,8 +1158,12 @@ h1 {
 .woocommerce button.button,
 .woocommerce input.button {
     color: $lightest-color !important;
-    background-color: $dark-gray;
-    padding: 1rem 3rem !important;
+    background-color: $current-theme-color;
+    padding: 16px 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .woocommerce #content table.cart td.actions .input-text,
 .woocommerce table.cart td.actions .input-text,

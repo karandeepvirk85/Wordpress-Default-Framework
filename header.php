@@ -19,19 +19,20 @@
 		$strPrimaryColor 		= Theme_Controller::get_theme_option('primary_color');
 		$strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
 	?>
-	<!-- Notification Bar-->
 	
+	<!-- Notification Bar-->
 	<?php 
-	if(Theme_Controller::isNotificationOn()){	
+	if(Theme_Controller::isNotificationOn()){
 		$strNotificationText 	= trim(Theme_Controller::get_theme_option('notification_text'));
 		$strNotificationLink 	= Theme_Controller::getURLwithHttpIfNotadded(trim(Theme_Controller::get_theme_option('notification_link')));?>
-		<div style="background-color:<?php echo $strThemeSecondaryColor;?>" class="notification-bar alert alert-warning alert-dismissible fade show" role="alert">
+		<div class="notification-bar alert alert-warning alert-dismissible fade show" role="alert">
 			<a href="<?php echo $strNotificationLink;?>"><?php echo $strNotificationText;?></a>
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
-	<?php }?>
+		<?php 
+	}?>
 
 	<!--Navigation Bar-->
 	<nav class="navbar-adjust navbar navbar-expand-lg navbar-light" style="border-bottom: 5px solid <?php echo $strThemeSecondaryColor;?>;background-color:<?php echo $strPrimaryColor;?>!important;">
