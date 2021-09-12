@@ -27,15 +27,24 @@ h1 {
 
 /*****Create Some Mixin*****/
 .notification-bar {
+  border: none;
+  border-radius: 0px;
+  font-family: "Noto Sans JP", sans-serif;
+  background-color: #ebebeb;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: none;
-  border-radius: 0px;
-  font-family: "Noto Sans JP", sans-serif;
-  font-size: 0.85rem;
-  background-color: #ebebeb !important;
+}
+@media (min-width: 250px) {
+  .notification-bar {
+    font-size: 0.75rem;
+  }
+}
+@media (min-width: 768px) {
+  .notification-bar {
+    font-size: 0.85rem;
+  }
 }
 .notification-bar a {
   color: #252525;

@@ -118,12 +118,17 @@ h1 {
 
 // Notification Bar
 .notification-bar {
-    @include flex-row-wise-center;
     border: none;
     border-radius: 0px;
     font-family: $font-reading;
-    font-size: 0.85rem;
-    background-color: $extreme-light-gray !important;
+    background-color: $extreme-light-gray;
+    @include flex-row-wise-center;
+    @media (min-width: $xs) {
+        font-size: 0.75rem;
+    }
+    @media (min-width: $md) {
+        font-size: 0.85rem;
+    }
     a {
         color: $dark-gray;
         :hover {
