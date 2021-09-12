@@ -19,14 +19,14 @@
 		$strPrimaryColor 		= Theme_Controller::get_theme_option('primary_color');
 		$strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
 	?>
-	
+
 	<!-- Notification Bar-->
 	<?php 
 	if(Theme_Controller::isNotificationOn()){
 		$strNotificationText 	= trim(Theme_Controller::get_theme_option('notification_text'));
 		$strNotificationLink 	= Theme_Controller::getURLwithHttpIfNotadded(trim(Theme_Controller::get_theme_option('notification_link')));?>
 		<div class="notification-bar alert alert-warning alert-dismissible fade show" role="alert">
-			<a href="<?php echo $strNotificationLink;?>"><?php echo $strNotificationText;?></a>
+			<a href="<?php echo !empty($strNotificationLink) ? $strNotificationLink : "#" ;?>"><?php echo $strNotificationText;?></a>
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
