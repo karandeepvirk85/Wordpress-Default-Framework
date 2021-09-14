@@ -14,6 +14,7 @@ add_action('admin_head','adminCss');
 add_action('after_setup_theme', 'gThemeSupport');
 add_action('admin_enqueue_scripts', 'loadSettingsScripts');
 add_action('admin_enqueue_scripts', 'loadSettingsFontAwesome5');
+add_action('init','startSession');
 
 function loadSettingsFontAwesome5(){
 	if(isset($_GET['page'])){
@@ -60,6 +61,16 @@ function gThemeSupport(){
  */
 function includeThemeControllers(){
 	include_once(get_template_directory().'/controllers/theme_controller.php');
+}
+
+/**
+ * Set Session if not set already
+ */
+
+function startSession(){
+	if(!session_id()){
+		session_start();
+	}
 }
 
 /**

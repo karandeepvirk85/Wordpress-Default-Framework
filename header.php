@@ -18,18 +18,19 @@
 		$strSiteLogo 			= Theme_Controller::get_theme_option('site_logo');
 		$strPrimaryColor 		= Theme_Controller::get_theme_option('primary_color');
 		$strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
+		$strCurrentUrl 			= $_SERVER['SCRIPT_URI'];
 	?>
 
 	<!-- Notification Bar-->
 	<?php 
-	if(Theme_Controller::isNotificationOn()){
+	if(Theme_Controller::isNotificationOn() && Theme_Controller::showNotification()){
 		$strNotificationText 	= trim(Theme_Controller::get_theme_option('notification_text'));
 		$strNotificationLink 	= Theme_Controller::getURLwithHttpIfNotadded(trim(Theme_Controller::get_theme_option('notification_link')));?>
-		<div class="notification-bar alert alert-warning alert-dismissible fade show" role="alert">
-			<a href="<?php echo !empty($strNotificationLink) ? $strNotificationLink : "#" ;?>"><?php echo $strNotificationText;?></a>
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
+		<div class="notification-bar">
+			<p class="notification-content">
+				<a target="blank" href="<?php echo $strNotificationLink;?>"><?php echo $strNotificationText;?></a>
+			</p>
+			<button class="btn btn-secondary btn-theme btn-close-notification"><i class="fas fa-times-circle"></i></button>
 		</div>
 		<?php 
 	}?>
@@ -54,7 +55,7 @@
 				if(!empty($arrHeaderMenu)){
 					foreach($arrHeaderMenu as $key => $arrLinks){
 						if(empty($arrLinks['children'])){?>
-							<li class="nav-item"><a data-id="<?php echo $arrLinks['ID']?>" class="nav-link" href="<?php echo $arrLinks['url']?>"><?php echo $arrLinks['title']?></a></li>
+							<li class="nav-item"><a data-id="<?php echo $arrLinks['ID']?>" class="<?php echo $strCurrentUrl === $arrLinks['url'] ? "active-url" : "";?> nav-link" href="<?php echo $arrLinks['url']?>"><?php echo $arrLinks['title']?></a></li>
 						<?php } else{?>
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

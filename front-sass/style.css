@@ -27,14 +27,32 @@ h1 {
 
 /*****Create Some Mixin*****/
 .notification-bar {
-  border: none;
-  border-radius: 0px;
-  font-family: "Noto Sans JP", sans-serif;
-  background-color: #ebebeb;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  padding: 10px 1rem;
+  background-color: #252525;
+}
+.notification-bar p {
+  margin: 0;
+}
+.notification-bar p a {
+  color: #ffffff;
+}
+.notification-bar p a :hover {
+  color: #ebebeb;
+  text-decoration: underline;
+}
+.notification-bar .btn-close-notification {
+  background-color: #d12013;
+  border: none;
+}
+.notification-bar .btn-close-notification i {
+  color: #ffffff;
+}
+.notification-bar .btn-close-notification:hover {
+  background-color: #d12013 !important;
+  opacity: 0.8;
 }
 @media (min-width: 250px) {
   .notification-bar {
@@ -45,13 +63,6 @@ h1 {
   .notification-bar {
     font-size: 0.85rem;
   }
-}
-.notification-bar a {
-  color: #252525;
-}
-.notification-bar a :hover {
-  color: #ebebeb;
-  text-decoration: underline;
 }
 
 .btn-theme {
@@ -143,6 +154,10 @@ h1 {
 .navbar-adjust .navbar-collapse .navbar-nav li.nav-item a {
   font-family: "Roboto", sans-serif;
   color: #252525;
+}
+.navbar-adjust .navbar-collapse .navbar-nav li.nav-item a.active-url {
+  font-weight: 700;
+  color: #d12013;
 }
 .navbar-adjust .navbar-brand .logo {
   display: flex;
@@ -1119,7 +1134,6 @@ h1 {
   margin-top: 10px;
   color: #fff;
   -webkit-font-smoothing: antialiased;
-  width: 100%;
   display: flex;
   text-align: center;
   justify-content: center;
@@ -1137,7 +1151,6 @@ h1 {
   color: #ffffff !important;
   background-color: #d12013;
   padding: 16px 1rem;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

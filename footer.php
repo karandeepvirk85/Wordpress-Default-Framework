@@ -72,4 +72,6 @@
         </div>
     </div>
 </div>
-<?php wp_footer(); ?>
+<?php 
+var_dump($_SESSION);
+wp_footer(); ?>

@@ -5,7 +5,10 @@ jQuery(document).ready(function ($) {
         classFaqsToggleOff: "fa-toggle-off",
         classFaqsToggleOn: "fa-toggle-on",
         elementCarousel: $(".carousel"),
+        elementNotificationClose: $(".btn-close-notification"),
+        elementNotificationBar: $(".notification-bar"),
 
+        // Init Theme
         initTheme: function () {
             // Faqs User Event
             this.elementFaqQuestion.click(function () {
@@ -13,8 +16,22 @@ jQuery(document).ready(function ($) {
                 objTheme.handleFaqs(objThis);
             });
 
-            // Set Slider Speed
+            // Hanle Click Event
+            this.elementNotificationClose.click(function () {
+                objTheme.closeNotification();
+            });
+
             this.setHomeSliderSpeed();
+        },
+
+        closeNotification: function () {
+            this.elementNotificationBar.hide();
+
+            objData = {
+                action: "close-notification",
+            };
+
+            $.getJSON(globalObject.admin_url, objData, function (response) {});
         },
 
         // Handle FAQS

@@ -118,23 +118,38 @@ h1 {
 
 // Notification Bar
 .notification-bar {
-    border: none;
-    border-radius: 0px;
-    font-family: $font-reading;
-    background-color: $extreme-light-gray;
-    @include flex-row-wise-center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 1rem;
+    background-color: $footer-color;
+    p {
+        margin: 0;
+        a {
+            color: $lightest-color;
+            :hover {
+                color: $extreme-light-gray;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .btn-close-notification {
+        background-color: $current-theme-color;
+        border: none;
+        i {
+            color: $lightest-color;
+        }
+        &:hover {
+            background-color: $current-theme-color !important;
+            opacity: 0.8;
+        }
+    }
     @media (min-width: $xs) {
         font-size: 0.75rem;
     }
     @media (min-width: $md) {
         font-size: 0.85rem;
-    }
-    a {
-        color: $dark-gray;
-        :hover {
-            color: $extreme-light-gray;
-            text-decoration: underline;
-        }
     }
 }
 
@@ -215,6 +230,10 @@ h1 {
                     a {
                         font-family: $font-primary;
                         color: $dark-gray;
+                        &.active-url {
+                            font-weight: 700;
+                            color: $current-theme-color;
+                        }
                     }
                 }
             }
@@ -1148,7 +1167,6 @@ h1 {
     margin-top: 10px;
     color: #fff;
     -webkit-font-smoothing: antialiased;
-    width: 100%;
     display: flex;
     text-align: center;
     justify-content: center;
@@ -1165,7 +1183,6 @@ h1 {
     color: $lightest-color !important;
     background-color: $current-theme-color;
     padding: 16px 1rem;
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

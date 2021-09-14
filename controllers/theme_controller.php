@@ -3,9 +3,12 @@ if(!defined('ABSPATH')) exit;
 class Theme_Controller{
     public function __construct() {
         if (is_admin()){
-            add_action( 'admin_menu', array( __CLASS__, 'add_admin_menu' ) );
-            add_action( 'admin_init', array( __CLASS__, 'register_settings' ) );
+            add_action( 'admin_menu', array( __CLASS__, 'add_admin_menu' ));
+            add_action( 'admin_init', array( __CLASS__, 'register_settings'));
         }
+        add_action('wp_ajax_close-notification', array(__CLASS__,'updateNotificationSession'));
+        add_action('wp_ajax_nopriv_close-notification', array(__CLASS__,'updateNotificationSession'));
+
     }
     
     /**
@@ -565,8 +568,40 @@ class Theme_Controller{
         }
         return $strReturn;
     }
-}
 
+    /**
+     * Update Notification Session 
+     * 
+     */
+    public static function updateNotificationSession(){
+        $strCurrentDate = strtotime(date('Y-m-d'));
+        $_SESSION['notification_close_date'] = $strCurrentDate;
+        die;
+    }
+    
+    /**
+     * Update Notification Session 
+     * why my ears sound pi pi why did you create this piece of human shit.
+     */ 
+    public static function showNotification(){
+        // Default Return
+        $intReturn = false;
+        
+        // Get Close Date
+        $strNotificationClose = $_SESSION['notification_close_date'];
+        
+        // If empty notification closed date 
+        if(empty($strNotificationClose)){
+           $intReturn = true; 
+        }
+        else{
+            // We compare if its older date | if its equal to today's date default false will be returned by function
+            if(strtotime(date('Y-m-d')) > $strNotificationClose){
+                $intReturn = true;
+            }
+        }
+        return $intReturn;
+    }
+}
 new Theme_Controller();
 ?>
-
