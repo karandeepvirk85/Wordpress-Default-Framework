@@ -73,5 +73,4 @@
     </div>
 </div>
 <?php 
-var_dump($_SESSION);
 wp_footer(); ?>

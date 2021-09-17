@@ -26,7 +26,6 @@ jQuery(document).ready(function ($) {
 
         closeNotification: function () {
             this.elementNotificationBar.hide();
-
             objData = {
                 action: "close-notification",
             };
