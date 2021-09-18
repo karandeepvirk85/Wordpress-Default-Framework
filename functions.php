@@ -117,3 +117,46 @@ function setAjaxUrl() {
 function setHomeUrl() {
 	echo '<script type="text/javascript"> var homeurl = "' .home_url(). '";</script>';
 }
+
+   
+/*
+<div class="settings-information-header">
+    <h1>Site Logo Options</h1>
+    <i class="fas fa-chevron-down"></i>
+</div>
+
+<div class="settings-information hide-div">
+    <div class="settings-site-logo-input">
+        <h3>Logo URL</h3>
+        <input type="text" class="settings-input" name="theme_options[site_logo]" value="<?php echo $strLogo; ?>">
+        <?php if(!empty($strLogo)){?>
+            <div class="settings-site-logo">
+                <img src="<?php echo esc_attr($strLogo); ?>">
+            </div>
+        <?php }?>
+        <h3>Logo Width</h3>
+        <input type="number" placeholder="Width in Pixels" class="settings-number" name="theme_options[logo_width]" value="<?php echo $strLogoWidth; ?>">
+        <h3> Logo Text</h3>
+        <input type="text" class="settings-input" name="theme_options[logo_title]" value="<?php echo $strLogoTitle;?>">
+    </div>
+</div>
+
+
+<div class="settings-information-header">
+	<h1>Theme Color Options</h1>
+	<i class="fas fa-chevron-down"></i>
+</div>
+
+<div class="settings-information hide-div">   
+	<div class="settings-site-header-input">
+		<h3>Primary Color</h3>
+		<input type="color" name="theme_options[primary_color]" value="<?php echo $strPrimaryColor; ?>">
+	</div>
+
+	<div class="settings-site-header-input">
+		<h3>Secondary Color</h3>
+		<input type="color" name="theme_options[secondary_color]" value="<?php echo $strSecondaryColor; ?>">
+	</div>
+</div>
+*/
+?>

@@ -260,7 +260,130 @@ class Theme_Controller{
         // Return sanitized options
         return $options;
     }
+ 
+    public static function loadSettingsFields($arrOptions){
 
+        $strCompleteHTML = '';
+        
+        if(!empty($arrOptions)){
+           $arrHtmlTypes = array_keys($arrOptions);
+           foreach($arrHtmlTypes as $key => $strHtmlType){
+               if($strHtmlType == 'accordians'){
+                    $strIcon = $arrOptions['accordians']['icon'];
+                    $strHeaderClass = $arrOptions['accordians']['header_class'];
+                    $strBodyClass = $arrOptions['accordians']['body_class'];
+                    $strToggleClass = $arrOptions['accordians']['toggle_class'];
+                    foreach($arrOptions['accordians']['options'] as $arrInputOptions){
+                        $strSubComplete = '';
+                        $strHeaderHtml  = '';
+                        $strHeaderHtml .= '<div class="'.$strHeaderClass.'">';
+                        $strHeaderHtml .= '<h1>'.$arrInputOptions['title'].'</h1>';
+                        $strHeaderHtml .= '<i class="'.$strIcon.'"></i>';
+                        $strHeaderHtml .= '</div>';
+                        $strHeaderHtml .= '<div class="'.$strBodyClass.' '.$strToggleClass.'">';
+                        foreach ($arrInputOptions['fields'] as $arrFields){
+                            $strBodyHtml = '';
+                            $strBodyHtml .= '<h3>'.$arrFields['field_title'].'</h3>';
+                            
+                            if($arrFields['field_type'] == 'text'){
+                                $strBodyHtml .= '<input type="text" placeholder="'.$arrFields['placeholder'].'" class="settings-input" name="theme_options['.$arrFields['field_key'].']" value="'.self::get_theme_option($arrFields['field_key']).'">';
+                                if($arrFields['sub_type'] == 'image'){
+                                    if(!empty(self::get_theme_option($arrFields['field_key']))){
+                                        $strBodyHtml .= '<div class="settings-site-logo"><img src="'.esc_attr(self::get_theme_option($arrFields['field_key'])).'"></div>';
+                                    }
+                                }
+                            }
+
+                            if($arrFields['field_type'] == 'number'){
+                                $strBodyHtml .= '<input type="number" placeholder="'.$arrFields['placeholder'].'" class="settings-input" name="theme_options['.$arrFields['field_key'].']" value="'.self::get_theme_option($arrFields['field_key']).'">';
+                            }
+
+                            if($arrFields['field_type'] == 'checkbox'){
+                                $strChecked = '';
+                                if(self::get_theme_option($arrFields['field_key']) == 'on'){
+                                    $strChecked = 'checked';
+                                }
+                                $strBodyHtml .= '<input '.$strChecked.' type="checkbox" value="'.$arrFields['value'].'" name="theme_options['.$arrFields['field_key'].']">';
+                            }
+
+                            if($arrFields['field_type'] == 'color'){
+                                $strBodyHtml .= '<input type="color" class="settings-input" name="theme_options['.$arrFields['field_key'].']" value="'.self::get_theme_option($arrFields['field_key']).'">';
+                            }
+
+                            if($arrFields['field_type'] == 'textarea'){
+                                $strBodyHtml .= '<textarea name="theme_options['.$arrFields['field_key'].']">'.self::get_theme_option($arrFields['field_key']).'</textarea>';
+                            }
+
+                            if($arrFields['field_type'] == 'function'){
+                                $arrParameters = array('repeat' => $arrFields['repeat']);
+                                $strBodyHtml .= call_user_func('Theme_Controller::' . $arrFields['function_name'], $arrParameters);
+                            }
+
+                            if(isset($arrFields['description'])){
+                                $strBodyHtml .= '<div class="description">'.$arrFields['description'].'</div>';
+                            }
+
+                            $strSubComplete .= $strBodyHtml;
+                        }
+
+                        $strBodyEnd = '</div>';
+                        $strCompleteHTML .= $strHeaderHtml.$strSubComplete.$strBodyEnd;
+                    }
+               }
+           }
+       }
+       return $strCompleteHTML;
+    }
+
+    /**
+     * This function return HTML to make accordians
+     */
+    public static function getSlidesLoop($arrParameters){
+        $strHtml = '';
+
+        for ($i=1; $i<=$arrParameters['repeat']; $i++){
+            $strImageUrl    = self::get_theme_option('slider_image_'.$i);
+            $strCaptionText = self::get_theme_option('slider_caption_'.$i);
+            $strButtonTitle = self::get_theme_option('slider_button_title_'.$i);
+            $strButtonLink  = self::get_theme_option('slider_button_link_'.$i);
+            $strImageCredit = self::get_theme_option('slider_image_credit_'.$i);
+            ob_start();
+            ?>
+            <div class="settings-information-header inner-slider">
+                <h1>Slide <?php echo $i?> </h1>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+
+            <div class="settings-information hide-div">
+                <h3>Image <?php echo $i?> URL</h3>
+                <input placeholder="Paste Slider Image Url Here" type="text" class="settings-input" name="theme_options[slider_image_<?php echo $i;?>]" value="<?php echo $strImageUrl;?>">
+                <h3>Image <?php echo $i?> Caption </h3>
+                <input placeholder="Write Your Captions Here" type="text" class="settings-input" name="theme_options[slider_caption_<?php echo $i;?>]" value="<?php echo $strCaptionText;?>">
+                <h3>Image <?php echo $i?> Credit </h3>
+                <input placeholder="Image Credit If Any" type="text" class="settings-input" name="theme_options[slider_image_credit_<?php echo $i;?>]" value="<?php echo $strImageCredit;?>">
+                
+                <?php if(!empty($strImageUrl)){?>
+                    <div class="settings-slider-image">
+                        <img src="<?php echo $strImageUrl; ?>">
+                    </div>
+                <?php }?>
+
+                <h3>Image Caption  Button Title <?php echo $i?> </h3>
+                <input placeholder="Write Your Button Title Here" type="text" class="settings-input" name="theme_options[slider_button_title_<?php echo $i;?>]" value="<?php echo $strButtonTitle;?>">
+                <h3>Image Caption  Button Link <?php echo $i?> </h3>
+                <input placeholder="Write Your Button Link Here" type="text" class="settings-input" name="theme_options[slider_button_link_<?php echo $i;?>]" value="<?php echo $strButtonLink;?>"> 
+            </div>
+            <?php 
+            $strHtml .= ob_get_clean();
+            ob_end_flush();
+        }
+        return $strHtml;
+    }
+
+    /**
+     * Create Theme Settings 
+     * 
+     */
     public static function create_admin_page() { 
         $strFacebook            = self::get_theme_option('facebook'); 
         $strTwitter             = self::get_theme_option('twitter');
@@ -312,109 +435,163 @@ class Theme_Controller{
             }
         }
     ?>
+
     <div class="settings-container">
         <h1>Theme Settings</h1>
         <form method="post" action="options.php">    
             <?php settings_fields( 'theme_options' ); ?>
-            <!--Logo Information-->
-            <div class="settings-information-header">
-                <h1>Site Logo Options</h1>
-                <i class="fas fa-chevron-down"></i>
-            </div>
+            <?php echo 
+                self::loadSettingsFields(
+                    array(
+                        'accordians' => array(
+                            'icon' => 'fas fa-chevron-down',
+                            'header_class' => 'settings-information-header',
+                            'body_class' => 'settings-information',
+                            'toggle_class' => 'hide-div',
+                            'options' => array(
+                                array(
+                                    'title' => 'Site Logo Options',
+                                    'fields' => array(
+                                        array(
+                                            'field_title' => 'Logo URL',
+                                            'field_type' =>'text',
+                                            'field_key' => 'site_logo',
+                                            'sub_type' => 'image',
+                                            'placeholder' => 'Logo URL'       
+                                        ),
+                                        array(
+                                            'field_title' => 'Logo Width',
+                                            'field_type' =>'number',
+                                            'field_key' => 'logo_width',  
+                                            'placeholder' => 'Logo Width'     
+                                        ),
+                                        array(
+                                            'field_title' => 'Logo Text',
+                                            'field_type' =>'text',
+                                            'field_key' => 'logo_title',
+                                            'placeholder' => 'Logo Title'
+                                        ),
+                                    ),
+                                ),
 
-            <div class="settings-information hide-div">
-                <div class="settings-site-logo-input">
-                    <h3>Logo URL</h3>
-                    <input type="text" class="settings-input" name="theme_options[site_logo]" value="<?php echo $strLogo; ?>">
-                    <?php if(!empty($strLogo)){?>
-                        <div class="settings-site-logo">
-                            <img src="<?php echo esc_attr($strLogo); ?>">
-                        </div>
-                    <?php }?>
-                    <h3>Logo Width</h3>
-                    <input type="number" placeholder="Width in Pixels" class="settings-number" name="theme_options[logo_width]" value="<?php echo $strLogoWidth; ?>">
-                    <h3> Logo Text</h3>
-                    <input type="text" class="settings-input" name="theme_options[logo_title]" value="<?php echo $strLogoTitle;?>">
-                </div>
-            </div>
-            
-            <!--Theme Color Options-->
-            <div class="settings-information-header">
-                <h1>Theme Color Options</h1>
-                <i class="fas fa-chevron-down"></i>
-            </div>
+                                array(
+                                    'title' => 'Theme Color Options',
+                                    'fields' => array(
+                                        array(
+                                            'field_title' => 'Primary Color',
+                                            'field_type' => 'color',
+                                            'field_key' => 'primary_color',     
+                                        ),
+                                        array(
+                                            'field_title' => 'Secondary Color',
+                                            'field_type' => 'color',
+                                            'field_key' => 'secondary_color',     
+                                        ),
+                                    ),
+                                ),
 
-            <div class="settings-information hide-div">   
-                <div class="settings-site-header-input">
-                    <h3>Primary Color</h3>
-                    <input type="color" name="theme_options[primary_color]" value="<?php echo $strPrimaryColor; ?>">
-                    <?php if(!empty($strPrimaryColor)){?>
-                        <div class="header-color" style="background-color:<?php echo $strPrimaryColor;?>"></div>
-                    <?php }?>
-                </div>
+                                array(
+                                    'title' => 'Home Page Slider',
+                                    'fields' => array(
+                                        array(
+                                            'field_title' => 'Number Of Slides',
+                                            'field_type' => 'number',
+                                            'field_key' => 'number_of_slides',     
+                                        ),
+                                        array(
+                                            'field_title' => 'Slider Speed',
+                                            'field_type' => 'number',
+                                            'field_key' => 'slider_speed',
+                                            'description' => '2000 is approximately 1 second'
+                                        ),
+                                        array(
+                                            'field_title' => 'Slides',
+                                            'repeat' => self::get_theme_option('number_of_slides'),
+                                            'field_type' => 'function',
+                                            'function_name' => 'getSlidesLoop'
+                                        )
+                                    ),
+                                ),
 
-                <div class="settings-site-header-input">
-                    <h3>Secondary Color</h3>
-                    <input type="color" name="theme_options[secondary_color]" value="<?php echo $strSecondaryColor; ?>">
-                    <?php if(!empty($strSecondaryColor)){?>
-                        <div class="header-color" style="background-color:<?php echo $strSecondaryColor;?>"></div>
-                    <?php }?>
-                </div>
-            </div>
+                                array(
+                                    'title' => 'Notification Bar',
+                                    'fields' => array(
+                                        array(
+                                            'field_title' => 'Notification Text',
+                                            'field_type' => 'text',
+                                            'field_key' => 'notification_text',
+                                            'placeholder' => 'Write Notification Text Here'     
+                                        ),
+                                        array(
+                                            'field_title' => 'Notification Link',
+                                            'field_type' => 'text',
+                                            'field_key' => 'notification_link',
+                                            'placeholder' => 'Paste Notification Link Here'
+                                        ),
+                                        array(
+                                            'field_title' => 'Check to Turn On',
+                                            'field_type' => 'checkbox',
+                                            'field_key' => 'notification_turn_on',
+                                            'placeholder' => 'Paste Notification Link Here',
+                                            'description' => 'UnCheck to turn off',
+                                            'value' => 'on'
+                                        ),
+                                    ),
+                                ),
 
-            <!--Slider Information-->
-            <div class="settings-information-header">
-                <h1>Home Page Slider</h1>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-
-            <div class="settings-information hide-div">            
-                
-                <h3>Number of Slides</h3>
-                <input type="number" class="settings-input-number" name="theme_options[number_of_slides]" value="<?php echo $strNumberOfSlides; ?>">
-                
-                <h3>Slider Transition Speed</h3>
-                <input type="number" class="settings-input-number-speed" name="theme_options[slider_speed]" value="<?php echo $intSliderSpeed; ?>">
-                <div class="description">2000 is approximately 1 second</div>
-                
-                <?php
-                    if($strNumberOfSlides > 0){
-                        for ($i=1; $i<=$strNumberOfSlides; $i++){
-                            $strImageUrl = self::get_theme_option('slider_image_'.$i);
-                            $strCaptionText = self::get_theme_option('slider_caption_'.$i);
-                            $strButtonTitle = self::get_theme_option('slider_button_title_'.$i);
-                            $strButtonLink = self::get_theme_option('slider_button_link_'.$i);
-                            $strImageCredit = self::get_theme_option('slider_image_credit_'.$i);
-                            ?>
-
-                            <div class="settings-information-header inner-slider">
-                                <h1>Slide <?php echo $i?> </h1>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-
-                            <div class="settings-information hide-div">
-                                <h3>Image <?php echo $i?> URL</h3>
-                                <input placeholder="Paste Slider Image Url Here" type="text" class="settings-input" name="theme_options[slider_image_<?php echo $i;?>]" value="<?php echo $strImageUrl;?>">
-                                <h3>Image <?php echo $i?> Caption </h3>
-                                <input placeholder="Write Your Captions Here" type="text" class="settings-input" name="theme_options[slider_caption_<?php echo $i;?>]" value="<?php echo $strCaptionText;?>">
-                                <h3>Image <?php echo $i?> Credit </h3>
-                                <input placeholder="Image Credit If Any" type="text" class="settings-input" name="theme_options[slider_image_credit_<?php echo $i;?>]" value="<?php echo $strImageCredit;?>">
-                                
-                                <?php if(!empty($strImageUrl)){?>
-                                    <div class="settings-slider-image">
-                                        <img src="<?php echo $strImageUrl; ?>">
-                                    </div>
-                                    <?php }?>
-                                <h3>Image Caption  Button Title <?php echo $i?> </h3>
-                                <input placeholder="Write Your Button Title Here" type="text" class="settings-input" name="theme_options[slider_button_title_<?php echo $i;?>]" value="<?php echo $strButtonTitle;?>">
-                                <h3>Image Caption  Button Link <?php echo $i?> </h3>
-                                <input placeholder="Write Your Button Link Here" type="text" class="settings-input" name="theme_options[slider_button_link_<?php echo $i;?>]" value="<?php echo $strButtonLink;?>"> 
-                            </div>
-                        <?php }?>
-                    <?php }
-                ?>
-            </div> 
-                
+                                array(
+                                    'title' => 'Contact Information',
+                                    'fields' => array(
+                                        array(
+                                            'field_title' => 'Facebook',
+                                            'field_type' => 'text',
+                                            'field_key' => 'facebook',
+                                            'placeholder' => 'Paste Your Facebook Link Here'     
+                                        ),
+                                        array(
+                                            'field_title' => 'Twitter',
+                                            'field_type' => 'text',
+                                            'field_key' => 'twitter',
+                                            'placeholder' => 'Paste Your Twitter Link Here'     
+                                        ),
+                                        array(
+                                            'field_title' => 'Youtube',
+                                            'field_type' => 'text',
+                                            'field_key' => 'youtube',
+                                            'placeholder' => 'Paste Your Youtube Link Here'     
+                                        ),
+                                        array(
+                                            'field_title' => 'Instagram',
+                                            'field_type' => 'text',
+                                            'field_key' => 'instagram',
+                                            'placeholder' => 'Paste Your Instagram Link Here'     
+                                        ),
+                                        array(
+                                            'field_title' => 'Email',
+                                            'field_type' => 'text',
+                                            'field_key' => 'email',
+                                            'placeholder' => 'Paste Your Email Here'     
+                                        ),
+                                        array(
+                                            'field_title' => 'Contact',
+                                            'field_type' => 'text',
+                                            'field_key' => 'contact',
+                                            'placeholder' => 'Paste Your Contact Link Here'     
+                                        ),
+                                        array(
+                                            'field_title' => 'Address',
+                                            'field_type' => 'textarea',
+                                            'field_key' => 'address',
+                                            'placeholder' => 'Write Your Address Here'     
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    )
+                );
+            ?>
+    
             <!--Home Page Blog Information-->
             <div class="settings-information-header">
                 <h1>Home Blogs Section</h1>
@@ -439,21 +616,6 @@ class Theme_Controller{
                     </p>
                     <hr/>
                 <?php }?>
-            </div>
-
-            <!--Home Page Section-->
-            <div class="settings-information-header">
-                <h1>Notification Bar</h1>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-
-            <div class="settings-information hide-div">
-                <h3>Notification Text</h3>
-                <input type="text" name="theme_options[notification_text]" value="<?php echo $strNotificationText;?>">
-                <h3>Notification Link</h3>
-                <input type="text" placeholder="Notification Link" name="theme_options[notification_link]" value="<?php echo $strNotificationLink;?>">
-                <h3>Check to Turn On</h3>
-                <input type="checkbox" value="on" name="theme_options[notification_turn_on]" <?php echo ($strNotificationValue  == "on")     ? "checked" : "";?>>
             </div>
 
             <!--Home Page Section-->
@@ -485,35 +647,6 @@ class Theme_Controller{
                     </p>
                     <hr/>
                 <?php }?>
-            </div>
-
-            <!--Contact Information-->
-            <div class="settings-information-header">
-                <h1>Contact Information</h1>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            
-            <div class="settings-information hide-div">
-                <h3> Facebook</h3>
-                <input type="text" name="theme_options[facebook]" value="<?php echo $strFacebook;?>">
-
-                <h3> Twitter</h3>
-                <input type="text" name="theme_options[twitter]" value="<?php echo $strTwitter;?>">        
-
-                <h3> Youtube</h3>
-                <input type="text" name="theme_options[youtube]" value="<?php echo $strYoutube;?>">
-
-                <h3> Instagram</h3>
-                <input type="text" name="theme_options[instagram]" value="<?php echo $strInstagram;?>">
-
-                <h3> Email</h3>
-                <input type="email" name="theme_options[email]" value="<?php echo $strEmail;?>">
-
-                <h3> Contact</h3>
-                <input type="text" name="theme_options[contact]" value="<?php echo $strContact;?>">
-
-                <h3> Address</h3>
-                <textarea class="settings-input-textarea" name="theme_options[address]"><?php echo $strAddress;?></textarea>
             </div>
 
             <div class="settings-information-header">
