@@ -79,7 +79,7 @@ function startSession(){
 function themeStyles() {
 	wp_enqueue_style('animate','https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
 	wp_enqueue_style('bootstrap-4', get_template_directory_uri().'/bootstrap4/bootstrap-4.0.0/dist/css/bootstrap.min.css');
-	wp_enqueue_style('theme-style', get_template_directory_uri().'/front-sass/style.css?ver=1.2');
+	wp_enqueue_style('theme-style', get_template_directory_uri().'/style.css?ver=1.2');
 }
 
 /**
