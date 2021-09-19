@@ -264,70 +264,100 @@ class Theme_Controller{
     public static function loadSettingsFields($arrOptions){
 
         $strCompleteHTML = '';
-        
+
         if(!empty($arrOptions)){
-           $arrHtmlTypes = array_keys($arrOptions);
-           foreach($arrHtmlTypes as $key => $strHtmlType){
-               if($strHtmlType == 'accordians'){
-                    $strIcon = $arrOptions['accordians']['icon'];
-                    $strHeaderClass = $arrOptions['accordians']['header_class'];
-                    $strBodyClass = $arrOptions['accordians']['body_class'];
-                    $strToggleClass = $arrOptions['accordians']['toggle_class'];
-                    foreach($arrOptions['accordians']['options'] as $arrInputOptions){
-                        $strSubComplete = '';
-                        $strHeaderHtml  = '';
-                        $strHeaderHtml .= '<div class="'.$strHeaderClass.'">';
-                        $strHeaderHtml .= '<h1>'.$arrInputOptions['title'].'</h1>';
-                        $strHeaderHtml .= '<i class="'.$strIcon.'"></i>';
-                        $strHeaderHtml .= '</div>';
-                        $strHeaderHtml .= '<div class="'.$strBodyClass.' '.$strToggleClass.'">';
-                        foreach ($arrInputOptions['fields'] as $arrFields){
-                            $strBodyHtml = '';
-                            $strBodyHtml .= '<h3>'.$arrFields['field_title'].'</h3>';
-                            
-                            if($arrFields['field_type'] == 'text'){
-                                $strBodyHtml .= '<input type="text" placeholder="'.$arrFields['placeholder'].'" class="settings-input" name="theme_options['.$arrFields['field_key'].']" value="'.self::get_theme_option($arrFields['field_key']).'">';
-                                if($arrFields['sub_type'] == 'image'){
-                                    if(!empty(self::get_theme_option($arrFields['field_key']))){
-                                        $strBodyHtml .= '<div class="settings-site-logo"><img src="'.esc_attr(self::get_theme_option($arrFields['field_key'])).'"></div>';
+            $arrHtmlTypes = array_keys($arrOptions);
+            foreach($arrHtmlTypes as $key => $strHtmlType){
+                // If HTML Type is Accordians
+                if($strHtmlType == 'accordians'){
+                   if(!empty($arrOptions['accordians']['options'])){
+                        foreach($arrOptions['accordians']['options'] as $arrInputOptions){
+                            $strSubComplete = '';
+                            $strHeaderHtml  = '';
+                            $strHeaderHtml .= '<div class="settings-information-header">';
+                            $strHeaderHtml .= '<h1>'.$arrInputOptions['title'].'</h1>';
+                            $strHeaderHtml .= '<i class="fas fa-chevron-down"></i>';
+                            $strHeaderHtml .= '</div>';
+                            $strHeaderHtml .= '<div class="settings-information hide-div">';
+                            // Fields Array
+                            foreach ($arrInputOptions['fields'] as $arrFields){
+                                $strBodyHtml = '';
+                                
+                                // If Field Title is set
+                                if (isset($arrFields['field_title'])){
+                                    $strBodyHtml .= '<h3>'.$arrFields['field_title'].'</h3>';
+                                }
+                                
+                                // If Input Type is Text
+                                if($arrFields['field_type'] == 'text'){
+                                    $strBodyHtml .= '<input type="text" placeholder="'.$arrFields['placeholder'].'" class="settings-input" name="theme_options['.$arrFields['field_key'].']" value="'.self::get_theme_option($arrFields['field_key']).'">';
+                                    if(isset($arrFields['sub_type'])){
+                                        if($arrFields['sub_type'] == 'image'){
+                                            if(!empty(self::get_theme_option($arrFields['field_key']))){
+                                                $strBodyHtml .= '<div class="settings-site-logo"><img src="'.esc_attr(self::get_theme_option($arrFields['field_key'])).'"></div>';
+                                            }
+                                        }
                                     }
                                 }
-                            }
 
-                            if($arrFields['field_type'] == 'number'){
-                                $strBodyHtml .= '<input type="number" placeholder="'.$arrFields['placeholder'].'" class="settings-input" name="theme_options['.$arrFields['field_key'].']" value="'.self::get_theme_option($arrFields['field_key']).'">';
-                            }
-
-                            if($arrFields['field_type'] == 'checkbox'){
-                                $strChecked = '';
-                                if(self::get_theme_option($arrFields['field_key']) == 'on'){
-                                    $strChecked = 'checked';
+                                // If Input Type is Number
+                                if($arrFields['field_type'] == 'number'){
+                                    $strBodyHtml .= '<input type="number" placeholder="'.$arrFields['placeholder'].'" class="settings-input" name="theme_options['.$arrFields['field_key'].']" value="'.self::get_theme_option($arrFields['field_key']).'">';
                                 }
-                                $strBodyHtml .= '<input '.$strChecked.' type="checkbox" value="'.$arrFields['value'].'" name="theme_options['.$arrFields['field_key'].']">';
-                            }
 
-                            if($arrFields['field_type'] == 'color'){
-                                $strBodyHtml .= '<input type="color" class="settings-input" name="theme_options['.$arrFields['field_key'].']" value="'.self::get_theme_option($arrFields['field_key']).'">';
-                            }
+                                // If Input Type is Checkbox
+                                if($arrFields['field_type'] == 'checkbox'){
+                                    $strChecked = '';
+                                    if(self::get_theme_option($arrFields['field_key']) == 'on'){
+                                        $strChecked = 'checked';
+                                    }
+                                    $strBodyHtml .= '<input '.$strChecked.' type="checkbox" value="'.$arrFields['value'].'" name="theme_options['.$arrFields['field_key'].']">';
+                                }
 
-                            if($arrFields['field_type'] == 'textarea'){
-                                $strBodyHtml .= '<textarea name="theme_options['.$arrFields['field_key'].']">'.self::get_theme_option($arrFields['field_key']).'</textarea>';
-                            }
+                                // If Input Type is Color
+                                if($arrFields['field_type'] == 'color'){
+                                    $strBodyHtml .= '<input type="color" class="settings-input" name="theme_options['.$arrFields['field_key'].']" value="'.self::get_theme_option($arrFields['field_key']).'">';
+                                }
 
-                            if($arrFields['field_type'] == 'function'){
-                                $arrParameters = array('repeat' => $arrFields['repeat']);
-                                $strBodyHtml .= call_user_func('Theme_Controller::' . $arrFields['function_name'], $arrParameters);
-                            }
+                                // If Input Type is Textarea
+                                if($arrFields['field_type'] == 'textarea'){
+                                    $strBodyHtml .= '<textarea placeholder="'.$arrFields['placeholder'].'" name="theme_options['.$arrFields['field_key'].']">'.self::get_theme_option($arrFields['field_key']).'</textarea>';
+                                }
 
-                            if(isset($arrFields['description'])){
-                                $strBodyHtml .= '<div class="description">'.$arrFields['description'].'</div>';
-                            }
+                                // If Input Type is Function
+                                if($arrFields['field_type'] == 'function'){
+                                    $arrParameters = array('repeat' => $arrFields['repeat']);
+                                    $strBodyHtml .= call_user_func('Theme_Controller::' . $arrFields['function_name'], $arrParameters);
+                                }
 
-                            $strSubComplete .= $strBodyHtml;
+                                // If Input Type is select
+                                if($arrFields['field_type'] == 'select'){
+                                    $strBodyHtml .= '<select name="theme_options['.$arrFields['field_key'].']">';
+
+                                    if(isset($arrFields['default_option'])){
+                                        $strBodyHtml .= '<option value="">'.$arrFields['default_option'].'</option>';
+                                    }
+
+                                    foreach ($arrFields['select_options'] as $id => $strLabel){  
+                                        $strSelected = self::get_theme_option($arrFields['field_key']) == $id ? "selected" : "";
+                                        $strBodyHtml .= '<option value="'.esc_attr($id).'" '.$strSelected.'>';
+                                        $strBodyHtml .= strip_tags($strLabel);
+                                        $strBodyHtml .= '</option>';
+                                    }
+
+                                    $strBodyHtml .= '</select>';
+                                }
+
+                                // If description is set
+                                if(isset($arrFields['description'])){
+                                    $strBodyHtml .= '<div class="description">'.$arrFields['description'].'</div>';
+                                }
+
+                                $strSubComplete .= $strBodyHtml;
+                            }
+                            $strBodyEnd = '</div>';
+                            $strCompleteHTML .= $strHeaderHtml.$strSubComplete.$strBodyEnd;
                         }
-
-                        $strBodyEnd = '</div>';
-                        $strCompleteHTML .= $strHeaderHtml.$strSubComplete.$strBodyEnd;
                     }
                }
            }
@@ -381,296 +411,277 @@ class Theme_Controller{
     }
 
     /**
-     * Create Theme Settings 
+     * Get Post Options For Select or Other Pusposes
      * 
      */
-    public static function create_admin_page() { 
-        $strFacebook            = self::get_theme_option('facebook'); 
-        $strTwitter             = self::get_theme_option('twitter');
-        $strYoutube             = self::get_theme_option('youtube'); 
-        $strInstagram           = self::get_theme_option('instagram');
-        $strEmail               = self::get_theme_option('email');
-        $strContact             = self::get_theme_option('contact');
-        $strAddress             = self::get_theme_option('address');
-        $strNumberOfSlides      = self::get_theme_option('number_of_slides'); 
-        $intSliderSpeed         = self::get_theme_option( 'slider_speed' ); 
-        $strPrimaryColor        = self::get_theme_option('primary_color');  
-        $strSecondaryColor      = self::get_theme_option( 'secondary_color' ); 
-        $strLogo                = self::get_theme_option( 'site_logo' );
-        $strLogoWidth           = self::get_theme_option('logo_width');
-        $strFooterText          = self::get_theme_option('footer_text');
-        $strMapIframeHtml       = self::get_theme_option('google_map');
-        $strLogoTitle           = self::get_theme_option('logo_title');
-        $strNotificationText    = self::get_theme_option('notification_text');
-        $strNotificationLink    = self::get_theme_option('notification_link');
-        $strNotificationValue    = self::get_theme_option('notification_turn_on');
-        
-        // Build Posts Options Array
-        $arrPostOptions = array();
+
+    public static function getPostOptions($strPostType){
+        $arrReturn = array();
         $args = array(
-            'post_type' => 'post',
+            'post_type' => $strPostType,
             'posts_per_page' => -1,
             'numberposts' => -1
         );
+
         $arrPosts = get_posts($args);
 
         if(!empty($arrPosts)){
             foreach($arrPosts as $key => $objPosts){
-                $arrPostOptions[$objPosts->ID] = $objPosts->post_title;
+                $arrReturn[$objPosts->ID] = $objPosts->post_title;
             }
         }
+        return $arrReturn;
+    }
 
-        $arrPageOptions = array();
-        $args = array(
-            'post_type' => 'page',
-            'posts_per_page' => -1,
-            'numberposts' => -1
-        );
-
-        $arrPages = get_posts($args);
-
-        if(!empty($arrPages)){
-            foreach($arrPages as $key => $objPages){
-                $arrPageOptions[$objPages->ID] = $objPages->post_title;
-            }
-        }
-    ?>
-
-    <div class="settings-container">
-        <h1>Theme Settings</h1>
-        <form method="post" action="options.php">    
-            <?php settings_fields( 'theme_options' ); ?>
-            <?php echo 
-                self::loadSettingsFields(
+    public static function addThemeOptions(){
+        // Get Post Options
+        $arrPostOptions = self::getPostOptions('post');
+        $arrPageOptions = self::getPostOptions('page');
+        
+        // Set Array for accordians fields
+        $arrReturn = array(
+            'accordians' => array(
+                'options' => array(
                     array(
-                        'accordians' => array(
-                            'icon' => 'fas fa-chevron-down',
-                            'header_class' => 'settings-information-header',
-                            'body_class' => 'settings-information',
-                            'toggle_class' => 'hide-div',
-                            'options' => array(
-                                array(
-                                    'title' => 'Site Logo Options',
-                                    'fields' => array(
-                                        array(
-                                            'field_title' => 'Logo URL',
-                                            'field_type' =>'text',
-                                            'field_key' => 'site_logo',
-                                            'sub_type' => 'image',
-                                            'placeholder' => 'Logo URL'       
-                                        ),
-                                        array(
-                                            'field_title' => 'Logo Width',
-                                            'field_type' =>'number',
-                                            'field_key' => 'logo_width',  
-                                            'placeholder' => 'Logo Width'     
-                                        ),
-                                        array(
-                                            'field_title' => 'Logo Text',
-                                            'field_type' =>'text',
-                                            'field_key' => 'logo_title',
-                                            'placeholder' => 'Logo Title'
-                                        ),
-                                    ),
-                                ),
-
-                                array(
-                                    'title' => 'Theme Color Options',
-                                    'fields' => array(
-                                        array(
-                                            'field_title' => 'Primary Color',
-                                            'field_type' => 'color',
-                                            'field_key' => 'primary_color',     
-                                        ),
-                                        array(
-                                            'field_title' => 'Secondary Color',
-                                            'field_type' => 'color',
-                                            'field_key' => 'secondary_color',     
-                                        ),
-                                    ),
-                                ),
-
-                                array(
-                                    'title' => 'Home Page Slider',
-                                    'fields' => array(
-                                        array(
-                                            'field_title' => 'Number Of Slides',
-                                            'field_type' => 'number',
-                                            'field_key' => 'number_of_slides',     
-                                        ),
-                                        array(
-                                            'field_title' => 'Slider Speed',
-                                            'field_type' => 'number',
-                                            'field_key' => 'slider_speed',
-                                            'description' => '2000 is approximately 1 second'
-                                        ),
-                                        array(
-                                            'field_title' => 'Slides',
-                                            'repeat' => self::get_theme_option('number_of_slides'),
-                                            'field_type' => 'function',
-                                            'function_name' => 'getSlidesLoop'
-                                        )
-                                    ),
-                                ),
-
-                                array(
-                                    'title' => 'Notification Bar',
-                                    'fields' => array(
-                                        array(
-                                            'field_title' => 'Notification Text',
-                                            'field_type' => 'text',
-                                            'field_key' => 'notification_text',
-                                            'placeholder' => 'Write Notification Text Here'     
-                                        ),
-                                        array(
-                                            'field_title' => 'Notification Link',
-                                            'field_type' => 'text',
-                                            'field_key' => 'notification_link',
-                                            'placeholder' => 'Paste Notification Link Here'
-                                        ),
-                                        array(
-                                            'field_title' => 'Check to Turn On',
-                                            'field_type' => 'checkbox',
-                                            'field_key' => 'notification_turn_on',
-                                            'placeholder' => 'Paste Notification Link Here',
-                                            'description' => 'UnCheck to turn off',
-                                            'value' => 'on'
-                                        ),
-                                    ),
-                                ),
-
-                                array(
-                                    'title' => 'Contact Information',
-                                    'fields' => array(
-                                        array(
-                                            'field_title' => 'Facebook',
-                                            'field_type' => 'text',
-                                            'field_key' => 'facebook',
-                                            'placeholder' => 'Paste Your Facebook Link Here'     
-                                        ),
-                                        array(
-                                            'field_title' => 'Twitter',
-                                            'field_type' => 'text',
-                                            'field_key' => 'twitter',
-                                            'placeholder' => 'Paste Your Twitter Link Here'     
-                                        ),
-                                        array(
-                                            'field_title' => 'Youtube',
-                                            'field_type' => 'text',
-                                            'field_key' => 'youtube',
-                                            'placeholder' => 'Paste Your Youtube Link Here'     
-                                        ),
-                                        array(
-                                            'field_title' => 'Instagram',
-                                            'field_type' => 'text',
-                                            'field_key' => 'instagram',
-                                            'placeholder' => 'Paste Your Instagram Link Here'     
-                                        ),
-                                        array(
-                                            'field_title' => 'Email',
-                                            'field_type' => 'text',
-                                            'field_key' => 'email',
-                                            'placeholder' => 'Paste Your Email Here'     
-                                        ),
-                                        array(
-                                            'field_title' => 'Contact',
-                                            'field_type' => 'text',
-                                            'field_key' => 'contact',
-                                            'placeholder' => 'Paste Your Contact Link Here'     
-                                        ),
-                                        array(
-                                            'field_title' => 'Address',
-                                            'field_type' => 'textarea',
-                                            'field_key' => 'address',
-                                            'placeholder' => 'Write Your Address Here'     
-                                        ),
-                                    ),
-                                ),
+                        'title' => 'Notification Bar',
+                        'fields' => array(
+                            array(
+                                'field_title' => 'Notification Text',
+                                'field_type' => 'text',
+                                'field_key' => 'notification_text',
+                                'placeholder' => 'Write Notification Text Here'     
+                            ),
+                            array(
+                                'field_title' => 'Notification Link',
+                                'field_type' => 'text',
+                                'field_key' => 'notification_link',
+                                'placeholder' => 'Paste Notification Link Here'
+                            ),
+                            array(
+                                'field_title' => 'Check to Turn On',
+                                'field_type' => 'checkbox',
+                                'field_key' => 'notification_turn_on',
+                                'placeholder' => 'Paste Notification Link Here',
+                                'description' => 'UnCheck to turn off',
+                                'value' => 'on'
                             ),
                         ),
-                    )
-                );
-            ?>
-    
-            <!--Home Page Blog Information-->
-            <div class="settings-information-header">
-                <h1>Home Blogs Section</h1>
-                <i class="fas fa-chevron-down"></i>
-            </div>
+                    ),
 
-            <div class="settings-information hide-div">
-                <?php for($i = 1; $i<=3; $i++){?>
-                <?php $intBlogId = self::get_theme_option( 'home_section_blog_'.$i); ?>
-                    <h3>Blog Post <?php echo $i?></h3>
-                    <p>
-                        <select name="theme_options[home_section_blog_<?php echo $i;?>]">
-                            <option value="">Select Post</option>
-                            <?php
-                                foreach ($arrPostOptions as $id => $label) { ?>
-                                    <option value="<?php echo esc_attr( $id ); ?>" <?php selected($intBlogId, $id, true); ?>>
-                                        <?php echo strip_tags( $label ); ?>
-                                    </option>
-                                <?php } 
-                            ?>
-                        </select>
-                    </p>
-                    <hr/>
-                <?php }?>
-            </div>
+                    array(
+                        'title' => 'Site Logo Options',
+                        'fields' => array(
+                            array(
+                                'field_title' => 'Logo URL',
+                                'field_type' =>'text',
+                                'field_key' => 'site_logo',
+                                'sub_type' => 'image',
+                                'placeholder' => 'Logo URL'       
+                            ),
+                            array(
+                                'field_title' => 'Logo Width',
+                                'field_type' =>'number',
+                                'field_key' => 'logo_width',  
+                                'placeholder' => 'Logo Width'     
+                            ),
+                            array(
+                                'field_title' => 'Logo Text',
+                                'field_type' =>'text',
+                                'field_key' => 'logo_title',
+                                'placeholder' => 'Logo Title'
+                            ),
+                        ),
+                    ),
 
-            <!--Home Page Section-->
-            <div class="settings-information-header">
-                <h1>Home Two Pages Settings</h1>
-                <i class="fas fa-chevron-down"></i>
-            </div>
+                    array(
+                        'title' => 'Theme Color Options',
+                        'fields' => array(
+                            array(
+                                'field_title' => 'Primary Color',
+                                'field_type' => 'color',
+                                'field_key' => 'primary_color',     
+                            ),
+                            array(
+                                'field_title' => 'Secondary Color',
+                                'field_type' => 'color',
+                                'field_key' => 'secondary_color',     
+                            ),
+                        ),
+                    ),
 
-            <div class="settings-information hide-div">
-                <?php for($i = 1; $i<=2; $i++){?>
-                <?php 
-                    $intPageId = self::get_theme_option('home_section_page_'.$i); 
-                    $strButtonTitle = self::get_theme_option('page_button_title_'.$i);
-                    ?>
-                    <h3>Page <?php echo $i?></h3>
-                    <p>
-                        <select name="theme_options[home_section_page_<?php echo $i;?>]">
-                            <option value="">Select Page</option>
-                            <?php
-                                foreach ($arrPageOptions as $id => $label) { ?>
-                                    <option value="<?php echo esc_attr( $id ); ?>" <?php selected($intPageId, $id, true); ?>>
-                                        <?php echo strip_tags( $label ); ?>
-                                    </option>
-                                <?php } 
-                            ?>
-                        </select>
-                        <hr/>
-                        <input placeholder="Write your button title here" type="text" name="theme_options[page_button_title_<?php echo $i;?>]" value="<?php echo $strButtonTitle;?>">
-                    </p>
-                    <hr/>
-                <?php }?>
-            </div>
+                    array(
+                        'title' => 'Home Page Slider',
+                        'fields' => array(
+                            array(
+                                'field_title' => 'Number Of Slides',
+                                'field_type' => 'number',
+                                'field_key' => 'number_of_slides',
+                                'placeholder' => 'Number of Slides'
+                            ),
+                            array(
+                                'field_title' => 'Slider Speed',
+                                'field_type' => 'number',
+                                'field_key' => 'slider_speed',
+                                'description' => '2000 is approximately 1 second',
+                                'placeholder' => 'Slider Duration'
+                            ),
+                            array(
+                                'field_title' => 'Slides',
+                                'repeat' => self::get_theme_option('number_of_slides'),
+                                'field_type' => 'function',
+                                'function_name' => 'getSlidesLoop'
+                            )
+                        ),
+                    ),
 
-            <div class="settings-information-header">
-                <h1>Google Map IFrame</h1>
-                <i class="fas fa-chevron-down"></i>
-            </div>
+                    array(
+                        'title' => 'Home Page Section',
+                        'fields' => array(
+                            array(
+                                'field_title' => 'Page 1',
+                                'field_type' => 'select',
+                                'field_key' => 'home_section_page_1',
+                                'default_option' => 'Select Page',
+                                'select_options' => $arrPageOptions
+                            ),
+                            array(
+                                'field_title' => 'Button Title 1',
+                                'field_type' => 'text',
+                                'field_key' => 'page_button_title_1',
+                                'placeholder' => 'Write Button Title Here'     
+                            ),
+                            array(
+                                'field_title' => 'Page 2',
+                                'field_type' => 'select',
+                                'field_key' => 'home_section_page_2',
+                                'default_option' => 'Select Page',
+                                'select_options' => $arrPageOptions
+                            ),
+                            array(
+                                'field_title' => 'Button Title 2',
+                                'field_type' => 'text',
+                                'field_key' => 'page_button_title_2',
+                                'placeholder' => 'Write Button Title Here'     
+                            ),
+                        ),
+                    ),
+                    
+                    array(
+                        'title' => 'Home Blogs Section',
+                        'fields' => array(
+                            array(
+                                'field_title' => 'Blog Post 1',
+                                'field_type' => 'select',
+                                'field_key' => 'home_section_blog_1',
+                                'default_option' => 'Select Post',
+                                'select_options' => $arrPostOptions
+                            ),
+                            array(
+                                'field_title' => 'Blog Post 2',
+                                'field_type' => 'select',
+                                'field_key' => 'home_section_blog_2',
+                                'default_option' => 'Select Post',
+                                'select_options' => $arrPostOptions
+                            ),
+                            array(
+                                'field_title' => 'Blog Post 3',
+                                'field_type' => 'select',
+                                'field_key' => 'home_section_blog_3', 
+                                'default_option' => 'Select Post',
+                                'select_options' => $arrPostOptions
+                            ),
+                        ),
+                    ),
 
-            <div class="settings-information hide-div">
-                <h3>Iframe HTML</h3>
-                <textarea name="theme_options[google_map]"><?php echo $strMapIframeHtml;?></textarea>
-            </div>
+                    array(
+                        'title' => 'Contact Information',
+                        'fields' => array(
+                            array(
+                                'field_title' => 'Facebook',
+                                'field_type' => 'text',
+                                'field_key' => 'facebook',
+                                'placeholder' => 'Paste Your Facebook Link Here'     
+                            ),
+                            array(
+                                'field_title' => 'Twitter',
+                                'field_type' => 'text',
+                                'field_key' => 'twitter',
+                                'placeholder' => 'Paste Your Twitter Link Here'     
+                            ),
+                            array(
+                                'field_title' => 'Youtube',
+                                'field_type' => 'text',
+                                'field_key' => 'youtube',
+                                'placeholder' => 'Paste Your Youtube Link Here'     
+                            ),
+                            array(
+                                'field_title' => 'Instagram',
+                                'field_type' => 'text',
+                                'field_key' => 'instagram',
+                                'placeholder' => 'Paste Your Instagram Link Here'     
+                            ),
+                            array(
+                                'field_title' => 'Email',
+                                'field_type' => 'text',
+                                'field_key' => 'email',
+                                'placeholder' => 'Paste Your Email Here'     
+                            ),
+                            array(
+                                'field_title' => 'Contact',
+                                'field_type' => 'text',
+                                'field_key' => 'contact',
+                                'placeholder' => 'Paste Your Contact Link Here'     
+                            ),
+                            array(
+                                'field_title' => 'Address',
+                                'field_type' => 'textarea',
+                                'field_key' => 'address',
+                                'placeholder' => 'Write Your Address Here'     
+                            ),
+                        ),
+                    ),
+                    array(
+                        'title' => 'Google Map',
+                        'fields' => array(
+                            array(
+                                'field_title' => 'Google Map IFRAME',
+                                'field_type' => 'textarea',
+                                'field_key' => 'google_map',
+                                'placeholder' => 'Paste Google IFrame'     
+                            ),
+                        ),
+                    ),
+                    array(
+                        'title' => 'Footer Settings',
+                        'fields' => array(
+                            array(
+                                'field_title' => 'Footer Text',
+                                'field_type' => 'textarea',
+                                'field_key' => 'footer_text',
+                                'placeholder' => 'Footer Text'     
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
 
-            <div class="settings-information-header">
-                <h1>Footer Settings</h1>
-                <i class="fas fa-chevron-down"></i>
-            </div>
+        return $arrReturn;
+    }
 
-            <div class="settings-information hide-div">
-                <h3>Footer Text</h3>
-                <textarea name="theme_options[footer_text]"><?php echo $strFooterText;?></textarea>
-            </div>
-            <?php submit_button('Update Changes'); ?>
-        </form>
-    </div>
+    /**
+     * Create Theme Settings 
+     * 
+     */
+    public static function create_admin_page() {?>
+        <div class="settings-container">
+            <h1>Theme Settings</h1>
+            <form method="post" action="options.php">    
+                <?php settings_fields('theme_options'); ?>
+                <?php echo self::loadSettingsFields(self::addThemeOptions());?>
+                <?php submit_button('Update Settings'); ?>
+            </form>
+        </div>
     <?php }
 
     /**
