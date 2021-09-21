@@ -24,13 +24,16 @@
                         <?php echo get_post_meta($post->ID,'services_icon',true);?>
                     </div>
                     <h2><?php the_title();?></h2>
-                    <?php 
-                        if(class_exists('Theme_Controller')){
-                            echo Theme_Controller::getFilteredContent($post->post_content,true,250);
-                        }
-                    ?>
+                    <div class="services-content">
+                        <?php 
+                            if(class_exists('Theme_Controller')){
+                                echo Theme_Controller::getFilteredContent($post->post_content,true,220);
+                            }
+                        ?>
+                    </div>
                     <p>
-                        <a class="btn btn-secondary btn-theme" href="<?php echo get_permalink($post->ID);?>" role="button">View Category</a></p>
+                        <a class="btn btn-secondary btn-theme" href="<?php echo get_permalink($post->ID);?>" role="button">View Category</a>
+                    </p>
                 </div>
             <?php
                 endwhile;

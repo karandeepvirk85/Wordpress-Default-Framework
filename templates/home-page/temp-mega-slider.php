@@ -50,7 +50,7 @@ $strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
                             <!--Caption Button-->
                             <?php 
                                 if(!empty($strButtonTitle) && !empty($strButtonLink)){?>
-                                    <a style="background-color:<?php echo $strThemeSecondaryColor;?>" class="btn-block btn btn-secondary" href="<?php echo $strButtonLink;?>"><?php echo $strButtonTitle;?></a>
+                                    <a style="background-color:<?php echo $strThemeSecondaryColor;?>" class="btn btn-secondary" href="<?php echo $strButtonLink;?>"><?php echo $strButtonTitle;?> <i class="fas fa-chevron-right"></i></a>
                                 <?php }
                             ?>
                         </div>

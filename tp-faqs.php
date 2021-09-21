@@ -1,6 +1,7 @@
 <?php 
 /**
  * Template Name: FAQs
+ *
  */
 get_header();
 
