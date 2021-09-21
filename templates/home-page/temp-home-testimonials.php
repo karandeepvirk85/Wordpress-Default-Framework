@@ -3,8 +3,13 @@
  * This template is for Home Page Testimonials
  */
 
-$arrTestimonials = Theme_Controller::getAllPosts(null,'testimonials', 6);
-$strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
+ if(class_exists('Testimonials_Controller') && class_exists('Theme_Controller')){
+    // Get 6 Testimonials
+    $arrTestimonials = Theme_Controller::getAllPosts(null,Testimonials_Controller::$arrPostConfig['post_type'], 6);
+    // Get Theme Secondary Color
+    $strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
+}
+
 $arrTitleContainer = array(
     'title' => 'Testimonials',
     'url' => 'what-customers-says-about-us'

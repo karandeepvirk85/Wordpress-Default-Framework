@@ -18,7 +18,9 @@
 		$strSiteLogo 			= Theme_Controller::get_theme_option('site_logo');
 		$strPrimaryColor 		= Theme_Controller::get_theme_option('primary_color');
 		$strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
-		$strCurrentUrl 			= $_SERVER['SCRIPT_URI'];
+		if (isset($_SERVER['SCRIPT_URI'])){
+			$strCurrentUrl 	= $_SERVER['SCRIPT_URI'];
+		}
 	?>
 
 	<!-- Notification Bar-->

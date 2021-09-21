@@ -3,11 +3,15 @@
  * Template Name: Testimonials
  */
 get_header();
-if(class_exists('Theme_Controller')){
+// If Theme Controller and Testimonials Cntroller Exists Get All Testimonails 
+if(class_exists('Theme_Controller') && class_exists('Testimonials_Controller')){
+    // Get All Testimonails
+    $allPostsWPQuery = Theme_Controller::getAllPosts($paged,Testimonials_Controller::$arrPostConfig['post_type'],-1);
+    // Args For Pagination
     $paged = Theme_Controller::getPagedQuery();
-    $allPostsWPQuery = Theme_Controller::getAllPosts($paged,'testimonials',-1);
     $args = Theme_Controller::getArgsForPagination($paged, $allPostsWPQuery->max_num_pages);
 }
+
 ?>
  <?php get_template_part('templates/gtheme','wp_page');?>
     <div class="container testimonials-container">
@@ -22,13 +26,6 @@ if(class_exists('Theme_Controller')){
                         wp_reset_postdata(); 
                     }?>
                 </div>
-            </div>
-        </div>
-        
-        <!-------INLUDE PAGE CONTAINER------->
-        <div class="row">    
-            <div class="col-md-12 pagination-container">
-                <?php get_template_part( 'templates/gtheme','custom_pagination',$args); ?>
             </div>
         </div>
     </div>

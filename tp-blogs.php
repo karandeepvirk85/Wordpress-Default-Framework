@@ -7,7 +7,7 @@ get_header();
 
 if(class_exists('Theme_Controller')){
     $paged = Theme_Controller::getPagedQuery();
-    $allPostsWPQuery = Theme_Controller::getAllPosts($paged,'post',9);
+    $allPostsWPQuery = Theme_Controller::getAllPosts($paged,'post',6);
     $args = Theme_Controller::getArgsForPagination($paged, $allPostsWPQuery->max_num_pages);
 }
 ?>

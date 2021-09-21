@@ -15,7 +15,7 @@
                 'format' => '?paged=%#%',
                 'current' => max( 1, $args['paged']),
                 'total' => $args['max_num_pages']
-            ) 
+            )
         );
         ?>
     </div>

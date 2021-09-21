@@ -1,12 +1,16 @@
 <?php 
 /**
  * Template Name: Services
+ * This Template Display ALL Services
  */
 get_header();
 
-if(class_exists('Theme_Controller')){
+// If Theme Controller and Testimonials Cntroller Exists Get All Testimonails 
+if(class_exists('Theme_Controller') && class_exists('Services_Controller')){
+    // Get All Testimonails
+    $allPostsWPQuery = Theme_Controller::getAllPosts($paged,Services_Controller::$arrPostConfig['post_type'],-1);
+    // Args For Pagination
     $paged = Theme_Controller::getPagedQuery();
-    $allPostsWPQuery = Theme_Controller::getAllPosts($paged,'services',-1);
     $args = Theme_Controller::getArgsForPagination($paged, $allPostsWPQuery->max_num_pages);
 }
 ?>

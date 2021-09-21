@@ -4,15 +4,14 @@
  */
 get_header();
 
-if(class_exists('Theme_Controller')){
+// If Theme Controller and Testimonials Cntroller Exists Get All Testimonails 
+if(class_exists('Theme_Controller') && class_exists('Faqs_Controller')){
+    // Get All Testimonails
+    $allPostsWPQuery = Theme_Controller::getAllPosts($paged,Faqs_Controller::$arrPostConfig['post_type'],-1);
+    // Args For Pagination
     $paged = Theme_Controller::getPagedQuery();
-    $allPostsWPQuery = Theme_Controller::getAllPosts($paged,'faqs',-1);
-    $argsPagination = Theme_Controller::getArgsForPagination($paged, 1);
+    $args = Theme_Controller::getArgsForPagination($paged, $allPostsWPQuery->max_num_pages);
     $strThemeSecondaryColor = Theme_Controller::get_theme_option('secondary_color');
-    $arrTitleContainer = array(
-        'title' => 'FAQS',
-        'url' => 'faqs'
-    );
 }
 ?>
 

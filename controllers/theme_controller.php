@@ -233,6 +233,7 @@ class Theme_Controller{
      * @since 1.0.0
      */
     public static function sanitize( $options ) {
+        var_dump($options);
         // If we have options lets sanitize them
         if ( $options ) {
 
@@ -260,7 +261,10 @@ class Theme_Controller{
         // Return sanitized options
         return $options;
     }
- 
+
+    /**
+     * Build HMTL Based on array  
+     */
     public static function loadSettingsFields($arrOptions){
 
         $strCompleteHTML = '';
@@ -565,7 +569,7 @@ class Theme_Controller{
                             ),
                         ),
                     ),
-                    
+
                     array(
                         'title' => 'Home Blogs Section',
                         'fields' => array(
@@ -640,6 +644,7 @@ class Theme_Controller{
                             ),
                         ),
                     ),
+
                     array(
                         'title' => 'Google Map',
                         'fields' => array(
@@ -651,6 +656,7 @@ class Theme_Controller{
                             ),
                         ),
                     ),
+
                     array(
                         'title' => 'Footer Settings',
                         'fields' => array(
@@ -730,9 +736,11 @@ class Theme_Controller{
     public static function showNotification(){
         // Default Return
         $intReturn = false;
-        
+        $strNotificationClose = '';
         // Get Close Date
-        $strNotificationClose = $_SESSION['notification_close_date'];
+        if(isset($_SESSION['notification_close_date'])){
+            $strNotificationClose = $_SESSION['notification_close_date'];
+        }
         
         // If empty notification closed date 
         if(empty($strNotificationClose)){
