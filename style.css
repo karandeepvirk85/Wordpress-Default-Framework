@@ -17,6 +17,7 @@ Extra: Do whatever the fuck you want to do. What you feels like doing is always 
 /*****Create Some Default CSS*****/
 body {
   background-color: #ffffff;
+  position: relative;
 }
 
 h1 {
@@ -788,6 +789,7 @@ h1 {
 }
 
 .footer-container {
+  position: relative;
   padding: 0;
   font-family: "Noto Sans JP", sans-serif;
   font-size: 0.9rem;
@@ -884,8 +886,12 @@ h1 {
   margin: 6px 0;
 }
 .footer-container .inner-footer .footer-row .footer-col.footer-menu ul li a {
-  font-size: 1.2rem;
-  color: #252525;
+  font-size: 1rem;
+  color: #858585;
+  font-family: "Noto Sans JP", sans-serif;
+}
+.footer-container .inner-footer .footer-row .footer-col.footer-menu ul li a:hover {
+  color: #000000;
 }
 .footer-container .footer-bottom {
   background-color: #252525;
@@ -1225,7 +1231,7 @@ h1 {
   opacity: 0.7;
 }
 .woocommerce table.cart img {
-  height: 60px;
+  height: 80px;
   width: auto;
 }
 
@@ -1237,6 +1243,31 @@ h1 {
 
 .single-product-container {
   padding: 60px 0;
+}
+
+.scroll-to-top {
+  position: fixed;
+  right: 1rem;
+  bottom: 20px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  background-color: #d12013a1;
+  transition: 1s;
+  display: none;
+}
+.scroll-to-top:hover {
+  box-shadow: none;
+  background-color: #d12013;
+}
+.scroll-to-top i {
+  color: #ffffff;
+  font-size: 1.5rem;
 }
 
 /*# sourceMappingURL=style.css.map */
