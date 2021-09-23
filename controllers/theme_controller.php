@@ -261,9 +261,216 @@ class Theme_Controller{
         // Return sanitized options
         return $options;
     }
+    
+    /** 
+     * Get Input Type Text Input
+     * @args 
+     * 'theme_option_key', 'placeholder' 
+     */
+    public static function getTextFieldInput($strKey, $strPlaceholder = null){
+        // Set empty return
+        $strHtml = '';
+        
+        // Set option Value
+        $strValue = self::get_theme_option($strKey);
+        
+        // Load html
+        $strHtml = '<input 
+            type="text" 
+            placeholder="'.$strPlaceholder.'" 
+            class="settings-input" 
+            name="theme_options['.$strKey.']" 
+            value="'.$strValue.'"
+        >';
+
+        // return html
+        return $strHtml;
+    }
 
     /**
-     * Build HMTL Based on array  
+     * Get Display Image
+     * @args
+     * 'theme_option_key' 
+     */
+    public static function getDisplayImage($strKey){
+        // set Empty return
+        $strHtml = '';
+        // get option value
+        $strValue = self::get_theme_option($strKey);
+        // If image is set load html
+        if(!empty($strValue)){
+            $strHtml = '
+                <div class="settings-site-logo">
+                    <img src="'.esc_attr($strValue).'">
+                </div>
+            ';
+        }
+        // return html
+        return $strHtml;
+    }
+
+    /**
+     * Get Number Field Input
+     * @args
+     * 'theme_option_key', 'placeholder' 
+     */
+    public static function getNumberFieldInput($strKey, $strPlaceholder = null){
+        // Set empty return String
+        $strHtml = '';
+        
+        // get Value if exists
+        $strValue = (int) self::get_theme_option($strKey);
+        
+        // get HTML
+        $strHtml = '<input 
+            type="number" 
+            placeholder="'.$strPlaceholder.'" 
+            class="settings-input" 
+            name="theme_options['.$strKey.']" 
+            value="'.$strValue.'"
+        >';
+        
+        // HTML
+        return $strHtml;
+    }
+
+    /**
+     * Get Checkbox Value
+     * @args 'option_key', 'checkbox default value'
+     */
+    public static function getCheckBoxField($strKey, $strValue){
+        // Set Empty Return
+        $strHtml = '';
+        
+        // Set Checked Value Empty
+        $strChecked = '';
+        
+        // get checkbox value
+        $strValueInDb = self::get_theme_option($strKey);
+        
+        // If value is On Set variable text 'checked'
+        if($strValueInDb == $strValue){
+            $strChecked = 'checked';
+        }
+
+        // Get CheckBox Value
+        $strHtml = '<input 
+            '.$strChecked.' 
+            type="checkbox" 
+            value="'.$strValue.'" 
+            name="theme_options['.$strKey.']">
+        ';
+        
+        // Return Value
+        return $strHtml;
+    }
+
+    /**
+     * Get Field Title
+     * @args 'Title'
+     */
+    public static function getFieldTitle($string){
+        // Set Empty Return
+        $strHtml = '';
+        
+        // Add H3 Tag
+        if(!empty($string)){
+            $strHtml = '<h3>'.trim($string).'</h3>';
+        }
+        
+        // return Html
+        return $strHtml;
+    }
+
+    /**
+     * Get Small Description
+     * @args 'String'
+     */
+    public static function getDescription($string){
+        // Set Empty Return
+        $strHtml = '';
+        
+        // Add H3 Tag
+        if(!empty($string)){
+            $strHtml =   '<div class="description">'.trim($string).'</div>';
+        }
+        
+        // return Html
+        return $strHtml;
+    }
+
+  
+    /**
+     * Get Color Type Input
+     * @args 'options_key'
+     */
+    public static function getColorFieldInput($strKey){        
+        // Set Empty Return
+        $strHtml = '';
+        // get Field value
+        $strValue = self::get_theme_option($strKey);
+        // load html
+        $strHtml = '<input 
+            type="color" 
+            class="settings-input" 
+            name="theme_options['.$strKey.']" 
+            value="'.$strValue.'"
+        >';
+
+        // Return html
+        return $strHtml; 
+    }
+
+    /**
+     * Get TextArea Field
+     * @args 'theme_option', 'placeholder'
+     */
+    public static function getTextAreaField($strKey, $strPlaceholder = null){
+        // Set empty return
+        $strHtml = '';
+        
+        // Get Value
+        $strValue = self::get_theme_option($strKey);
+        
+        // Load Html
+        $strHtml = '<textarea placeholder="'.$strPlaceholder.'" name="theme_options['.$strKey.']">'.$strValue.'</textarea>';
+        
+        // return html
+        return $strHtml;
+    }
+
+    /**
+     * Get Select Input Field
+     * 
+     */
+    public static function getSelectFieldInput($strKey, $arrOptions, $strDefaultOption = null){
+        // set Empty return
+        $strHtml = '';
+
+        // Select Start HTML
+        $strHtml .= '<select name="theme_options['.$strKey.']">';
+
+        // Set Default Option is set
+        if(!empty($strDefaultOption)){
+            $strHtml .= '<option value="">'.$strDefaultOption.'</option>';
+        }
+
+        // Loop arrat and load options html
+        foreach ($arrOptions as $id => $strLabel){  
+            $strSelected = self::get_theme_option($strKey) == $id ? "selected" : ""; 
+            $strHtml .= '<option value="'.esc_attr($id).'" '.$strSelected.'>';
+            $strHtml .= strip_tags($strLabel);
+            $strHtml .= '</option>';
+        }
+
+        // Select end html
+        $strHtml .= '</select>';
+        
+        return $strHtml;
+    }
+
+    /**
+     * Build HMTL Based on array
      */
     public static function loadSettingsFields($arrOptions){
 
@@ -288,44 +495,43 @@ class Theme_Controller{
                                 $strBodyHtml = '';
                                 
                                 // If Field Title is set
-                                if (isset($arrFields['field_title'])){
-                                    $strBodyHtml .= '<h3>'.$arrFields['field_title'].'</h3>';
+                                if(isset($arrFields['field_title'])){
+                                    if(strlen($arrFields['field_title'])>0){
+                                        $strBodyHtml .= self::getFieldTitle($arrFields['field_title']);
+                                    }
                                 }
                                 
                                 // If Input Type is Text
                                 if($arrFields['field_type'] == 'text'){
-                                    $strBodyHtml .= '<input type="text" placeholder="'.$arrFields['placeholder'].'" class="settings-input" name="theme_options['.$arrFields['field_key'].']" value="'.self::get_theme_option($arrFields['field_key']).'">';
+                                    // Get text field input
+                                    $strBodyHtml .= self::getTextFieldInput($arrFields['field_key'], $arrFields['placeholder']);
+                                     // If Sub type is set 
                                     if(isset($arrFields['sub_type'])){
+                                    // If Sub type is image
                                         if($arrFields['sub_type'] == 'image'){
-                                            if(!empty(self::get_theme_option($arrFields['field_key']))){
-                                                $strBodyHtml .= '<div class="settings-site-logo"><img src="'.esc_attr(self::get_theme_option($arrFields['field_key'])).'"></div>';
-                                            }
+                                            $strBodyHtml .= self::getDisplayImage($arrFields['field_key']);
                                         }
-                                    }
+                                    } 
                                 }
 
                                 // If Input Type is Number
                                 if($arrFields['field_type'] == 'number'){
-                                    $strBodyHtml .= '<input type="number" placeholder="'.$arrFields['placeholder'].'" class="settings-input" name="theme_options['.$arrFields['field_key'].']" value="'.self::get_theme_option($arrFields['field_key']).'">';
+                                    $strBodyHtml .= self::getNumberFieldInput($arrFields['field_key'], $arrFields['placeholder']);
                                 }
 
                                 // If Input Type is Checkbox
                                 if($arrFields['field_type'] == 'checkbox'){
-                                    $strChecked = '';
-                                    if(self::get_theme_option($arrFields['field_key']) == 'on'){
-                                        $strChecked = 'checked';
-                                    }
-                                    $strBodyHtml .= '<input '.$strChecked.' type="checkbox" value="'.$arrFields['value'].'" name="theme_options['.$arrFields['field_key'].']">';
+                                   $strBodyHtml .= self::getCheckBoxField($arrFields['field_key'], $arrFields['value']); 
                                 }
 
                                 // If Input Type is Color
                                 if($arrFields['field_type'] == 'color'){
-                                    $strBodyHtml .= '<input type="color" class="settings-input" name="theme_options['.$arrFields['field_key'].']" value="'.self::get_theme_option($arrFields['field_key']).'">';
+                                    $strBodyHtml .= self::getColorFieldInput($arrFields['field_key']);
                                 }
 
                                 // If Input Type is Textarea
                                 if($arrFields['field_type'] == 'textarea'){
-                                    $strBodyHtml .= '<textarea placeholder="'.$arrFields['placeholder'].'" name="theme_options['.$arrFields['field_key'].']">'.self::get_theme_option($arrFields['field_key']).'</textarea>';
+                                    $strBodyHtml .= self::getTextAreaField($arrFields['field_key'], $arrFields['placeholder']);
                                 }
 
                                 // If Input Type is Function
@@ -336,27 +542,12 @@ class Theme_Controller{
 
                                 // If Input Type is select
                                 if($arrFields['field_type'] == 'select'){
-                                    $strBodyHtml .= '<select name="theme_options['.$arrFields['field_key'].']">';
-
-                                    if(isset($arrFields['default_option'])){
-                                        $strBodyHtml .= '<option value="">'.$arrFields['default_option'].'</option>';
-                                    }
-
-                                    foreach ($arrFields['select_options'] as $id => $strLabel){  
-                                        $strSelected = self::get_theme_option($arrFields['field_key']) == $id ? "selected" : "";
-                                        $strBodyHtml .= '<option value="'.esc_attr($id).'" '.$strSelected.'>';
-                                        $strBodyHtml .= strip_tags($strLabel);
-                                        $strBodyHtml .= '</option>';
-                                    }
-
-                                    $strBodyHtml .= '</select>';
+                                    $strBodyHtml .= self::getSelectFieldInput( $arrFields['field_key'], $arrFields['select_options'],  $arrFields['default_option']);
                                 }
-
                                 // If description is set
                                 if(isset($arrFields['description'])){
-                                    $strBodyHtml .= '<div class="description">'.$arrFields['description'].'</div>';
+                                    $strBodyHtml .= self::getDescription($arrFields['description']);
                                 }
-
                                 $strSubComplete .= $strBodyHtml;
                             }
                             $strBodyEnd = '</div>';
@@ -416,15 +607,14 @@ class Theme_Controller{
 
     /**
      * Get Post Options For Select or Other Pusposes
-     * 
+     * @args 'Post Type', 'Posts Per Page', 'Total Posts'
      */
-
-    public static function getPostOptions($strPostType){
+    public static function getPostOptions($strPostType, $intPostsPerPage, $intTotalPosts){
         $arrReturn = array();
         $args = array(
             'post_type' => $strPostType,
-            'posts_per_page' => -1,
-            'numberposts' => -1
+            'posts_per_page' => $intPostsPerPage,
+            'numberposts' => $intTotalPosts
         );
 
         $arrPosts = get_posts($args);
@@ -439,8 +629,8 @@ class Theme_Controller{
 
     public static function addThemeOptions(){
         // Get Post Options
-        $arrPostOptions = self::getPostOptions('post');
-        $arrPageOptions = self::getPostOptions('page');
+        $arrPostOptions = self::getPostOptions('post',-1,-1);
+        $arrPageOptions = self::getPostOptions('page',-1,-1);
         
         // Set Array for accordians fields
         $arrReturn = array(
@@ -465,8 +655,7 @@ class Theme_Controller{
                                 'field_title' => 'Check to Turn On',
                                 'field_type' => 'checkbox',
                                 'field_key' => 'notification_turn_on',
-                                'placeholder' => 'Paste Notification Link Here',
-                                'description' => 'UnCheck to turn off',
+                                'description' => 'Un Check to turn off',
                                 'value' => 'on'
                             ),
                         ),
@@ -574,21 +763,21 @@ class Theme_Controller{
                         'title' => 'Home Blogs Section',
                         'fields' => array(
                             array(
-                                'field_title' => 'Blog Post 1',
+                                'field_title' => 'Home Page Blog Post 1',
                                 'field_type' => 'select',
                                 'field_key' => 'home_section_blog_1',
                                 'default_option' => 'Select Post',
                                 'select_options' => $arrPostOptions
                             ),
                             array(
-                                'field_title' => 'Blog Post 2',
+                                'field_title' => 'Home Page Blog Post 2',
                                 'field_type' => 'select',
                                 'field_key' => 'home_section_blog_2',
                                 'default_option' => 'Select Post',
                                 'select_options' => $arrPostOptions
                             ),
                             array(
-                                'field_title' => 'Blog Post 3',
+                                'field_title' => 'Home Page Blog Post 3',
                                 'field_type' => 'select',
                                 'field_key' => 'home_section_blog_3', 
                                 'default_option' => 'Select Post',
