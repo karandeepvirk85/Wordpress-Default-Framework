@@ -29,7 +29,7 @@ if(class_exists('Theme_Controller')){
                         <div class="faqs-inner-container">
                             <div class="faqs-question">
                                 <h4><?php the_title();?></h4>
-                                <i style="color:<?php echo $strThemeSecondaryColor;?>" class="fas fa-toggle-off"></i>
+                                <i style="color:<?php echo $strThemeSecondaryColor;?>" class="fas fa-chevron-down"></i>
                             </div>
                             <div class="faqs-answer hide-answer animate__animated animate__fadeInUp animate__faster">
                                 <?php echo Theme_Controller::getFilteredContent($post->post_content,true,'400');?>

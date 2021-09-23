@@ -2,8 +2,8 @@ jQuery(document).ready(function ($) {
     var objTheme = {
         classHideAnswer: "hide-answer",
         elementFaqQuestion: $(".faqs-question"),
-        classFaqsToggleOff: "fa-toggle-off",
-        classFaqsToggleOn: "fa-toggle-on",
+        classFaqsToggleOff: "fa-chevron-down",
+        classFaqsToggleOn: "fa-chevron-up",
         elementCarousel: $(".carousel"),
         elementNotificationClose: $(".btn-close-notification"),
         elementNotificationBar: $(".notification-bar"),

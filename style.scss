@@ -276,10 +276,10 @@ h1 {
                 color: $lightest-color;
                 margin: 0;
                 @media (min-width: $xs) {
-                    font-size: 1.1rem;
+                    font-size: 0.9rem;
                 }
                 @media (min-width: $md) {
-                    font-size: 1.2rem;
+                    font-size: 1rem;
                 }
             }
             border: $default-border;
@@ -289,10 +289,10 @@ h1 {
             justify-content: space-between;
             align-items: center;
             background-color: $dark-gray;
-            padding: 0.6rem;
+            padding: 4px 0.4rem;
 
             i {
-                font-size: 2rem;
+                font-size: 1.5rem;
             }
         }
         .faqs-answer {

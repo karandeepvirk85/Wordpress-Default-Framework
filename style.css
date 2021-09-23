@@ -196,7 +196,7 @@ h1 {
   justify-content: space-between;
   align-items: center;
   background-color: #252525;
-  padding: 0.6rem;
+  padding: 4px 0.4rem;
 }
 .faqs-container .faqs-inner-container .faqs-question h4 {
   color: #ffffff;
@@ -204,16 +204,16 @@ h1 {
 }
 @media (min-width: 250px) {
   .faqs-container .faqs-inner-container .faqs-question h4 {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
   }
 }
 @media (min-width: 768px) {
   .faqs-container .faqs-inner-container .faqs-question h4 {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 }
 .faqs-container .faqs-inner-container .faqs-question i {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 .faqs-container .faqs-inner-container .faqs-answer {
   padding: 1rem;
