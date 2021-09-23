@@ -61,6 +61,7 @@ $default-radius: 4px;
 // Body
 body {
     background-color: $body-background;
+    position: relative;
 }
 
 // Default H1
@@ -806,6 +807,7 @@ h1 {
 
 // Footer Container
 .footer-container {
+    position: relative;
     padding: 0;
     font-family: $font-reading;
     font-size: 0.9rem;
@@ -898,8 +900,12 @@ h1 {
                         li {
                             margin: 6px 0;
                             a {
-                                font-size: 1.2rem;
-                                color: $dark-gray;
+                                font-size: 1rem;
+                                color: #858585;
+                                font-family: $font-reading;
+                                &:hover {
+                                    color: #000000;
+                                }
                             }
                         }
                     }
@@ -1292,7 +1298,7 @@ h1 {
                 }
             }
             img {
-                height: 60px;
+                height: 80px;
                 width: auto;
             }
         }
@@ -1303,6 +1309,32 @@ h1 {
     width: 100% !important;
     max-width: 100% !important;
 }
+
 .single-product-container {
     padding: 60px 0;
+}
+
+.scroll-to-top {
+    position: fixed;
+    right: 1rem;
+    bottom: 20px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    background-color: #d12013a1;
+    transition: 1s;
+    display: none;
+    &:hover {
+        box-shadow: none;
+        background-color: $current-theme-color;
+    }
+    i {
+        color: $lightest-color;
+        font-size: 1.5rem;
+    }
 }

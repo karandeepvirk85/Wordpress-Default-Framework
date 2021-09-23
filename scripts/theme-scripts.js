@@ -7,6 +7,7 @@ jQuery(document).ready(function ($) {
         elementCarousel: $(".carousel"),
         elementNotificationClose: $(".btn-close-notification"),
         elementNotificationBar: $(".notification-bar"),
+        elementScropToTop: $(".scroll-to-top"),
 
         // Init Theme
         initTheme: function () {
@@ -16,10 +17,17 @@ jQuery(document).ready(function ($) {
                 objTheme.handleFaqs(objThis);
             });
 
-            // Hanle Click Event
+            // Hanle Notification Click Event
             this.elementNotificationClose.click(function () {
                 objTheme.closeNotification();
             });
+
+            // Hanle Scroll To Top Click Event
+            this.elementScropToTop.click(function () {
+                objTheme.scrollToTop();
+            });
+
+            this.showScroll();
 
             this.setHomeSliderSpeed();
         },
@@ -51,6 +59,19 @@ jQuery(document).ready(function ($) {
             this.elementCarousel.carousel({
                 interval: parseInt(globalObject.home_slider_speed),
             });
+        },
+        showScroll: function () {
+            $(window).scroll(function () {
+                var Top = window.pageYOffset;
+                if (Top > 600) {
+                    objTheme.elementScropToTop.css("display", "flex");
+                } else {
+                    objTheme.elementScropToTop.css("display", "none");
+                }
+            });
+        },
+        scrollToTop: function () {
+            $("html").animate({ scrollTop: 0 }, "slow");
         },
     };
 

@@ -72,5 +72,7 @@
         </div>
     </div>
 </div>
-<?php 
-wp_footer(); ?>
+<div class="scroll-to-top animate__animated animate__fadeInUp">
+    <i class="fas fa fa-chevron-up"></i>
+</div>
+<?php wp_footer(); ?>
