@@ -11,7 +11,7 @@ get_header();
             get_template_part('templates/home-page/temp-two-pages');
             get_template_part('templates/home-page/temp-home-posts');
             get_template_part('templates/home-page/temp-home-testimonials');
-            get_template_part('templates/gtheme','all_faqs');
+            get_template_part('templates/home-page/temp-faqs');
             get_template_part('templates/home-page/temp-google-map-contact');
         ?>
     </div>
