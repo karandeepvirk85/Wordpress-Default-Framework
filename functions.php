@@ -63,6 +63,7 @@ function gThemeSupport(){
  */
 function includeThemeControllers(){
 	include_once(get_template_directory().'/controllers/theme_controller.php');
+	include_once(get_template_directory().'/controllers/fields_controller.php');
 }
 
 /**

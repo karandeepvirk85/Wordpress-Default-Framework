@@ -261,31 +261,6 @@ class Theme_Controller{
         // Return sanitized options
         return $options;
     }
-    
-    /** 
-     * Get Input Type Text Input
-     * @args 
-     * 'theme_option_key', 'placeholder' 
-     */
-    public static function getTextFieldInput($strKey, $strPlaceholder = null){
-        // Set empty return
-        $strHtml = '';
-        
-        // Set option Value
-        $strValue = self::get_theme_option($strKey);
-        
-        // Load html
-        $strHtml = '<input 
-            type="text" 
-            placeholder="'.$strPlaceholder.'" 
-            class="settings-input" 
-            name="theme_options['.$strKey.']" 
-            value="'.$strValue.'"
-        >';
-
-        // return html
-        return $strHtml;
-    }
 
     /**
      * Get Display Image
@@ -504,7 +479,9 @@ class Theme_Controller{
                                 // If Input Type is Text
                                 if($arrFields['field_type'] == 'text'){
                                     // Get text field input
-                                    $strBodyHtml .= self::getTextFieldInput($arrFields['field_key'], $arrFields['placeholder']);
+                                    if(class_exists('Fields_Controller')){
+                                        $strBodyHtml .= Fields_Controller::getTextFieldInput($arrFields['field_key'], $arrFields['placeholder']);
+                                    }
                                      // If Sub type is set 
                                     if(isset($arrFields['sub_type'])){
                                     // If Sub type is image

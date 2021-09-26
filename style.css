@@ -363,8 +363,17 @@ h1 {
 }
 .home-page .two-pages-container h2 {
   font-family: "Roboto", sans-serif;
-  font-size: 2rem;
   font-weight: 700;
+}
+@media (min-width: 250px) {
+  .home-page .two-pages-container h2 {
+    font-size: 1.3rem;
+  }
+}
+@media (min-width: 768px) {
+  .home-page .two-pages-container h2 {
+    font-size: 1.6rem;
+  }
 }
 .home-page .two-pages-container .two-pages-image {
   padding: 16rem 0;
@@ -412,6 +421,16 @@ h1 {
   font-family: "Roboto", sans-serif;
   font-weight: 700;
 }
+@media (min-width: 250px) {
+  .home-page .home-posts a .featurette h2.featurette-heading {
+    font-size: 1.3rem;
+  }
+}
+@media (min-width: 768px) {
+  .home-page .home-posts a .featurette h2.featurette-heading {
+    font-size: 1.5rem;
+  }
+}
 .home-page .home-posts a .featurette p.lead {
   text-decoration: none !important;
   font-family: "Noto Sans JP", sans-serif;
@@ -450,6 +469,16 @@ h1 {
   font-weight: 700;
   color: #252525;
   margin-top: 10px;
+}
+@media (min-width: 250px) {
+  .home-page .testimonials-container .carousel-inner .carousel-item h3 {
+    font-size: 1rem;
+  }
+}
+@media (min-width: 768px) {
+  .home-page .testimonials-container .carousel-inner .carousel-item h3 {
+    font-size: 1.2rem;
+  }
 }
 .home-page .testimonials-container .carousel-inner .carousel-item p {
   margin-top: 6px;

@@ -440,8 +440,13 @@ h1 {
         margin-top: 30px;
         h2 {
             font-family: $font-primary;
-            font-size: 2rem;
             font-weight: 700;
+            @media (min-width: $xs) {
+                font-size: 1.3rem;
+            }
+            @media (min-width: $md) {
+                font-size: 1.6rem;
+            }
         }
         .two-pages-image {
             padding: 16rem 0;
@@ -487,6 +492,12 @@ h1 {
                         color: $dark-gray;
                         font-family: $font-primary;
                         font-weight: 700;
+                        @media (min-width: $xs) {
+                            font-size: 1.3rem;
+                        }
+                        @media (min-width: $md) {
+                            font-size: 1.5rem;
+                        }
                     }
                 }
                 p {
@@ -530,6 +541,12 @@ h1 {
                     font-weight: 700;
                     color: $dark-gray;
                     margin-top: 10px;
+                    @media (min-width: $xs) {
+                        font-size: 1rem;
+                    }
+                    @media (min-width: $md) {
+                        font-size: 1.2rem;
+                    }
                 }
                 p {
                     margin-top: 6px;
