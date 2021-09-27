@@ -96,3 +96,36 @@ $default-dark: #1d2327;
         }
     }
 }
+
+#poststuff {
+    #post-body {
+        .postbox-container {
+            .postbox-header {
+                background-color: $default-dark;
+                h2 {
+                    &.ui-sortable-handle {
+                        font-size: 1.1rem;
+                        color: white;
+                    }
+                }
+            }
+            .inside {
+                .field-title {
+                    margin: 10px 0 4px 0;
+                    color: $default-dark;
+                    font-size: 0.8rem;
+                }
+                .field-display {
+                    margin-left: 10px;
+                    margin-top: 0;
+                }
+                .meta-input {
+                    width: 100%;
+                    border: 1px solid #cbcbcb;
+                    height: 38px;
+                    font-size: 0.8rem;
+                }
+            }
+        }
+    }
+}

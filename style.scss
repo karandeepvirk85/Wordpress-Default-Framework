@@ -1361,3 +1361,32 @@ h1 {
         font-size: 1.5rem;
     }
 }
+.stripe-container {
+    border: 1px solid $extreme-light-gray;
+    padding: 20px 2rem;
+    box-shadow: 0px 0px 4px -1px #acacac94;
+    form {
+        .input-text {
+            border: 1px solid $very-light-gray;
+            height: 45px;
+        }
+        label {
+            margin-bottom: 0;
+            span {
+                color: $current-theme-color;
+            }
+        }
+        #card-element {
+            border-top: 2px solid $extreme-light-gray;
+            border-bottom: 2px solid $extreme-light-gray;
+            margin-bottom: 10px;
+        }
+        #card-errors {
+            color: $current-theme-color;
+        }
+        button {
+            background-color: $current-theme-color;
+            border: none;
+        }
+    }
+}

@@ -1309,4 +1309,32 @@ h1 {
   font-size: 1.5rem;
 }
 
+.stripe-container {
+  border: 1px solid #ebebeb;
+  padding: 20px 2rem;
+  box-shadow: 0px 0px 4px -1px #acacac94;
+}
+.stripe-container form .input-text {
+  border: 1px solid #c0c0c0;
+  height: 45px;
+}
+.stripe-container form label {
+  margin-bottom: 0;
+}
+.stripe-container form label span {
+  color: #d12013;
+}
+.stripe-container form #card-element {
+  border-top: 2px solid #ebebeb;
+  border-bottom: 2px solid #ebebeb;
+  margin-bottom: 10px;
+}
+.stripe-container form #card-errors {
+  color: #d12013;
+}
+.stripe-container form button {
+  background-color: #d12013;
+  border: none;
+}
+
 /*# sourceMappingURL=style.css.map */
