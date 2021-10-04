@@ -100,15 +100,6 @@ $default-dark: #1d2327;
 #poststuff {
     #post-body {
         .postbox-container {
-            .postbox-header {
-                background-color: $default-dark;
-                h2 {
-                    &.ui-sortable-handle {
-                        font-size: 1.1rem;
-                        color: white;
-                    }
-                }
-            }
             .inside {
                 .field-title {
                     margin: 10px 0 4px 0;

@@ -84,13 +84,6 @@
   font-size: 0.8rem;
 }
 
-#poststuff #post-body .postbox-container .postbox-header {
-  background-color: #1d2327;
-}
-#poststuff #post-body .postbox-container .postbox-header h2.ui-sortable-handle {
-  font-size: 1.1rem;
-  color: white;
-}
 #poststuff #post-body .postbox-container .inside .field-title {
   margin: 10px 0 4px 0;
   color: #1d2327;
