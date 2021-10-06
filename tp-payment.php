@@ -5,7 +5,7 @@
  */
 get_header();
 if(class_exists('Stripe_Controller')){
-    if(isset($_POST)){
+    if(isset($_POST['stripeToken'])){
         $arrReturn = Stripe_Controller::handlePaymentPost($_POST);
     }
 }
@@ -28,7 +28,7 @@ if(class_exists('Stripe_Controller')){
                 <!--Amount-->
                 <div class="col-md-2">
                 <label>Amount<span class="stripe-required">*<span></label>
-                    <input type="number" required="required" placeholder="Amount" name="amount" class="form-control input-text">
+                    <input type="number" placeholder="Amount" name="amount" class="form-control input-text">
                 </div>
             </div>
 
@@ -38,7 +38,7 @@ if(class_exists('Stripe_Controller')){
                 <!--Email-->
                 <div class="col-md-6">
                     <label>Email<span class="stripe-required">*<span></label>
-                    <input type="email"  placeholder="Your email to get receipt" name="email" class="form-control input-text">
+                    <input type="email" placeholder="Your email to get receipt" name="email" class="form-control input-text">
                 </div>
                 <!--Phone-->
                 <div class="col-md-6">
